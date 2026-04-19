@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AÏA Approved — Screened Product Recommendations</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .pg { padding: 8rem 3rem 5rem; background: var(--warm-white); }
+    .pg-inner { max-width: 1100px; margin: 0 auto; }
+    .pg-header { text-align: center; margin-bottom: 4rem; }
+    .pg-header h1 { font-family: var(--serif); font-size: clamp(2rem,4vw,3rem); font-weight: 300; color: var(--deep); margin-bottom: 0.8rem; }
+    .pg-header p { font-size: 1rem; color: var(--text-secondary); max-width: 560px; margin: 0 auto; line-height: 1.7; }
+    .pg-cat { margin-bottom: 5rem; }
+    .pg-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .pg-card { background: var(--cream); border: 1px solid rgba(181,158,125,0.1); overflow: hidden; transition: all 0.35s ease; text-decoration: none; }
+    .pg-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(61,52,40,0.06); }
+    .pg-card-img { width: 100%; height: 240px; background: var(--warm-white); display: flex; align-items: center; justify-content: center; padding: 1.5rem; overflow: hidden; }
+    .pg-card-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .pg-card-body { padding: 1.2rem 1.4rem 1.4rem; }
+    .pg-card-brand { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tobacco); margin-bottom: 0.3rem; }
+    .pg-card h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--deep); line-height: 1.3; margin-bottom: 0.4rem; }
+    .pg-card-price { font-size: 0.88rem; color: var(--earth); font-weight: 500; }
+    .pg-disclaimer { font-size: 0.82rem; font-style: italic; color: var(--text-muted); margin-top: 3rem; text-align: center; line-height: 1.7; }
+    @media (max-width: 700px) { .pg-grid { grid-template-columns: 1fr 1fr; } .pg { padding: 7rem 1.5rem 4rem; } }
+    @media (max-width: 480px) { .pg-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <a href="/" class="nav-logo">AÏA</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/edit/">The Edit</a></li>
+      <li><a href="/approved/">AÏA Approved</a></li>
+      <li><a href="/standard/">Our Standard</a></li>
+      <li><a href="/about/">About</a></li>
+    </ul>
+    <div class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </div>
+  </nav>
+  <section class="pg">
+    <div class="pg-inner">
+      <div class="pg-header">
+        <p class="section-label">AÏA Approved</p>
+        <h1>Every recommendation. Screened first.</h1>
+        <p>Every product here has been screened ingredient-by-ingredient. If it's here, it passed.</p>
+      </div>
+
+      <div class="pg-cat" id="skincare">
+        <p class="section-label">01</p>
+        <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--deep);margin-bottom:0.4rem;">Skincare</h2>
+        <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.7;">Formulas that respect your skin barrier. Nothing we wouldn't use ourselves.</p>
+        <div style="height:1px;background:var(--bone);margin-bottom:2rem;"></div>
+        <div class="pg-grid">
+        <a href="products/true-botanicals-cleanser.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://truebotanicals.com/cdn/shop/files/TB_PDP_RenewNourishingCleanser_01.jpg?width=600" alt="Renew Nourishing Cleanser" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">True Botanicals</p>
+            <h3>Renew Nourishing Cleanser</h3>
+            <p class="pg-card-price">$48</p>
+          </div>
+        </a>
+        <a href="products/weleda-skin-food.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://m.media-amazon.com/images/I/61kJqICSqhL._SL1500_.jpg" alt="Skin Food Original Ultra-Rich Cream" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">Weleda</p>
+            <h3>Skin Food Original Ultra-Rich Cream</h3>
+            <p class="pg-card-price">$20</p>
+          </div>
+        </a>
+        <a href="products/marie-veronique-serum.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://marieveronique.com/cdn/shop/files/MV_VitCEFerulic_Front.jpg?width=600" alt="Vitamins C+E+Ferulic Serum" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">Marie Veronique</p>
+            <h3>Vitamins C+E+Ferulic Serum</h3>
+            <p class="pg-card-price">$120</p>
+          </div>
+        </a>
+        </div>
+      </div>
+      <div class="pg-cat" id="food">
+        <p class="section-label">02</p>
+        <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--deep);margin-bottom:0.4rem;">Food & Pantry</h2>
+        <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.7;">Food that is what it says it is. Every ingredient checked before it makes the list.</p>
+        <div style="height:1px;background:var(--bone);margin-bottom:2rem;"></div>
+        <div class="pg-grid">
+        <a href="products/primal-kitchen-mayo.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://m.media-amazon.com/images/I/71RvKVNpM7L._SL1500_.jpg" alt="Avocado Oil Mayo" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">Primal Kitchen</p>
+            <h3>Avocado Oil Mayo</h3>
+            <p class="pg-card-price">$9</p>
+          </div>
+        </a>
+        <a href="products/fishwife-salmon.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://fishwife.com/cdn/shop/files/GoldLabel_Front.png?width=600" alt="Gold Label Smoked Salmon" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">Fishwife</p>
+            <h3>Gold Label Smoked Salmon</h3>
+            <p class="pg-card-price">$14 per tin</p>
+          </div>
+        </a>
+        <a href="products/mountain-valley-water.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://www.mountainvalleyspring.com/cdn/shop/files/750ML_SPARKLING_SPRING.png?width=600" alt="Spring Water (Glass Bottle)" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">Mountain Valley</p>
+            <h3>Spring Water (Glass Bottle)</h3>
+            <p class="pg-card-price">$3-5 per 750mL</p>
+          </div>
+        </a>
+        </div>
+      </div>
+      <div class="pg-cat" id="supplements">
+        <p class="section-label">03</p>
+        <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--deep);margin-bottom:0.4rem;">Supplements</h2>
+        <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.7;">Real dosages, full transparency. You see exactly what you're taking.</p>
+        <div style="height:1px;background:var(--bone);margin-bottom:2rem;"></div>
+        <div class="pg-grid">
+        <a href="products/thorne-multivitamin.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://m.media-amazon.com/images/I/61kCJ8dO7QL._AC_SL1500_.jpg" alt="Basic Nutrients 2/Day" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">Thorne</p>
+            <h3>Basic Nutrients 2/Day</h3>
+            <p class="pg-card-price">$43</p>
+          </div>
+        </a>
+        <a href="products/nordic-naturals-omega.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://m.media-amazon.com/images/I/71kqb-fgWXL._AC_SL1500_.jpg" alt="Ultimate Omega" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">Nordic Naturals</p>
+            <h3>Ultimate Omega</h3>
+            <p class="pg-card-price">$40</p>
+          </div>
+        </a>
+        <a href="products/pure-encapsulations-magnesium.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://m.media-amazon.com/images/I/51Hkt7VC3tL._AC_SL1200_.jpg" alt="Magnesium Glycinate" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">Pure Encapsulations</p>
+            <h3>Magnesium Glycinate</h3>
+            <p class="pg-card-price">$25</p>
+          </div>
+        </a>
+        </div>
+      </div>
+      <div class="pg-cat" id="haircare">
+        <p class="section-label">04</p>
+        <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--deep);margin-bottom:0.4rem;">Haircare</h2>
+        <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.7;">Products that clean without stripping. Your hair and scalp deserve better.</p>
+        <div style="height:1px;background:var(--bone);margin-bottom:2rem;"></div>
+        <div class="pg-grid">
+        <a href="products/innersense-shampoo.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://m.media-amazon.com/images/I/61n7i3-YCEL._SL1500_.jpg" alt="Hydrating Cream Hairbath" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">Innersense</p>
+            <h3>Hydrating Cream Hairbath</h3>
+            <p class="pg-card-price">$40</p>
+          </div>
+        </a>
+        <a href="products/rahua-conditioner.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://m.media-amazon.com/images/I/61Vzo99hZCL._SL1500_.jpg" alt="Classic Conditioner" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">Rahua</p>
+            <h3>Classic Conditioner</h3>
+            <p class="pg-card-price">$40</p>
+          </div>
+        </a>
+        <a href="products/rahua-elixir.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://m.media-amazon.com/images/I/41dtGr5l8iL._SL1200_.jpg" alt="Legendary Amazon Oil" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">Rahua</p>
+            <h3>Legendary Amazon Oil</h3>
+            <p class="pg-card-price">$130</p>
+          </div>
+        </a>
+        </div>
+      </div>
+      <div class="pg-cat" id="home">
+        <p class="section-label">06</p>
+        <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--deep);margin-bottom:0.4rem;">Home & Cleaning</h2>
+        <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.7;">A clean home shouldn't come with hidden trade-offs. These actually deliver.</p>
+        <div style="height:1px;background:var(--bone);margin-bottom:2rem;"></div>
+        <div class="pg-grid">
+        <a href="products/branch-basics.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://branchbasics.com/cdn/shop/files/starter-kit.png?width=600" alt="Concentrate (Premium Starter Kit)" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">Branch Basics</p>
+            <h3>Concentrate (Premium Starter Kit)</h3>
+            <p class="pg-card-price">$55</p>
+          </div>
+        </a>
+        <a href="products/attitude-dish-soap.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://m.media-amazon.com/images/I/61zfK8pBjnL._SL1500_.jpg" alt="Dish Soap (Unscented)" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">Attitude</p>
+            <h3>Dish Soap (Unscented)</h3>
+            <p class="pg-card-price">$8</p>
+          </div>
+        </a>
+        <a href="products/mollys-suds-laundry.html" class="pg-card">
+          <div class="pg-card-img"><img src="https://m.media-amazon.com/images/I/71sCkLyZMuL._SL1500_.jpg" alt="Original Laundry Powder (Unscented)" onerror="this.style.display='none'"></div>
+          <div class="pg-card-body">
+            <p class="pg-card-brand">Molly's Suds</p>
+            <h3>Original Laundry Powder (Unscented)</h3>
+            <p class="pg-card-price">$25 (120 loads)</p>
+          </div>
+        </a>
+        </div>
+      </div>
+      <div class="pg-cat" id="gut">
+        <p class="section-label">05</p>
+        <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--deep);margin-bottom:0.4rem;">Gut & Digestion</h2>
+        <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.7;">Gentle formulas only. Nothing aggressive. Support without overwhelm.</p>
+        <div style="height:1px;background:var(--bone);margin-bottom:2rem;"></div>
+        <div style="background:var(--cream);border:1px solid rgba(181,158,125,0.12);padding:3rem 2rem;text-align:center;"><p style="font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--text-muted);">Products coming soon.</p></div>
+      </div>
+      <p class="pg-disclaimer">Formulations change — always read the ingredient list on the product you buy. Some links on this page are affiliate links, meaning AÏA may earn a small commission at no extra cost to you.</p>
+    </div>
+  </section>
+  <footer>
+    <a href="/" class="footer-logo">AÏA</a>
+    <ul class="footer-links"><li><a href="/edit/">The Edit</a></li><li><a href="/approved/">AÏA Approved</a></li><li><a href="/standard/">Our Standard</a></li><li><a href="/about/">About</a></li></ul>
+    <span class="footer-copy">© 2026 AÏA Wellness</span>
+  </footer>
+  <script>window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60)});</script>
+</body>
+</html>
