@@ -313,5 +313,51 @@
     const observer = new IntersectionObserver((entries) => { entries.forEach((entry, i) => { if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 80); observer.unobserve(entry.target); } }); }, { threshold: 0.15 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
+  <!-- AÏA Newsletter Popup -->
+<div id="aia-popup-overlay" class="aia-popup-overlay" role="dialog" aria-modal="true">
+  <div class="aia-popup">
+    <button class="aia-popup-close" aria-label="Close newsletter signup">&times;</button>
+    <div class="aia-popup-content">
+      <img src="/images/aia-logo-dark.svg" alt="AÏA" class="aia-popup-logo">
+      <p class="aia-popup-subtitle">Wellness with receipts — straight to your inbox.</p>
+      <div class="aia-popup-form">
+        <iframe src="https://subscribe-forms.beehiiv.com/a19aac14-5b75-43d0-b3cd-0621b46be203" 
+          class="beehiiv-embed" 
+          data-test-id="beehiiv-embed" 
+          frameborder="0" 
+          scrolling="no"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+
+<script>
+  (function() {
+    const STORAGE_KEY = 'aia_popup_seen';
+    const DELAY_MS = 15000;
+    if (localStorage.getItem(STORAGE_KEY)) return;
+    const overlay = document.getElementById('aia-popup-overlay');
+    const closeBtn = overlay.querySelector('.aia-popup-close');
+    function openPopup() {
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePopup() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+      localStorage.setItem(STORAGE_KEY, Date.now().toString());
+    }
+    setTimeout(openPopup, DELAY_MS);
+    closeBtn.addEventListener('click', closePopup);
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closePopup();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('is-open')) closePopup();
+    });
+  })();
+</script>
 </body>
 </html>
