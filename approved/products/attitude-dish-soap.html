@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dish Soap (Unscented) — Attitude | AÏA Approved</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .pp { padding: 7rem 3rem 3rem; background: var(--warm-white); }
+    .pp-inner { max-width: 900px; margin: 0 auto; }
+    .pp-back { display: inline-block; margin-bottom: 2rem; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tobacco); transition: color 0.3s; }
+    .pp-back:hover { color: var(--deep); }
+    .pp-flex { display: flex; gap: 3rem; }
+    .pp-img { width: 380px; flex-shrink: 0; background: var(--cream); border: 1px solid rgba(181,158,125,0.1); display: flex; align-items: center; justify-content: center; padding: 2rem; }
+    .pp-img img { max-width: 100%; max-height: 400px; object-fit: contain; }
+    .pp-info { flex: 1; }
+    .pp-cat { display: inline-block; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tobacco); background: rgba(181,158,125,0.12); padding: 0.25rem 0.6rem; margin-bottom: 1rem; }
+    .pp-brand { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tobacco); margin-bottom: 0.4rem; }
+    .pp-info h1 { font-family: var(--serif); font-size: 2rem; font-weight: 400; color: var(--deep); margin-bottom: 0.5rem; line-height: 1.2; }
+    .pp-price { font-size: 1.1rem; color: var(--earth); font-weight: 500; margin-bottom: 1.5rem; }
+    .pp-desc { font-size: 0.95rem; line-height: 1.75; color: var(--text-secondary); margin-bottom: 1.5rem; }
+    .pp-stitle { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--deep); margin-bottom: 0.5rem; margin-top: 1.5rem; }
+    .pp-detail { font-size: 0.9rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 1rem; }
+    .pp-ingredients { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; padding: 1rem; background: var(--cream); border: 1px solid rgba(181,158,125,0.1); margin-bottom: 1.5rem; }
+    .pp-buy { display: inline-flex; padding: 1rem 2.5rem; background: var(--mahogany); color: var(--cream); font-family: var(--sans); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+    .pp-buy:hover { background: var(--tobacco); }
+    .pp-nav { max-width: 900px; margin: 0 auto; padding: 2rem 3rem 4rem; display: flex; justify-content: space-between; border-top: 1px solid var(--bone); }
+    .pp-nav a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tobacco); transition: color 0.3s; }
+    .pp-nav a:hover { color: var(--deep); }
+    @media (max-width: 700px) { .pp-flex { flex-direction: column; gap: 1.5rem; } .pp-img { width: 100%; } .pp { padding: 7rem 1.5rem 3rem; } .pp-nav { padding: 2rem 1.5rem 4rem; } }
+  </style>
+</head>
+<body>
+  <nav id="navbar"><a href="/" class="nav-logo">AÏA</a><ul class="nav-links" id="navLinks"><li><a href="/edit/">The Edit</a></li><li><a href="/approved/">AÏA Approved</a></li><li><a href="/standard/">Our Standard</a></li><li><a href="/about/">About</a></li></ul><div class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></div></nav>
+  <section class="pp"><div class="pp-inner">
+    <a href="/approved/" class="pp-back">&#8592; Back to AÏA Approved</a>
+    <div class="pp-flex">
+      <div class="pp-img"><img src="/images/products/attitude.png" alt="Dish Soap (Unscented)"></div>
+      <div class="pp-info">
+        <span class="pp-cat">Home & Cleaning</span>
+        <p class="pp-brand">Attitude</p>
+        <h1>Dish Soap (Unscented)</h1>
+        <p class="pp-price">$8</p>
+        <p class="pp-desc">EWG Verified fragrance-free dish soap. 98% naturally derived.</p>
+        <h3 class="pp-stitle">Why it passed</h3>
+        <p class="pp-detail">Uses glucoside surfactants instead of SLS/SLES. No bleach, synthetic fragrance, colorants, alcohol, or formaldehyde.</p>
+        <h3 class="pp-stitle">Key ingredients</h3>
+        <div class="pp-ingredients">Sodium coco-sulfate, glucoside surfactants, citric acid, glycerin, green tea leaf extract</div>
+        <a href="https://www.amazon.com/ATTITUDE-Plant-Based-Dishwashing-Naturally-Unscented/dp/B0764HDZ32?crid=YYFWC46IXGKF&dib=eyJ2IjoiMSJ9.9GVvTJCRNXTWd-0rFdWX60MF3oeCk2iPKODqGXk8tg6KtLorsvTd9u4BpWvElGG7-cRc0mU0AOQzgjapLTCMOzzSnqrUEXoDmog7LBWH6WnpjjZHy7Zw2udzzhifoKYGZ_ATyQ7bQeOeqR3_FBC-zmdCBglkxttPtGekSc_renXcGpBEd5mXU2Nb3VuIvH8JyFGPoNwY6yFSM_qW3QGSz62aUCg_Pj0XQmaV0jhIMoGVkeViSEdhjJpgkwWoC7JLhps6QwFNtXFFEBS8OXp3lndADzXoQUt0qh1YDHU6CAA.jkXLBT41gHgnDxAJZSceugLIBjDyQ5XSA6tg7fqkNCo&dib_tag=se&keywords=attitude%2Bdish%2Bsoap%2Bunscented&qid=1776608652&sprefix=Attitude%2BDish%2BSOap%2Caps%2C191&sr=8-7&th=1&linkCode=ll2&tag=aiawellness-20&linkId=ba3c0e6b9cb4a78648bec814c67dec3d&language=en_US&ref_=as_li_ss_tl" target="_blank" class="pp-buy">Buy now</a>
+      </div>
+    </div>
+  </div></section>
+  <div class="pp-nav"><a href="/approved/products/branch-basics.html">&#8592; Previous</a><a href="/approved/products/mollys-suds-laundry.html">Next product &#8594;</a></div>
+  <footer><a href="/" class="footer-logo">AÏA</a><ul class="footer-links"><li><a href="/edit/">The Edit</a></li><li><a href="/approved/">AÏA Approved</a></li><li><a href="/standard/">Our Standard</a></li><li><a href="/about/">About</a></li></ul><span class="footer-copy">&copy; 2026 AÏA Wellness</span></footer>
+  <script>window.addEventListener('scroll',function(){document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60)});</script>
+</body></html>
