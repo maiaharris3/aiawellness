@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Edit — AÏA</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .edit-page { padding: 8rem 3rem 5rem; background: var(--warm-white); }
+    .edit-page-inner { max-width: 1100px; margin: 0 auto; }
+    .edit-page-header { text-align: center; margin-bottom: 4rem; }
+    .edit-page-header h1 { font-family: var(--serif); font-size: clamp(2rem,4vw,3rem); font-weight: 300; color: var(--deep); margin-bottom: 0.8rem; }
+    .edit-page-header p { font-size: 1rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto; }
+    .posts-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+    .post-card { background: var(--cream); border: 1px solid rgba(181,158,125,0.1); overflow: hidden; transition: all 0.35s ease; }
+    .post-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(61,52,40,0.06); }
+    .post-card img { width: 100%; height: 240px; object-fit: cover; filter: saturate(0.7) brightness(1.02); }
+    .post-card-body { padding: 1.5rem; }
+    .post-card-tags { display: flex; gap: 0.5rem; margin-bottom: 0.6rem; }
+    .post-card-tag { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tobacco); background: rgba(181,158,125,0.12); padding: 0.25rem 0.6rem; }
+    .post-card h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; color: var(--deep); line-height: 1.35; margin-bottom: 0.5rem; }
+    .post-card-meta { font-size: 0.75rem; color: var(--text-muted); }
+    @media (max-width: 700px) { .posts-grid { grid-template-columns: 1fr; } .edit-page { padding: 7rem 1.5rem 4rem; } }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <a href="/" class="nav-logo">AÏA</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/edit/">The Edit</a></li>
+      <li><a href="/approved/">AÏA Approved</a></li>
+      <li><a href="/standard/">Our Standard</a></li>
+      <li><a href="/about/">About</a></li>
+    </ul>
+    <div class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </div>
+  </nav>
+
+  <section class="edit-page">
+    <div class="edit-page-inner">
+      <div class="edit-page-header">
+        <p class="section-label">The Edit</p>
+        <h1>Wellness, researched.</h1>
+        <p>Honest breakdowns, ingredient checks, and the things no one else is telling you.</p>
+      </div>
+      <div class="posts-grid">
+
+        <a href="sunscreens.html" class="post-card"><img src="../images/sunscreens.png" alt="Sunscreens"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Skincare</span><span class="post-card-tag">Ingredients</span></div><h3>We Tested 12 Popular Sunscreens. Only 3 Passed.</h3><span class="post-card-meta">6 min read</span></div></a>
+
+        <a href="pcos.html" class="post-card"><img src="../images/pcos.png" alt="PCOS"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Hormones</span><span class="post-card-tag">Gut Health</span></div><h3>PCOS Is More Common Than You Think — Here's What's Actually Going On</h3><span class="post-card-meta">7 min read</span></div></a>
+
+        <a href="red-light-therapy.html" class="post-card"><img src="../images/red-light.png" alt="Red light therapy"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Skincare</span><span class="post-card-tag">Ingredients</span></div><h3>Red Light Therapy: Worth the Hype or Waste of Money?</h3><span class="post-card-meta">6 min read</span></div></a>
+
+        <a href="protein-bar-lie.html" class="post-card"><img src="../images/protein-bars.png" alt="Protein bars"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Food</span><span class="post-card-tag">Label Literacy</span></div><h3>The Protein Bar Lie: Why Most of Them Are Basically Candy</h3><span class="post-card-meta">5 min read</span></div></a>
+
+        <a href="lymphatic-drainage.html" class="post-card"><img src="../images/lymphatic.png" alt="Lymphatic drainage"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Skincare</span><span class="post-card-tag">Hormones</span></div><h3>Lymphatic Drainage at Home: What Actually Works</h3><span class="post-card-meta">5 min read</span></div></a>
+
+        <a href="hormones.html" class="post-card"><img src="../images/hormones.png" alt="Hormones"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Hormones</span><span class="post-card-tag">Gut Health</span></div><h3>Your Hormones Are Running the Show — Here's How to Work With Them</h3><span class="post-card-meta">7 min read</span></div></a>
+
+        <a href="seed-oils.html" class="post-card"><img src="../images/seed-oils.png" alt="Seed oils"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Food</span><span class="post-card-tag">Ingredients</span></div><h3>Seed Oils: The Ingredient You're Eating Every Day Without Knowing</h3><span class="post-card-meta">7 min read</span></div></a>
+
+        <a href="gut-health.html" class="post-card"><img src="../images/gut-health.png" alt="Gut health"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Gut Health</span><span class="post-card-tag">Food</span></div><h3>Gut Health Is the Foundation of Everything. Here's Where to Start.</h3><span class="post-card-meta">8 min read</span></div></a>
+
+        <a href="cortisol-face.html" class="post-card"><img src="../images/cortisol.png" alt="Cortisol face"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Skincare</span><span class="post-card-tag">Hormones</span></div><h3>Cortisol Face Is Real — Here's What's Actually Happening</h3><span class="post-card-meta">6 min read</span></div></a>
+
+        <a href="clean-beauty.html" class="post-card"><img src="../images/clean-beauty.png" alt="Clean beauty"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Skincare</span><span class="post-card-tag">Label Literacy</span></div><h3>What "Clean" Beauty Actually Means (And What Brands Don't Want You to Know)</h3><span class="post-card-meta">6 min read</span></div></a>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="/" class="footer-logo">AÏA</a>
+    <ul class="footer-links"><li><a href="/edit/">The Edit</a></li><li><a href="/approved/">AÏA Approved</a></li><li><a href="/standard/">Our Standard</a></li><li><a href="/about/">About</a></li></ul>
+    <span class="footer-copy">© 2026 AÏA Wellness</span>
+  </footer>
+  <script>window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60); });</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Protein Bar Lie: Why Most of Them Are Basically Candy — AÏA</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .post-hero { width: 100%; height: 50vh; min-height: 360px; object-fit: cover; filter: saturate(0.75) brightness(1.02); }
+    .post-wrap { max-width: 720px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .post-tags { display: flex; gap: 0.5rem; margin-bottom: 1.2rem; padding-top: 2rem; }
+    .post-tag { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tobacco); background: rgba(181,158,125,0.12); padding: 0.3rem 0.7rem; }
+    .post-wrap h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 400; line-height: 1.2; color: var(--deep); margin-bottom: 1rem; }
+    .post-meta { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--bone); }
+    .post-body { font-size: 1rem; line-height: 1.8; color: var(--text-secondary); }
+    .post-body h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: var(--deep); margin: 2.5rem 0 1rem; }
+    .post-body h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; color: var(--deep); margin: 2rem 0 0.8rem; }
+    .post-body p { margin-bottom: 1.2rem; }
+    .post-body strong { color: var(--deep); font-weight: 500; }
+    .post-body em { font-style: italic; }
+    .post-body ul, .post-body ol { margin: 0.8rem 0 1.2rem 1.5rem; }
+    .post-body li { margin-bottom: 0.4rem; line-height: 1.7; }
+    .post-sources { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--bone); font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
+    .post-sources h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 0.8rem; }
+    .post-disclaimer { font-size: 0.82rem; font-style: italic; color: var(--text-muted); margin-top: 1.5rem; }
+    .post-nav { max-width: 720px; margin: 0 auto; padding: 0 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+    .post-nav a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tobacco); transition: color 0.3s; }
+    .post-nav a:hover { color: var(--deep); }
+    .scorecard { margin: 2rem 0; }
+    .sc-row { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 6px; margin-bottom: 6px; }
+    .sc-fail { background: #fef2f2; border: 0.5px solid #fecaca; }
+    .sc-pass { background: #f0fdf4; border: 0.5px solid #bbf7d0; }
+    .sc-badge { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; flex-shrink: 0; }
+    .sc-badge-f { background: #fca5a5; color: #450a0a; }
+    .sc-badge-p { background: #86efac; color: #052e16; }
+    .sc-name { font-size: 0.88rem; font-weight: 500; flex: 1; }
+    .sc-name-f { color: #7f1d1d; }
+    .sc-name-p { color: #14532d; }
+    .sc-flag { font-size: 0.78rem; color: var(--text-muted); margin-left: auto; text-align: right; }
+    .sc-divider { height: 1px; background: var(--bone); margin: 1rem 0; }
+    .sc-header { font-family: var(--serif); font-size: 1rem; font-weight: 500; margin-bottom: 0.6rem; }
+    @media (max-width: 600px) {
+      .sc-flag { display: none; }
+      .post-hero { height: 35vh; min-height: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <a href="/" class="nav-logo">AÏA</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/edit/">The Edit</a></li>
+      <li><a href="/approved/">AÏA Approved</a></li>
+      <li><a href="/standard/">Our Standard</a></li>
+      <li><a href="/about/">About</a></li>
+    </ul>
+    <div class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </div>
+  </nav>
+
+  <img src="../images/protein-bars.png" alt="The Protein Bar Lie: Why Most of Them Are Basically Candy" class="post-hero" style="margin-top:62px;">
+
+  <div class="post-wrap">
+    <div class="post-tags"><span class="post-tag">Food</span><span class="post-tag">Label Literacy</span></div>
+    <h1>The Protein Bar Lie: Why Most of Them Are Basically Candy</h1>
+    <p class="post-meta">5 min read</p>
+    <div class="post-body">
+<p>A Gatorade Recover Protein Bar has 28 grams of sugar. A regular Snickers has 26. You're not eating healthier. You're eating a candy bar with a green label and some added protein.</p>
+<p>This is the protein bar racket. And once you see it, you can't unsee it.</p>
+<h2>The setup</h2>
+<p>Protein bars are marketed as a high-performance snack. Clean, functional, fuel. The packaging uses words like <em>recover</em>, <em>perform</em>, <em>complete</em>. The front of the wrapper tells you about the grams of protein. The back of the wrapper tells the real story — and the real story is that most of these bars are ultra-processed food products with a meaningful amount of added sugar, a long list of texture-engineering ingredients, and just enough isolated protein to justify the claim on the front.</p>
+<p>The industry exists because you want to eat a candy bar without feeling like you're eating a candy bar. And brands figured out that if you add 15 grams of whey protein to something that's otherwise dessert, you'll pay a premium for it.</p>
+<h2>What to actually look at on the label</h2>
+<p>Forget the front of the box. Flip it over. You want to scan for four things:</p>
+<p><strong>1. Added sugar.</strong> Under 5 grams per bar is ideal. Under 8 is acceptable. Over 15 is a dessert. This is added sugar, not total — total sugar from dates and fruit is different, though not completely harmless (more on that in a second).</p>
+<p><strong>2. Protein-to-sugar ratio.</strong> If a bar has 10 grams of protein and 20 grams of sugar, the sugar is doing more of the work than the protein. You want at least a 1:1 ratio, ideally higher — like 15g protein to 5g sugar.</p>
+<p><strong>3. The ingredient list.</strong> If it reads like a chemistry set — soy protein isolate, glycerin, maltitol, polydextrose, soluble corn fiber, natural flavors, palm kernel oil, sucralose — that's a processed food product. The shorter the list, the better.</p>
+<p><strong>4. Sugar alcohols and "fiber syrups."</strong> Many protein bars use these to stay low-sugar on the label. Isomalto-oligosaccharides (IMO), soluble corn fiber, and sugar alcohols like maltitol can cause bloating, GI distress, and — in some cases — blood sugar spikes that basically match regular sugar. The label says "fiber," your body says "this feels weird."</p>
+<h2>The offenders</h2>
+<p>Some of the worst offenders, based on publicly available nutrition facts:</p>
+<ul>
+<li><strong>Gatorade Recover Protein Bar</strong> — 28–29g sugar per bar, more than a Snickers</li>
+<li><strong>Clif Bar (Chocolate Chip)</strong> — 17g sugar, mostly added, plus a pile of cane syrup and brown rice syrup</li>
+<li><strong>Built Bars</strong> — under 4g sugar but loaded with sugar alcohols that can wreck your gut</li>
+<li><strong>Pure Protein</strong> — 2–3g sugar but uses sucralose and maltitol</li>
+<li><strong>Quest Bars</strong> — low sugar, but a lab full of sucralose, soluble corn fiber, and IMO</li>
+</ul>
+<p>Even some of the "clean" bars aren't actually clean once you read the full list.</p>
+<h2>Dates are still sugar</h2>
+<p>This is the one no one wants to hear. Bars like <strong>RXBAR</strong> and Larabar brand themselves on having "no added sugar" because they're sweetened with dates instead. That's technically true. Dates aren't refined sugar. But 16g of sugar from dates is still 16g of sugar in your bloodstream, and your body processes it similarly. The upside is that whole dates come with some fiber and micronutrients. The downside is that a bar made mostly of dates and nut butter is still a high-sugar snack — it's just a better kind of high-sugar snack.</p>
+<p>This doesn't mean don't eat them. It means don't lie to yourself about what they are.</p>
+<h2>What a real protein bar looks like</h2>
+<p>If you actually want something that lives up to the marketing, you're looking for:</p>
+<ul>
+<li><strong>15+ grams of protein</strong> from real sources (whey isolate, egg white, milk protein, or a serious dose of nut/seed protein)</li>
+<li><strong>Under 8 grams of total sugar</strong> and under 5g added</li>
+<li><strong>Ingredient list under 10 items</strong>, ideally recognizable as food</li>
+<li><strong>No artificial sweeteners, sugar alcohols, or sugar alcohol substitutes that end in -tol or -ose</strong></li>
+<li><strong>Minimal use of "natural flavors"</strong> as a catch-all</li>
+</ul>
+<p>Options that tend to meet this bar include IQBAR (lower protein but clean ingredients), Aloha (plant-based, low sugar), David protein bars (high protein, minimal sugar, short ingredient list), and the occasional flavor from Perfect Bar, depending on the version. Formulations change, so check the label every time.</p>
+<p>Or honestly? Eat actual food. A handful of almonds and a piece of string cheese will outperform most protein bars for about the same amount of protein and a fraction of the processing.</p>
+<h2>The real issue</h2>
+<p>Ultra-processed food is associated with higher rates of cardiovascular disease, metabolic dysfunction, and weight gain, regardless of the macronutrient profile. A bar that's 20% protein is still ultra-processed if the other 80% is a chemistry experiment. "High protein" is not a free pass.</p>
+<p>The protein craze has turned every snack category into a science project. Protein waffles, protein chips, protein ice cream, protein cereal. Almost all of it is the same playbook: take a hyper-palatable junk food, add isolated protein, charge a premium. The protein itself isn't the problem. The <em>context</em> is.</p>
+<h2>The takeaway</h2>
+<p>Read the label. If the protein bar has more sugar than a candy bar, or its ingredient list looks like the inside of a chemistry classroom, put it back. The best protein bar is usually the one that tastes the least like candy — because it's probably the one that actually is what it says it is.</p>
+<p><strong>Sources</strong></p>
+<ul>
+<li>FDA Nutrition Facts labeling requirements and Added Sugars regulations</li>
+<li>American Heart Association, added sugar recommendations (women ≤25g/day; men ≤36g/day)</li>
+<li>Hall KD et al., "Ultra-processed diets cause excess calorie intake and weight gain," <em>Cell Metabolism</em>, 2019</li>
+<li>Publicly available nutrition facts and ingredient lists for brands referenced (as of 2026 — formulations change)</li>
+</ul>
+<p><em>This article is for informational purposes only and is not medical advice.</em></p>
+    </div>
+  </div>
+
+  <div class="post-nav">
+    <a href="/edit/">← Back to The Edit</a>
+    <a href="/approved/">AÏA Approved →</a>
+  </div>
+
+  <footer>
+    <a href="/" class="footer-logo">AÏA</a>
+    <ul class="footer-links"><li><a href="/edit/">The Edit</a></li><li><a href="/approved/">AÏA Approved</a></li><li><a href="/standard/">Our Standard</a></li><li><a href="/about/">About</a></li></ul>
+    <span class="footer-copy">© 2026 AÏA Wellness</span>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60); });
+  </script>
+</body>
+</html>
