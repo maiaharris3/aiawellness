@@ -235,3 +235,8 @@ footer {
   .beehiiv-footer {
     height: 130px;
   }
+/* Newsletter section — cream background */
+.newsletter { background: #F1EADA !important; padding: 5rem 2rem; text-align: center; }
+.newsletter .section-label { color: #8A7560 !important; }
+.newsletter h2 { color: #3D3428 !important; }
+.newsletter p { color: #584738 !important; }
