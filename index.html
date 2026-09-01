@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AÏA — Wellness, Honestly.</title>
+  <meta name="description" content="Ingredient-screened products. Research-backed wellness education. If it's here, you can trust it.">
+  <meta property="og:title" content="AÏA — Wellness with receipts.">
+  <meta property="og:description" content="Ingredient-screened products. Research-backed wellness education. If it's here, you can trust it.">
+  <meta property="og:image" content="https://aiawellness.co/images/og-image.png">
+  <meta property="og:url" content="https://aiawellness.co">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      25% { background-position: 100% 25%; }
+      50% { background-position: 100% 50%; }
+      75% { background-position: 0% 75%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes lineDraw { from { width: 0; } to { width: 40px; } }
+
+    /* COMPACT HERO — letterpress paper */
+    .hero {
+      position: relative;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+      background-color: #D9D0C0;
+      background-image: url('/images/aia-paper-tile.webp');
+      background-repeat: repeat; background-size: 340px 340px;
+      padding: 8rem 2rem 3.5rem;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 760px; }
+    .hero-ctas {
+      display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.8s ease 1.35s forwards;
+    }
+
+    /* MARQUEE */
+    .marquee-section {
+      background: #8A7560; padding: 0.8rem 0; overflow: hidden;
+    }
+    .marquee-track { display: flex; animation: marquee 35s linear infinite; width: max-content; }
+    .marquee-item {
+      flex-shrink: 0; padding: 0 2.5rem; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; color: #F7F3EC;
+      white-space: nowrap; display: flex; align-items: center; gap: 2.5rem;
+    }
+    .marquee-item::after { content: '·'; color: #E8E0D4; font-size: 1.2rem; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* PRODUCT CAROUSEL */
+    .carousel-section { padding: 3.5rem 0 3rem; background: #F1EADA; overflow: hidden; }
+    .carousel-header { max-width: 1100px; margin: 0 auto; padding: 0 3rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-end; }
+    .carousel-header h2 { font-family: var(--serif); font-size: clamp(1.4rem,2.5vw,1.8rem); font-weight: 300; color: #3D3428; margin-bottom: 0.3rem; }
+    .carousel-header p { font-size: 0.88rem; color: #6B5E4F; }
+    .carousel-viewall-top { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #8A7560; border-bottom: 1px solid rgba(138,117,96,0.5); padding-bottom: 0.2rem; transition: color 0.3s, border-color 0.3s; }
+    .carousel-viewall-top:hover { color: #3D3428; border-color: #3D3428; }
+    .carousel-wrapper { overflow-x: auto; overflow-y: hidden; cursor: grab; -ms-overflow-style: none; scrollbar-width: none; }
+    .carousel-wrapper::-webkit-scrollbar { display: none; }
+    .carousel-wrapper:active { cursor: grabbing; }
+    .carousel-track {
+      display: flex; gap: 1rem; padding: 0 3rem;
+      width: max-content;
+    }
+    .carousel-card {
+      min-width: 180px; background: transparent; border: none;
+      padding: 1.2rem 1rem; text-align: center; flex-shrink: 0;
+      text-decoration: none; user-select: none;
+    }
+    .carousel-card-img {
+      width: 100%; height: 150px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.9rem; transition: transform 0.35s ease;
+    }
+    .carousel-card:hover .carousel-card-img { transform: translateY(-8px); }
+    .carousel-card-img img { max-width: 82%; max-height: 146px; object-fit: contain; pointer-events: none; }
+    .carousel-card-brand { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #8A7560; margin-bottom: 0.25rem; }
+    .carousel-card h3 { font-family: var(--serif); font-size: 1rem; font-weight: 400; color: #3D3428; line-height: 1.3; margin-bottom: 0.25rem; display: inline-block; position: relative; }
+    .carousel-card-price { font-size: 0.82rem; color: #6B5E4F; }
+    @media (hover: none) {
+      .carousel-card h3::after {
+        content: ''; position: absolute; left: 0; right: 0; bottom: -2px;
+        height: 1px; background: rgba(138,117,96,0.45);
+      }
+    }
+
+    /* EDIT SECTION */
+    .edit-section { padding: 5rem 3rem; background: var(--warm-white); }
+    .edit-inner { max-width: 1100px; margin: 0 auto; }
+    .edit-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
+    .edit-header h2 { font-family: var(--serif); font-size: clamp(1.6rem,3vw,2.2rem); font-weight: 300; color: var(--deep); }
+    .view-all { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; color: var(--tobacco); text-transform: uppercase; transition: color 0.3s; }
+    .view-all:hover { color: var(--deep); }
+    .edit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .edit-card { background: var(--cream); border: 1px solid rgba(181,158,125,0.1); overflow: hidden; transition: all 0.35s ease; display: flex; flex-direction: column; text-decoration: none; }
+    .edit-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(61,52,40,0.06); }
+    .edit-card-featured { grid-row: span 2; }
+    .edit-card-featured .edit-card-img { aspect-ratio: 3/4; height: 100%; }
+    .edit-card-featured { display: flex; flex-direction: column; }
+    .edit-card-featured h3 { font-size: 1.35rem; }
+    .edit-card-side { flex-direction: column; }
+    .edit-card-side .edit-card-img { width: 100%; min-width: auto; height: auto; aspect-ratio: 16/9; object-fit: cover; }
+    .edit-card-side .edit-card-body { display: flex; flex-direction: column; justify-content: center; }
+    .edit-card-side h3 { font-size: 1rem; }
+    .edit-card-bottom { flex-direction: column; }
+    .edit-card-bottom .edit-card-img { aspect-ratio: 16/9; }
+    .edit-card-bottom h3 { font-size: 1.05rem; }
+    .edit-bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+    .edit-card-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center center; }
+    .edit-card-body { padding: 1.5rem; }
+    .edit-tags { display: flex; gap: 0.5rem; margin-bottom: 0.6rem; }
+    .edit-tag { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tobacco); background: rgba(181,158,125,0.12); padding: 0.25rem 0.6rem; }
+    .edit-card h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; color: var(--deep); line-height: 1.35; margin-bottom: 0.5rem; }
+    .edit-meta { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* PILLARS */
+    .pillars { padding: 5rem 3rem; background: #E4DBCB; border-top: 1px solid rgba(88,71,56,0.10); }
+    .pillars-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
+    .pillar {
+      padding: 2rem 1.5rem; border: 1px solid rgba(88,71,56,0.18);
+      background: #F7F3EC; transition: all 0.4s ease; position: relative; overflow: hidden;
+    }
+    .pillar::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+      background: linear-gradient(90deg, #5A4A38, #B59E7D);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+    }
+    .pillar:hover::before { transform: scaleX(1); }
+    .pillar:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(61,52,40,0.10); }
+    .pillar-number { font-family: var(--serif); font-size: 2rem; font-weight: 300; color: #B59E7D; margin-bottom: 0.8rem; }
+    .pillar h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; margin-bottom: 0.6rem; color: var(--deep); }
+    .pillar p { font-size: 0.85rem; line-height: 1.65; color: var(--text-secondary); }
+
+    /* WHY */
+    .why { padding: 5rem 3rem; background: #EDE6D8; }
+    .why-inner { max-width: 1100px; margin: 0 auto; }
+    .why-header { text-align: center; margin-bottom: 3rem; }
+    .why h2 { font-family: var(--serif); font-size: clamp(1.6rem,3vw,2.2rem); font-weight: 300; line-height: 1.3; color: #3D3428; max-width: 650px; margin: 0 auto 1.2rem; }
+    .why-body { font-size: 1.05rem; line-height: 1.75; color: #5C5142; max-width: 540px; margin: 0 auto; text-align: center; font-weight: 300; }
+    .screen-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-top: 3rem; }
+    .screen-card { background: #F7F3EC; padding: 2rem 1.5rem; border: 1px solid rgba(88,71,56,0.16); transition: all 0.35s ease; }
+    .screen-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(61,52,40,0.09); }
+    .screen-card h4 { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; color: #3D3428; margin-bottom: 0.9rem; padding-bottom: 0.9rem; border-bottom: 1px solid rgba(88,71,56,0.20); }
+    .screen-card p { font-size: 0.95rem; line-height: 1.85; color: #5C5142; font-weight: 300; }
+    .screen-card p b { font-weight: 500; color: #3D3428; }
+    .screen-card p .sep { color: #8A7560; }
+    .screen-card p em { font-style: normal; font-weight: 300; color: #8A7560; }
+
+    /* NEWSLETTER */
+    .newsletter { padding: 5rem 3rem; background: #2C2620; text-align: center; }
+    .newsletter-inner { max-width: 520px; margin: 0 auto; }
+    .newsletter .section-label { color: #B59E7D; margin-bottom: 1.2rem; }
+    .newsletter h2 { font-family: var(--serif); font-size: clamp(1.6rem,3vw,2rem); font-weight: 300; color: #E8DFD3; margin-bottom: 0.8rem; line-height: 1.25; }
+    .newsletter p { font-size: 0.9rem; line-height: 1.7; color: #8A7560; margin-bottom: 1.5rem; }
+    .newsletter-form { display: flex; gap: 0; max-width: 400px; margin: 0 auto; }
+    .newsletter-input { flex: 1; padding: 0.85rem 1.2rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(181,158,125,0.2); border-right: none; color: #E8DFD3; font-family: var(--sans); font-size: 0.85rem; outline: none; }
+    .newsletter-input::placeholder { color: #8A7560; }
+    .newsletter-input:focus { border-color: #B59E7D; }
+    .newsletter-btn { padding: 0.85rem 1.6rem; background: #8A7560; color: #2C2620; font-family: var(--sans); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid #8A7560; cursor: pointer; transition: all 0.3s; }
+    .newsletter-btn:hover { background: #B59E7D; border-color: #B59E7D; }
+
+    @media (max-width: 900px) {
+      .hero { background-size: 260px 260px; }
+      .carousel-card { min-width: 150px; }
+      .why-body { font-size: 1rem; }
+      .pillars-grid { grid-template-columns: repeat(2,1fr); gap: 1rem; }
+      .screen-cards { grid-template-columns: 1fr; }
+      .edit-grid { grid-template-columns: 1fr 1fr; }
+      .edit-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      .carousel-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 0 1.5rem; }
+      .carousel-track { padding: 0 1.5rem; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-input { border-right: 1px solid rgba(181,158,125,0.2); }
+      .edit-section { padding: 4rem 1.5rem; }
+    }
+    @media (max-width: 560px) {
+      .pillars-grid { grid-template-columns: 1fr; }
+      .edit-grid { grid-template-columns: 1fr; }
+      .edit-bottom-row { grid-template-columns: 1fr; }
+      .edit-card-featured { grid-row: span 1; }
+      .edit-card-side { flex-direction: column; }
+      .edit-card-side .edit-card-img { width: 100%; min-width: auto; height: auto; aspect-ratio: 16/9; }
+      .hero-ctas { flex-direction: column; align-items: stretch; max-width: 300px; margin: 0 auto; }
+      .hero-ctas .btn-primary, .hero-ctas .btn-secondary { justify-content: center; }
+    }
+  
+    /* overrides for the redesign */
+    .hero::before{ content:none !important; }
+    .carousel-card:hover{ background:transparent !important; transform:none !important; }
+    .marquee-section{ border-top:none !important; }
+
+    /* ============ HERO — plaster, leaves, letterpress ============ */
+    .hero{
+      position:relative; min-height:94vh; display:flex; flex-direction:column;
+      justify-content:center; align-items:center; text-align:center;
+      overflow:hidden; isolation:isolate; padding:7rem 2rem 4.5rem; background:#D9CFBF;
+    }
+    .hero-plaster{
+      position:absolute; inset:-22% 0; z-index:1; will-change:transform;
+      background:url('/images/aia-paper-tile.webp') repeat; background-size:340px 340px;
+    }
+    .hero-leaf{
+      position:absolute; inset:-12% 0; width:100%; height:124%; z-index:2;
+      pointer-events:none; fill:#6B5A46; filter:blur(15px); will-change:transform;
+    }
+    .leaf-a{ animation:leafSway 15s ease-in-out infinite; transform-origin:6% 3%; }
+    .leaf-b{ animation:leafSway2 19s ease-in-out infinite; transform-origin:95% 97%; }
+    @keyframes leafSway  {0%,100%{rotate:0deg;translate:0 0}50%{rotate:1.6deg;translate:10px 0}}
+    @keyframes leafSway2 {0%,100%{rotate:0deg;translate:0 0}50%{rotate:-1.2deg;translate:-9px 0}}
+    .hero-content{ position:relative; z-index:3; }
+    .hero-mark{
+      --mark-w: min(84vw, 1160px);
+      display:block; width:var(--mark-w); height:auto;
+      /* the file carries 32% blank above the ink and 29% below; pull most of it back */
+      margin: calc(var(--mark-w) * -0.155) auto calc(var(--mark-w) * -0.085);
+    }
+    .hero-sub{
+      font-size:clamp(0.95rem,1.55vw,1.19rem); line-height:1.5; color:#2C241A;
+      max-width:52ch; margin:0 auto 2.6rem; font-weight:400;
+      opacity:0; transform:translateY(14px); animation:heroRise .9s cubic-bezier(.2,.7,.3,1) .25s forwards;
+    }
+    .hero-ctas{
+      display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;
+      opacity:0; transform:translateY(14px); animation:heroRise .9s cubic-bezier(.2,.7,.3,1) .42s forwards;
+    }
+    @keyframes heroRise{ to{ opacity:1; transform:none } }
+    .hero .btn-primary{
+      background:#8A7560; color:#F7F3EC; border:1px solid #8A7560;
+      padding:1.05rem 2.5rem; font-size:0.82rem; border-radius:6px;
+      transition:background .35s ease, border-color .35s ease;
+    }
+    .hero .btn-primary:hover{ background:#6F5C4A; border-color:#6F5C4A; transform:none; }
+    .hero .btn-secondary{
+      color:#584738; background:transparent; border:1px solid #8A7560;
+      padding:1.05rem 2.5rem; font-size:0.82rem; border-radius:6px;
+      transition:background .35s ease, color .35s ease, border-color .35s ease;
+    }
+    .hero .btn-secondary:hover{ background:rgba(138,117,96,0.16); color:#3D3428; border-color:#6F5C4A; }
+    .hero .btn-primary:focus-visible, .hero .btn-secondary:focus-visible{ outline:2px solid #584738; outline-offset:3px; }
+    .hero-cue{
+      position:absolute; left:50%; bottom:1.7rem; z-index:4; translate:-50% 0;
+      font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase;
+      color:#6B5A46; opacity:.7; animation:cueBob 2.6s ease-in-out infinite;
+    }
+    @keyframes cueBob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+    /* ============ MARQUEE ============ */
+    .marquee-section{ background:#8A7560; padding:0.85rem 0; overflow:hidden; }
+    .marquee-track{ display:inline-flex; white-space:nowrap; animation:marquee 36s linear infinite; }
+    .marquee-item{
+      font-size:0.72rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase;
+      color:#F7F3EC; white-space:nowrap; display:flex; align-items:center; gap:2.5rem;
+    }
+    .marquee-item::after{ content:'·'; color:#E8E0D4; font-size:1.2rem; }
+    @keyframes marquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ============ CAROUSEL — vanilla, cardless ============ */
+    .carousel-section{ padding:4.5rem 0 3.5rem; background:#F1EADA; overflow:hidden; }
+    .carousel-header{ max-width:1200px; margin:0 auto 2.2rem; padding:0 3rem; display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; }
+    .carousel-header .section-label{ color:#8A7560; margin-bottom:0.7rem; }
+    .carousel-header h2{ font-family:var(--serif); font-size:clamp(1.5rem,2.7vw,2rem); font-weight:300; color:#3D3428; margin-bottom:0.4rem; }
+    .carousel-header p{ font-size:0.92rem; color:#5C5142; font-weight:300; }
+    .carousel-viewall-top{
+      font-size:0.78rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase;
+      color:#8A7560; border-bottom:1px solid rgba(138,117,96,0.5); padding-bottom:0.2rem;
+      white-space:nowrap; transition:color .3s, border-color .3s;
+    }
+    .carousel-viewall-top:hover{ color:#3D3428; border-color:#3D3428; }
+    .carousel-wrapper{ overflow-x:auto; scrollbar-width:none; cursor:grab; }
+    .carousel-wrapper::-webkit-scrollbar{ display:none; }
+    .carousel-wrapper:active{ cursor:grabbing; }
+    .carousel-track{ display:flex; gap:1.1rem; padding:0 3rem; width:max-content; }
+    .carousel-card{
+      min-width:180px; background:transparent; border:none; padding:1.2rem 1rem;
+      text-align:center; flex-shrink:0; text-decoration:none; user-select:none;
+    }
+    .carousel-card-img{
+      width:100%; height:150px; display:flex; align-items:center; justify-content:center;
+      margin-bottom:0.9rem; transition:transform .35s cubic-bezier(.2,.7,.3,1);
+    }
+    .carousel-card:hover .carousel-card-img{ transform:translateY(-8px); }
+    .carousel-card-img img{ max-width:82%; max-height:146px; object-fit:contain; pointer-events:none; }
+    .carousel-card-brand{ font-size:0.62rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:#8A7560; margin-bottom:0.25rem; }
+    .carousel-card h3{ font-family:var(--serif); font-size:1rem; font-weight:400; color:#3D3428; line-height:1.3; margin-bottom:0.25rem; display:inline-block; position:relative; }
+    .carousel-card-price{ font-size:0.82rem; color:#6B5E4F; }
+    @media (hover:none){ .carousel-card h3::after{ content:''; position:absolute; left:0; right:0; bottom:-2px; height:1px; background:rgba(138,117,96,0.45);} }
+    .carousel-footnote{
+      max-width:1200px; margin:2.4rem auto 0; padding:0 3rem; display:flex;
+      justify-content:center; align-items:center; gap:1rem; flex-wrap:wrap;
+      font-family:var(--serif); font-size:1.1rem; font-weight:300; color:#3D3428;
+    }
+    .carousel-footnote a{ font-family:var(--sans); font-size:0.76rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#8A7560; border-bottom:1px solid rgba(138,117,96,.5); padding-bottom:2px; }
+    .carousel-footnote a:hover{ color:#3D3428; border-color:#3D3428; }
+
+    /* ============ THE EDIT ============ */
+    .edit-section{ padding:5rem 3rem; background:#F7F3EC; }
+    .edit-inner{ max-width:1200px; margin:0 auto; }
+    .edit-header{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:2.5rem; gap:2rem; }
+    .edit-header .section-label{ color:#8A7560; margin-bottom:0.7rem; }
+    .edit-header h2{ font-family:var(--serif); font-size:clamp(1.5rem,2.7vw,2rem); font-weight:300; color:var(--deep); margin-bottom:0.4rem; }
+    .edit-header p{ font-size:0.92rem; color:#5C5142; font-weight:300; }
+    .view-all{ font-size:0.78rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:#8A7560; white-space:nowrap; border-bottom:1px solid rgba(138,117,96,.5); padding-bottom:2px; transition:color .3s,border-color .3s; }
+    .view-all:hover{ color:var(--deep); border-color:var(--deep); }
+    .edit-card{ background:#FDFBF7; border:1px solid rgba(88,71,56,0.14); }
+    .edit-card-img{ transform:scale(1.16); transition:transform 1.5s cubic-bezier(.2,.7,.3,1); }
+    .edit-card.visible .edit-card-img{ transform:scale(1); }
+    .edit-card{ overflow:hidden; }
+
+    /* ============ PILLARS ============ */
+    .pillars{ padding:5rem 3rem; background:#E4DBCB; border-top:1px solid rgba(88,71,56,0.10); }
+    .pillars-inner{ max-width:1200px; margin:0 auto; }
+    .pillar{
+      position:relative; border:none; background:#F7F3EC;
+      padding:1.9rem 1.4rem 3rem; min-height:210px; display:flex; flex-direction:column;
+      transition:transform .45s cubic-bezier(.2,.7,.3,1), box-shadow .45s ease;
+    }
+    .pillar:hover{ transform:translateY(-5px); box-shadow:0 14px 40px rgba(61,52,40,0.13); }
+    .pillar h3{
+      font-family:var(--serif); font-size:clamp(1.6rem,2.4vw,2.25rem); font-weight:400;
+      color:#2C241A; line-height:1.15; margin-bottom:0.75rem;
+    }
+    .pillar p{ font-size:0.82rem; line-height:1.65; color:#5C5142; font-weight:300; }
+    .pillar-number{
+      position:absolute; left:1.4rem; bottom:1rem;
+      font-family:var(--serif); font-size:0.95rem; font-weight:400;
+      letter-spacing:0.12em; color:#B59E7D; margin:0; transition:color .45s ease;
+    }
+    .pillar:hover .pillar-number{ color:#8A7560; }
+
+    /* ============ WHY I BUILT THIS ============ */
+    .why{ position:relative; padding:6rem 3rem; overflow:hidden; isolation:isolate; background:#D9CFBF; }
+    .why-plaster{ position:absolute; inset:-16% 0; z-index:0; will-change:transform;
+      background:url('/images/aia-paper-tile.webp') repeat; background-size:340px 340px; }
+    .why-inner{ position:relative; z-index:1; max-width:1040px; margin:0 auto;
+      display:flex; flex-wrap:nowrap; gap:3.2rem; align-items:center; }
+    .why-portrait{ margin:0; flex:0 0 auto; width:240px; padding:10px; border:1px solid #584738; background:#F1EADA;
+      box-shadow:0 3px 6px rgba(44,33,24,.10), 0 16px 34px rgba(44,33,24,.16); }
+    .why-portrait img{ width:100%; height:auto; display:block; }
+    .why-text{ flex:1 1 auto; min-width:0; }
+    .why-text h2{ font-family:var(--serif); font-size:clamp(1.5rem,2.5vw,2rem); font-weight:300; color:#2C241A;
+      max-width:none; margin:0 0 1.1rem 0; line-height:1.2; text-align:left; }
+    .why-text .section-label, .why-text p{ text-align:left; margin-left:0; margin-right:0; max-width:none; }
+    .why-inner{ text-align:left; }
+    .why-text .section-label{
+      color:#584738; font-size:0.9rem; font-weight:500; letter-spacing:0.24em;
+      margin-bottom:1.3rem;
+    }
+    .why-text p{ font-size:0.92rem; line-height:1.85; color:#4A4034; margin-bottom:0.8rem; font-weight:300; }
+    .why-text .why-lead{ font-family:var(--serif); font-size:clamp(1.1rem,1.9vw,1.35rem); color:#2C241A; line-height:1.45; font-weight:400; margin-bottom:1.1rem; }
+    .why-text .why-close{ color:#6B5E4F; margin-bottom:0; }
+
+    /* ============ NEWSLETTER ============ */
+    .newsletter h2{ font-family:var(--serif); font-weight:300; }
+
+    /* ============ MOTION ============ */
+    .reveal{ opacity:0; transform:translateY(26px); transition:opacity .85s cubic-bezier(.2,.7,.3,1), transform .85s cubic-bezier(.2,.7,.3,1); }
+    .reveal.visible{ opacity:1; transform:none; }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width:900px){
+      .hero{ padding:6rem 1.2rem 3.5rem; min-height:auto; }
+      .hero-mark{ --mark-w: min(92vw, 520px); }
+      .hero-plaster, .hero-leaf, .why-plaster{ transform:none !important; }
+      .carousel-header, .carousel-track, .carousel-footnote{ padding-left:1.5rem; padding-right:1.5rem; }
+      .edit-section, .pillars{ padding:3.5rem 1.5rem; }
+      .why{ padding:4rem 1.5rem; }
+    }
+    @media (max-width:640px){
+      .why-inner{ flex-direction:column; gap:2.2rem; }
+      .why-text{ order:1; }
+      .why-portrait{ order:2; width:min(70vw,260px); align-self:center; }
+      .hero-ctas{ flex-direction:column; width:100%; max-width:300px; margin:0 auto; }
+      .carousel-footnote{ font-size:0.98rem; text-align:center; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .leaf-a,.leaf-b,.marquee-track,.hero-cue{ animation:none !important; }
+      .hero-sub,.hero-ctas{ opacity:1; transform:none; animation:none; }
+      .reveal{ opacity:1; transform:none; }
+      .edit-card-img{ transform:none; }
+    }
+
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <a href="/" class="nav-logo">AÏA</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/edit/">The Edit</a></li>
+      <li><a href="/approved/">AÏA Approved</a></li>
+      <li><a href="/standard/">Our Standard</a></li>
+      <li><a href="/about/">About</a></li>
+    </ul>
+    <div class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-plaster"></div>
+    <svg class="hero-leaf leaf-a" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g transform="translate(20,-40) rotate(10) scale(4.2)" opacity="0.34"><g><path d="M0,0 C40,-18 96,-26 150,-14 C120,10 60,18 0,0 Z"/><path d="M0,0 C36,10 84,34 112,70 C74,64 28,38 0,0 Z"/><path d="M0,0 C-14,34 -14,84 8,126 C30,92 26,40 0,0 Z"/><path d="M0,0 C44,-4 100,10 138,44 C96,50 40,32 0,0 Z"/><path d="M0,0 C-30,-24 -74,-40 -124,-38 C-92,-10 -44,10 0,0 Z"/></g></g><g transform="translate(560,-150) rotate(52) scale(2.6)" opacity="0.20"><g><path d="M0,0 C40,-18 96,-26 150,-14 C120,10 60,18 0,0 Z"/><path d="M0,0 C36,10 84,34 112,70 C74,64 28,38 0,0 Z"/><path d="M0,0 C-14,34 -14,84 8,126 C30,92 26,40 0,0 Z"/><path d="M0,0 C44,-4 100,10 138,44 C96,50 40,32 0,0 Z"/><path d="M0,0 C-30,-24 -74,-40 -124,-38 C-92,-10 -44,10 0,0 Z"/></g></g></svg>
+    <svg class="hero-leaf leaf-b" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g transform="translate(1410,940) rotate(200) scale(3.9)" opacity="0.29"><g><path d="M0,0 C40,-18 96,-26 150,-14 C120,10 60,18 0,0 Z"/><path d="M0,0 C36,10 84,34 112,70 C74,64 28,38 0,0 Z"/><path d="M0,0 C-14,34 -14,84 8,126 C30,92 26,40 0,0 Z"/><path d="M0,0 C44,-4 100,10 138,44 C96,50 40,32 0,0 Z"/><path d="M0,0 C-30,-24 -74,-40 -124,-38 C-92,-10 -44,10 0,0 Z"/></g></g><g transform="translate(880,1010) rotate(240) scale(2.4)" opacity="0.18"><g><path d="M0,0 C40,-18 96,-26 150,-14 C120,10 60,18 0,0 Z"/><path d="M0,0 C36,10 84,34 112,70 C74,64 28,38 0,0 Z"/><path d="M0,0 C-14,34 -14,84 8,126 C30,92 26,40 0,0 Z"/><path d="M0,0 C44,-4 100,10 138,44 C96,50 40,32 0,0 Z"/><path d="M0,0 C-30,-24 -74,-40 -124,-38 C-92,-10 -44,10 0,0 Z"/></g></g></svg>
+    <div class="hero-content">
+      <h1 style="margin:0;">
+        <img src="/images/aia-mark-embossed.webp" alt="AÏA, your wellness ecosystem" class="hero-mark" width="1642" height="958" fetchpriority="high">
+      </h1>
+      <p class="hero-sub">Your safe place to be curious. A library for wellness, health, and spirituality, wherever you are on your path.</p>
+      <div class="hero-ctas">
+        <a href="/edit/" class="btn-primary">Read the edit</a>
+        <a href="/approved/" class="btn-secondary">Shop approved</a>
+      </div>
+    </div>
+    <div class="hero-cue">scroll</div>
+  </section>
+
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span class="marquee-item">Screened products</span><span class="marquee-item">The Edit</span><span class="marquee-item">Books</span><span class="marquee-item">Meditations and practices</span><span class="marquee-item">Nothing unvetted</span><span class="marquee-item">Screened products</span><span class="marquee-item">The Edit</span><span class="marquee-item">Books</span><span class="marquee-item">Meditations and practices</span><span class="marquee-item">Nothing unvetted</span>
+    </div>
+  </div>
+
+  <section class="carousel-section">
+    <div class="carousel-header reveal">
+      <div>
+        <p class="section-label">AÏA Approved</p>
+        <h2>Wellness with receipts.</h2>
+        <p>Know exactly what you're putting on, and in, your body.</p>
+      </div>
+      <a href="/approved/" class="carousel-viewall-top">View all →</a>
+    </div>
+    <div class="carousel-wrapper" id="carouselWrapper">
+    <div class="carousel-track" id="carouselTrack">
+      <a class='carousel-card' href='/approved#skincare'><div class="carousel-card-img"><img src="/images/products/true-botanicals.png" alt="True Botanicals Cleanser"></div><p class="carousel-card-brand">True Botanicals</p><h3>Nourishing Cleanser</h3><p class="carousel-card-price">$48</p></a>
+      <a class='carousel-card' href='/approved#skincare'><div class="carousel-card-img"><img src="/images/products/badger-sunscreen.png" alt="Badger Sunscreen"></div><p class="carousel-card-brand">Badger</p><h3>Active Mineral SPF 30</h3><p class="carousel-card-price">$17</p></a>
+      <a class='carousel-card' href='/approved#food'><div class="carousel-card-img"><img src="/images/products/graza-evoo.png" alt="Graza EVOO"></div><p class="carousel-card-brand">Graza</p><h3>Sizzle & Drizzle EVOO</h3><p class="carousel-card-price">$17–35</p></a>
+      <a class='carousel-card' href='/approved#skincare'><div class="carousel-card-img"><img src="/images/products/weleda.png" alt="Weleda Skin Food"></div><p class="carousel-card-brand">Weleda</p><h3>Skin Food Original</h3><p class="carousel-card-price">$20</p></a>
+      <a class='carousel-card' href='/approved#supplements'><div class="carousel-card-img"><img src="/images/products/seed-synbiotic.png" alt="Seed DS-01"></div><p class="carousel-card-brand">Seed</p><h3>DS-01 Daily Synbiotic</h3><p class="carousel-card-price">$50/mo</p></a>
+      <a class='carousel-card' href='/approved#skincare'><div class="carousel-card-img"><img src="/images/products/thinksport-spf50.png" alt="Thinksport SPF 50"></div><p class="carousel-card-brand">Thinksport</p><h3>SPF 50+ Sunscreen</h3><p class="carousel-card-price">$14</p></a>
+      <a class='carousel-card' href='/approved#food'><div class="carousel-card-img"><img src="/images/products/siete-chips.png" alt="Siete Chips"></div><p class="carousel-card-brand">Siete</p><h3>Sea Salt Tortilla Chips</h3><p class="carousel-card-price">$5</p></a>
+      <a class='carousel-card' href='/approved#skincare'><div class="carousel-card-img"><img src="/images/products/marie-veronique.png" alt="Marie Veronique"></div><p class="carousel-card-brand">Marie Veronique</p><h3>C+E+Ferulic Serum</h3><p class="carousel-card-price">$120</p></a>
+      <a class='carousel-card' href='/approved#food'><div class="carousel-card-img"><img src="/images/products/primal-kitchen.png" alt="Primal Kitchen Mayo"></div><p class="carousel-card-brand">Primal Kitchen</p><h3>Avocado Oil Mayo</h3><p class="carousel-card-price">$9</p></a>
+      <a class='carousel-card' href='/approved#skincare'><div class="carousel-card-img"><img src="/images/products/raw-elements.png" alt="Raw Elements SPF 30"></div><p class="carousel-card-brand">Raw Elements</p><h3>Face + Body SPF 30</h3><p class="carousel-card-price">$22</p></a>
+      <a class='carousel-card' href='/approved#supplements'><div class="carousel-card-img"><img src="/images/products/thorne-dk2.png" alt="Thorne D+K2"></div><p class="carousel-card-brand">Thorne</p><h3>Vitamin D + K2 Liquid</h3><p class="carousel-card-price">$22</p></a>
+      <a class='carousel-card' href='/approved#food'><div class="carousel-card-img"><img src="/images/products/fishwife.png" alt="Fishwife"></div><p class="carousel-card-brand">Fishwife</p><h3>Smoked Salmon</h3><p class="carousel-card-price">$14</p></a>
+      <a class='carousel-card' href='/approved#skincare'><div class="carousel-card-img"><img src="/images/products/living-libations.png" alt="Living Libations Rose Serum"></div><p class="carousel-card-brand">Living Libations</p><h3>Rose Glow Face Serum</h3><p class="carousel-card-price">$75</p></a>
+      <a class='carousel-card' href='/approved#food'><div class="carousel-card-img"><img src="/images/products/jovial-pasta.png" alt="Jovial Pasta"></div><p class="carousel-card-brand">Jovial</p><h3>Organic Einkorn Pasta</h3><p class="carousel-card-price">$6</p></a>
+      <a class='carousel-card' href='/approved#haircare'><div class="carousel-card-img"><img src="/images/products/rahua-leave-in.png" alt="Rahua Leave-In"></div><p class="carousel-card-brand">Rahua</p><h3>Leave-In Treatment</h3><p class="carousel-card-price">$46</p></a>
+      <a class='carousel-card' href='/approved#food'><div class="carousel-card-img"><img src="/images/products/mountain-valley.png" alt="Mountain Valley"></div><p class="carousel-card-brand">Mountain Valley</p><h3>Spring Water</h3><p class="carousel-card-price">$3-5</p></a>
+      <a class='carousel-card' href='/approved#food'><div class="carousel-card-img"><img src="/images/products/toto-cookies.png" alt="Toto Cookies"></div><p class="carousel-card-brand">Toto</p><h3>Sea Salt Chocolate Chip</h3><p class="carousel-card-price">$3.19</p></a>
+      <a class='carousel-card' href='/approved#supplements'><div class="carousel-card-img"><img src="/images/products/thorne.png" alt="Thorne"></div><p class="carousel-card-brand">Thorne</p><h3>Basic Nutrients 2/Day</h3><p class="carousel-card-price">$43</p></a>
+      <a class='carousel-card' href='/approved#home'><div class="carousel-card-img"><img src="/images/products/blueland-dishwasher.png" alt="Blueland Dishwasher"></div><p class="carousel-card-brand">Blueland</p><h3>Dishwasher Tablets</h3><p class="carousel-card-price">$25</p></a>
+      <a class='carousel-card' href='/approved#supplements'><div class="carousel-card-img"><img src="/images/products/nordic-naturals.png" alt="Nordic Naturals"></div><p class="carousel-card-brand">Nordic Naturals</p><h3>Ultimate Omega</h3><p class="carousel-card-price">$40</p></a>
+      <a class='carousel-card' href='/approved#supplements'><div class="carousel-card-img"><img src="/images/products/pure-encapsulations.png" alt="Pure Encapsulations"></div><p class="carousel-card-brand">Pure Encapsulations</p><h3>Magnesium Glycinate</h3><p class="carousel-card-price">$25</p></a>
+      <a class='carousel-card' href='/approved#haircare'><div class="carousel-card-img"><img src="/images/products/innersense.png" alt="Innersense"></div><p class="carousel-card-brand">Innersense</p><h3>Hydrating Hairbath</h3><p class="carousel-card-price">$40</p></a>
+      <a class='carousel-card' href='/approved#haircare'><div class="carousel-card-img"><img src="/images/products/rahua-conditioner.png" alt="Rahua"></div><p class="carousel-card-brand">Rahua</p><h3>Classic Conditioner</h3><p class="carousel-card-price">$40</p></a>
+      <a class='carousel-card' href='/approved#haircare'><div class="carousel-card-img"><img src="/images/products/rahua-oil.png" alt="Rahua Oil"></div><p class="carousel-card-brand">Rahua</p><h3>Legendary Amazon Oil</h3><p class="carousel-card-price">$130</p></a>
+      <a class='carousel-card' href='/approved#home'><div class="carousel-card-img"><img src="/images/products/branch-basics.png" alt="Branch Basics"></div><p class="carousel-card-brand">Branch Basics</p><h3>Starter Kit</h3><p class="carousel-card-price">$55</p></a>
+      <a class='carousel-card' href='/approved#home'><div class="carousel-card-img"><img src="/images/products/attitude.png" alt="Attitude"></div><p class="carousel-card-brand">Attitude</p><h3>Dish Soap</h3><p class="carousel-card-price">$8</p></a>
+      <a class='carousel-card' href='/approved#home'><div class="carousel-card-img"><img src="/images/products/mollys-suds.png" alt="Mollys Suds"></div><p class="carousel-card-brand">Molly's Suds</p><h3>Laundry Powder</h3><p class="carousel-card-price">$25</p></a>
+      <a class='carousel-card' href='/approved#skincare'><div class="carousel-card-img"><img src="/images/products/true-botanicals.png" alt="True Botanicals"></div><p class="carousel-card-brand">True Botanicals</p><h3>Nourishing Cleanser</h3><p class="carousel-card-price">$48</p></a>
+      <a class='carousel-card' href='/approved#skincare'><div class="carousel-card-img"><img src="/images/products/badger-sunscreen.png" alt="Badger"></div><p class="carousel-card-brand">Badger</p><h3>Active Mineral SPF 30</h3><p class="carousel-card-price">$17</p></a>
+      <a class='carousel-card' href='/approved#food'><div class="carousel-card-img"><img src="/images/products/graza-evoo.png" alt="Graza"></div><p class="carousel-card-brand">Graza</p><h3>Sizzle & Drizzle EVOO</h3><p class="carousel-card-price">$17–35</p></a>
+      <a class='carousel-card' href='/approved#supplements'><div class="carousel-card-img"><img src="/images/products/seed-synbiotic.png" alt="Seed"></div><p class="carousel-card-brand">Seed</p><h3>DS-01 Daily Synbiotic</h3><p class="carousel-card-price">$50/mo</p></a>
+    </div>
+    </div>
+    <div class="carousel-footnote reveal">
+      <span>We read the label so you don't have to.</span>
+      <a href="/approved/">View all 68</a>
+    </div>
+  </section>
+
+  <section class="edit-section">
+    <div class="edit-inner">
+      <div class="edit-header reveal">
+        <div>
+          <p class="section-label">The Edit</p>
+          <h2>Your reading room.</h2>
+          <p>Articles on wellness, health, and spirituality.</p>
+        </div>
+        <a href="/edit/" class="view-all">View all →</a>
+      </div>
+      <div class="edit-grid">
+        <a class='edit-card edit-card-featured reveal' href='/edit/too-pretty'>
+          <img src="images/too-pretty.png" alt="Too Pretty to Work This Hard" class="edit-card-img">
+          <div class="edit-card-body"><div class="edit-tags"><span class="edit-tag">Hormones</span><span class="edit-tag">Label Literacy</span></div><h3>Too Pretty to Work This Hard: The Case for Doing Less</h3><span class="edit-meta">7 min read</span></div>
+        </a>
+        <a class='edit-card edit-card-side reveal' href='/edit/inner-dialogue'>
+          <img src="images/inner-dialogue.png" alt="Inner Dialogue" class="edit-card-img">
+          <div class="edit-card-body"><div class="edit-tags"><span class="edit-tag">Hormones</span></div><h3>You Can't Outrun Your Inner Dialogue</h3><span class="edit-meta">8 min read</span></div>
+        </a>
+        <a class='edit-card edit-card-side reveal' href='/edit/coconut-water'>
+          <img src="images/coconut-water.png" alt="Coconut Water" class="edit-card-img">
+          <div class="edit-card-body"><div class="edit-tags"><span class="edit-tag">Food</span><span class="edit-tag">Label Literacy</span></div><h3>A Coconut a Day Keeps the Liquid IV Away</h3><span class="edit-meta">6 min read</span></div>
+        </a>
+      </div>
+      <div class="edit-bottom-row">
+        <a class='edit-card edit-card-bottom reveal' href='/edit/hormones-libido'>
+          <img src="images/hormones-libido.png" alt="Hormones and Libido" class="edit-card-img">
+          <div class="edit-card-body"><div class="edit-tags"><span class="edit-tag">Hormones</span><span class="edit-tag">Gut Health</span></div><h3>The Link Between Your Hormones and Your Sex Drive</h3><span class="edit-meta">8 min read</span></div>
+        </a>
+        <a class='edit-card edit-card-bottom reveal' href='/edit/lip-balm'>
+          <img src="images/lip-balm.png" alt="Lip Balm" class="edit-card-img">
+          <div class="edit-card-body"><div class="edit-tags"><span class="edit-tag">Skincare</span><span class="edit-tag">Ingredients</span></div><h3>The Lip Balm You're Obsessed With Is Working Against You</h3><span class="edit-meta">8 min read</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars">
+    <div class="pillars-grid">
+      <div class="pillar reveal"><h3>Body</h3><p>What you put on and in your body.</p><span class="pillar-number">01</span></div>
+      <div class="pillar reveal"><h3>Mind</h3><p>How you think, rest, and recover.</p><span class="pillar-number">02</span></div>
+      <div class="pillar reveal"><h3>Spirit</h3><p>The inner work, without the pressure.</p><span class="pillar-number">03</span></div>
+      <div class="pillar reveal"><h3>The standard</h3><p>One standard, applied to everything on the site.</p><span class="pillar-number">04</span></div>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="why-plaster"></div>
+    <div class="why-inner">
+      <figure class="why-portrait reveal">
+        <img src="/images/maia-portrait.webp" alt="Maia Harris, founder of AÏA" width="1000" height="943" loading="lazy">
+      </figure>
+      <div class="why-text reveal">
+        <p class="section-label">Why I built this</p>
+        <h2>I built AÏA because I needed this, and it did not exist.</h2>
+        <p>Somewhere to go when you are taking care of yourself, or trying to work out how. A place you can come exactly as you are.</p>
+        <p>Because underneath all of it, everyone is looking for the same thing. To feel at home in their own body. To feel like they belong somewhere. Whether you are lost right now or you are not, there is something here for you.</p>
+        <p>So this is a place to be curious. To read, to try things, to change your mind, to take what you need and leave the rest.</p>
+        <p class="why-close">Take your time. Everything here has been vetted to our standard.</p>
+      </div>
+    </div>
+  </section>
+
+ <section class="newsletter">
+    <div class="newsletter-inner reveal">
+      <p class="section-label">Stay connected.</p>
+      <h2>We're glad you're here.</h2>
+      <div class="newsletter-form" id="newsletter-footer-form">
+        <input class="newsletter-input" type="email" id="footer-email" placeholder="Your email address" required />
+        <button class="newsletter-btn" onclick="submitFooterEmail()">Join</button>
+      </div>
+      <p class="newsletter-msg" id="footer-msg" style="display:none; font-size:0.82rem; color:#B59E7D; margin-top:1rem;"></p>
+    </div>
+  </section>
+
+  <footer>
+    <a href="/" class="footer-logo">AÏA</a>
+    <ul class="footer-links"><li><a href="/edit/">The Edit</a></li><li><a href="/approved/">AÏA Approved</a></li><li><a href="/standard/">Our Standard</a></li><li><a href="/about/">About</a></li></ul>
+    <span class="footer-copy">© 2026 AÏA Wellness</span>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60); });
+    // Staggered reveal: siblings arrive one after another, not as a block
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const sibs = el.parentElement ? [...el.parentElement.children].filter(c => c.classList.contains('reveal')) : [el];
+        const idx = Math.max(0, sibs.indexOf(el));
+        el.style.transitionDelay = (idx * 0.11) + 's';
+        el.classList.add('visible');
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Parallax: plaster and leaf layers drift at different rates
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const layers = [];
+      const hero = document.querySelector('.hero');
+      const why  = document.querySelector('.why');
+      if (hero) {
+        layers.push({ el: hero.querySelector('.hero-plaster'), host: hero, rate: -0.22 });
+        layers.push({ el: hero.querySelector('.leaf-a'),       host: hero, rate: -0.10 });
+        layers.push({ el: hero.querySelector('.leaf-b'),       host: hero, rate:  0.07 });
+      }
+      if (why) layers.push({ el: why.querySelector('.why-plaster'), host: why, rate: -0.16 });
+      const live = layers.filter(l => l.el);
+      if (!live.length) return;
+      let queued = false;
+      function paint() {
+        if (window.innerWidth <= 900) { live.forEach(l => l.el.style.transform = ''); queued = false; return; }
+        live.forEach(l => {
+          const top = l.host.getBoundingClientRect().top;
+          l.el.style.transform = 'translate3d(0,' + (top * l.rate) + 'px,0)';
+        });
+        queued = false;
+      }
+      window.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(paint); } }, { passive: true });
+      window.addEventListener('resize', () => { if (!queued) { queued = true; requestAnimationFrame(paint); } }, { passive: true });
+      paint();
+    })();
+
+    // Carousel: auto-scroll + drag/swipe
+    (function() {
+      var w = document.getElementById('carouselWrapper');
+      if (!w) return;
+      var speed = 0.5, autoId, isDragging = false, startX, scrollStart, hasDragged;
+
+      function autoScroll() {
+        autoId = requestAnimationFrame(function step() {
+          if (!isDragging) {
+            w.scrollLeft += speed;
+            if (w.scrollLeft >= w.scrollWidth - w.clientWidth) w.scrollLeft = 0;
+          }
+          autoId = requestAnimationFrame(step);
+        });
+      }
+      autoScroll();
+
+      w.addEventListener('mousedown', function(e) { isDragging = true; hasDragged = false; startX = e.pageX; scrollStart = w.scrollLeft; });
+      window.addEventListener('mouseup', function() { isDragging = false; });
+      w.addEventListener('mousemove', function(e) {
+        if (!isDragging) return; e.preventDefault();
+        var dx = e.pageX - startX;
+        if (Math.abs(dx) > 5) hasDragged = true;
+        w.scrollLeft = scrollStart - dx;
+      });
+      w.addEventListener('click', function(e) { if (hasDragged) { e.preventDefault(); e.stopPropagation(); } }, true);
+
+      // Touch support
+      w.addEventListener('touchstart', function(e) { isDragging = true; hasDragged = false; startX = e.touches[0].pageX; scrollStart = w.scrollLeft; }, {passive: true});
+      w.addEventListener('touchend', function() { isDragging = false; });
+      w.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        var dx = e.touches[0].pageX - startX;
+        if (Math.abs(dx) > 5) hasDragged = true;
+        w.scrollLeft = scrollStart - dx;
+      }, {passive: true});
+    })();
+  </script>
+  <!-- AÏA Newsletter Popup -->
+<div id="aia-popup-overlay" class="aia-popup-overlay" role="dialog" aria-modal="true">
+  <div class="aia-popup">
+    <button class="aia-popup-close" aria-label="Close newsletter signup">&times;</button>
+    <div class="aia-popup-content">
+      <img src="/images/aia-logo-dark.svg" alt="AÏA" class="aia-popup-logo">
+      <p class="aia-popup-subtitle">Your wellness ecosystem. Stay connected.</p>
+      <div class="aia-popup-form" id="newsletter-popup-form">
+        <input type="email" id="popup-email" class="aia-popup-input" placeholder="Your email address" required />
+        <button class="aia-popup-btn" onclick="submitPopupEmail()">Join the list</button>
+        <p class="aia-popup-msg" id="popup-msg" style="display:none;"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  (function() {
+    const STORAGE_KEY = 'aia_popup_seen';
+    const DELAY_MS = 15000;
+    if (localStorage.getItem(STORAGE_KEY)) return;
+    const overlay = document.getElementById('aia-popup-overlay');
+    const closeBtn = overlay.querySelector('.aia-popup-close');
+    function openPopup() {
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePopup() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+      localStorage.setItem(STORAGE_KEY, Date.now().toString());
+    }
+    setTimeout(openPopup, DELAY_MS);
+    closeBtn.addEventListener('click', closePopup);
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closePopup();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('is-open')) closePopup();
+    });
+  })();
+</script>
+<script>
+  // --- EMAIL COLLECTION ---
+  // Currently stores emails in localStorage as a backup.
+  // To connect to Kit/Buttondown/Mailchimp, replace the submitEmail function body
+  // with a fetch() call to your provider's API endpoint.
+
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function submitEmail(email, source) {
+    // Store locally as backup
+    const stored = JSON.parse(localStorage.getItem('aia_emails') || '[]');
+    if (!stored.includes(email)) {
+      stored.push(email);
+      localStorage.setItem('aia_emails', JSON.stringify(stored));
+    }
+
+    // --- SWAP THIS SECTION ---
+    // Example for Kit (ConvertKit):
+    // fetch('https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ api_key: 'YOUR_API_KEY', email: email })
+    // });
+    //
+    // Example for Buttondown:
+    // fetch('https://api.buttondown.email/v1/subscribers', {
+    //   method: 'POST',
+    //   headers: { 'Authorization': 'Token YOUR_API_KEY', 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ email: email })
+    // });
+    // --- END SWAP ---
+
+    return true;
+  }
+
+  function submitFooterEmail() {
+    const input = document.getElementById('footer-email');
+    const msg = document.getElementById('footer-msg');
+    const email = input.value.trim();
+    if (!validateEmail(email)) {
+      msg.textContent = 'Please enter a valid email.';
+      msg.style.display = 'block';
+      msg.style.color = '#8A7560';
+      return;
+    }
+    submitEmail(email, 'footer');
+    input.value = '';
+    msg.textContent = "You're in. Welcome to AÏA.";
+    msg.style.display = 'block';
+    msg.style.color = '#B59E7D';
+  }
+
+  function submitPopupEmail() {
+    const input = document.getElementById('popup-email');
+    const msg = document.getElementById('popup-msg');
+    const email = input.value.trim();
+    if (!validateEmail(email)) {
+      msg.textContent = 'Please enter a valid email.';
+      msg.style.display = 'block';
+      msg.style.color = '#8A7560';
+      return;
+    }
+    submitEmail(email, 'popup');
+    input.value = '';
+    msg.textContent = "You're in. Welcome to AÏA.";
+    msg.style.display = 'block';
+    setTimeout(function() {
+      document.getElementById('aia-popup-overlay').classList.remove('is-open');
+      document.body.style.overflow = '';
+      localStorage.setItem('aia_popup_seen', Date.now().toString());
+    }, 1800);
+  }
+
+  // Allow Enter key to submit
+  document.getElementById('footer-email').addEventListener('keydown', function(e) { if (e.key === 'Enter') submitFooterEmail(); });
+  document.getElementById('popup-email').addEventListener('keydown', function(e) { if (e.key === 'Enter') submitPopupEmail(); });
+</script>
+</body>
+</html>
