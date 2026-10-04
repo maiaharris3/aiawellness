@@ -397,7 +397,8 @@
 
     /* ============ HOMEPAGE REDESIGN (Oct 2026) ============ */
     .hero{ min-height:auto; padding:6.5rem 2rem 4.5rem; }
-    .hero-mark{ --mark-w: min(92vw, 900px); max-width:none; margin: calc(var(--mark-w) * -0.19) auto calc(var(--mark-w) * -0.139); }
+    .hero-mark{ --mark-w: min(92vw, 900px); max-width:none; margin: calc(var(--mark-w) * -0.19) calc(50% - var(--mark-w) / 2) calc(var(--mark-w) * -0.139); }
+    .hero-content{ width:100%; display:flex; flex-direction:column; align-items:center; }
     .hero-sub{ margin-bottom:0; }
     .breathe-btn{ position:absolute; z-index:4; right:3rem; bottom:1.5rem; width:170px; display:flex; flex-direction:column; align-items:center; gap:.6rem; background:none; border:none; cursor:pointer; color:#584738; text-align:center; font-family:var(--sans); }
     .breathe-btn:hover{ color:#2C241A; }
