@@ -5,31 +5,100 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" href="/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Edit — AÏA</title>
-  <link rel="stylesheet" href="../style.css">
+  <meta name="description" content="The Edit: AÏA's wellness bible. Skincare, food, hormones, mind and more, screened ingredient by ingredient.">
+  <link rel="stylesheet" href="/style.css">
   <style>
-    .edit-page { padding: 8rem 3rem 5rem; background: var(--warm-white); }
-    .edit-page-inner { max-width: 1100px; margin: 0 auto; }
-    .edit-page-header { text-align: center; margin-bottom: 4rem; }
-    .edit-page-header h1 { font-family: var(--serif); font-size: clamp(2rem,4vw,3rem); font-weight: 300; color: var(--deep); margin-bottom: 0.8rem; }
-    .edit-page-header p { font-size: 1rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto; }
-    .posts-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
-    .post-card { background: var(--cream); border: 1px solid rgba(181,158,125,0.1); overflow: hidden; transition: all 0.35s ease; }
-    .post-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(61,52,40,0.06); }
-    .post-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center center; }
-    .post-card-body { padding: 1.5rem; }
-    .post-card-tags { display: flex; gap: 0.5rem; margin-bottom: 0.6rem; }
-    .post-card-tag { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tobacco); background: rgba(181,158,125,0.12); padding: 0.25rem 0.6rem; }
-    .post-card h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; color: var(--deep); line-height: 1.35; margin-bottom: 0.5rem; }
-    .post-card-meta { font-size: 0.75rem; color: var(--text-muted); }
-    @media (max-width: 700px) { .posts-grid { grid-template-columns: 1fr; } .edit-page { padding: 7rem 1.5rem 4rem; } }
+    .edit-head{ background:#E8DFD3; padding:9rem 3rem 3.5rem; text-align:center; }
+    .edit-head .eyebrow{ font-size:.7rem; font-weight:500; letter-spacing:.24em; text-transform:uppercase; color:#6B5A46; margin-bottom:.75rem; }
+    .edit-head h1{ font-family:var(--serif); font-weight:300; font-size:clamp(2.4rem,5vw,3.75rem); line-height:1.05; color:#2C241A; margin-bottom:.75rem; }
+    .edit-head p.sub{ font-size:1rem; color:#6B5E4F; }
+
+    .feature{ position:relative; display:block; height:min(560px,62vw); overflow:hidden; color:#2C241A; }
+    .feature img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform 1.4s cubic-bezier(.2,.7,.3,1); }
+    .feature:hover img{ transform:scale(1.02); }
+    .feature-card{ position:absolute; left:3rem; bottom:3rem; max-width:520px; background:#F7F3EC; padding:2rem 2.25rem; display:flex; flex-direction:column; gap:.9rem; }
+    .meta{ font-size:.69rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:#6B5A46; }
+    .feature-card h2{ font-family:var(--serif); font-weight:400; font-size:2.25rem; line-height:1.12; text-wrap:pretty; }
+    .feature-foot{ display:flex; justify-content:space-between; align-items:center; font-size:.82rem; color:#6B5E4F; }
+    .read-link{ display:inline-flex; gap:.6rem; padding-bottom:.35rem; border-bottom:1px solid #3D3428; font-size:.8rem; font-weight:500; letter-spacing:.22em; text-transform:uppercase; color:#2C241A; transition:gap .3s; }
+    a:hover .read-link{ gap:1rem; }
+
+    .edit-list{ background:#F7F3EC; padding:3.25rem 3rem 4.5rem; }
+    .edit-list-inner{ max-width:1180px; margin:0 auto; }
+    .topics{ display:flex; flex-direction:column; align-items:center; gap:1rem; margin-bottom:1.5rem; }
+    .topic-pills{ display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem; }
+    .pill{ display:inline-flex; align-items:center; gap:.5rem; padding:.55rem 1.1rem; border-radius:999px; border:1px solid rgba(61,52,40,.35); background:transparent; color:#3D3428; font-family:var(--sans,'DM Sans',sans-serif); font-size:.82rem; font-weight:500; letter-spacing:.04em; cursor:pointer; transition:all .25s ease; }
+    .pill span{ font-size:.7rem; opacity:.7; }
+    .pill:hover{ border-color:#3D3428; }
+    .pill.on{ background:#3D3428; border-color:#3D3428; color:#F7F3EC; }
+
+    .post{ display:grid; grid-template-columns:420px minmax(0,1fr); gap:3.5rem; align-items:center; padding:2.5rem 0; border-bottom:1px solid rgba(138,117,96,.3); color:#2C241A; }
+    .post[hidden]{ display:none; }
+    .post-img{ aspect-ratio:4/3; background:#E8DFD3; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+    .post-img img{ width:100%; height:100%; object-fit:contain; transition:transform 1.2s cubic-bezier(.2,.7,.3,1); }
+    .post:hover .post-img img{ transform:scale(1.03); }
+    .post-text{ display:flex; flex-direction:column; gap:.9rem; max-width:560px; }
+    .post h3{ font-family:var(--serif); font-weight:500; font-size:2.6rem; line-height:1.08; text-wrap:pretty; }
+    .post p{ font-size:1rem; line-height:1.6; color:#3D3428; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+    .empty{ text-align:center; padding:3rem 0; color:#6B5E4F; }
+
+    /* Edit dropdown */
+    .has-menu{ position:static; }
+    .caret{ font-size:.55rem; margin-left:.2rem; }
+    .mega{ position:absolute; left:0; right:0; top:100%; background:#F1EADA; border-bottom:1px solid rgba(138,117,96,.3); box-shadow:0 24px 40px rgba(44,36,26,.12); display:grid; grid-template-columns:200px minmax(0,1fr); gap:3rem; padding:2.5rem 3rem 2.75rem; opacity:0; visibility:hidden; transform:translateY(-6px); transition:opacity .25s ease,transform .25s ease,visibility .25s; text-align:left; }
+    .has-menu:hover .mega, .has-menu:focus-within .mega{ opacity:1; visibility:visible; transform:none; }
+    .mega-label{ font-size:.68rem; font-weight:500; letter-spacing:.24em; text-transform:uppercase; color:#6B5A46; margin-bottom:.9rem; }
+    .mega-topics{ display:flex; flex-direction:column; gap:.85rem; }
+    .mega-topics a{ font-size:.8rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:#2C241A; }
+    .mega-topics a:hover{ color:#8A7560; }
+    .mega-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.5rem; }
+    .mega-post{ display:flex; flex-direction:column; gap:.75rem; font-size:.95rem; line-height:1.35; color:#2C241A; text-transform:none; letter-spacing:0; }
+    .mega-img{ aspect-ratio:4/3; background:#E8DFD3; overflow:hidden; display:block; }
+    .mega-img img{ width:100%; height:100%; object-fit:contain; }
+
+    @media (max-width:900px){
+      .mega{ display:none; }
+      .post{ grid-template-columns:1fr; gap:1.25rem; padding:2rem 0; }
+      .post h3{ font-size:2rem; }
+    }
+    @media (max-width:700px){
+      .edit-head{ padding:7.5rem 1.5rem 2.5rem; }
+      .feature{ height:auto; }
+      .feature img{ position:static; aspect-ratio:4/3; height:auto; }
+      .feature-card{ position:static; max-width:none; padding:1.5rem; }
+      .feature-card h2{ font-size:1.8rem; }
+      .edit-list{ padding:2.5rem 1.5rem 3.5rem; }
+    }
   </style>
 </head>
 <body>
   <nav id="navbar">
     <a href="/" class="nav-logo">AÏA</a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="/edit/">The Edit</a></li>
-      <li><a href="/approved/">AÏA Approved</a></li>
+      <li class="has-menu"><a href="/edit/" class="active">The Edit <span class="caret" aria-hidden="true">▾</span></a>
+        <div class="mega" aria-label="The Edit menu">
+          <div class="mega-topics">
+            <p class="mega-label">Topics</p>
+            <a href="/edit/?topic=skincare">Skincare</a>
+            <a href="/edit/?topic=food-and-nutrition">Food &amp; Nutrition</a>
+            <a href="/edit/?topic=hormones">Hormones</a>
+            <a href="/edit/?topic=mind">Mind</a>
+            <a href="/edit/?topic=gut-health">Gut Health</a>
+            <a href="/edit/?topic=trends-tested">Trends Tested</a>
+          </div>
+          <div class="mega-latest">
+            <p class="mega-label">Latest</p>
+            <div class="mega-grid">
+              <a href="/edit/coconut-water/" class="mega-post"><span class="mega-img"><img src="/images/coconut-water.png" alt="" loading="lazy"></span><span>A Coconut a Day Keeps the Liquid IV Away</span></a>
+              <a href="/edit/hormones-libido/" class="mega-post"><span class="mega-img"><img src="/images/hormones-libido.png" alt="" loading="lazy"></span><span>The Link Between Your Hormones and Your Sex Drive</span></a>
+              <a href="/edit/sunscreen-villain/" class="mega-post"><span class="mega-img"><img src="/images/sunscreen-villain.png" alt="" loading="lazy"></span><span>The Sun Isn't the Villain — Your Sunscreen Might Be</span></a>
+              <a href="/edit/red-light-therapy/" class="mega-post"><span class="mega-img"><img src="/images/red-light-therapy-v2.webp" alt="" loading="lazy"></span><span>Red Light Therapy: Worth the Hype or a Waste of Money?</span></a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li><a href="/toolkit/">The Toolkit</a></li>
+      <li><a href="/approved/">Products</a></li>
       <li><a href="/standard/">Our Standard</a></li>
       <li><a href="/about/">About</a></li>
     </ul>
@@ -38,41 +107,133 @@
     </div>
   </nav>
 
-  <section class="edit-page">
-    <div class="edit-page-inner">
-      <div class="edit-page-header">
-        <p class="section-label">The Edit</p>
-        <h1>Your wellness bible.</h1>
-        <p>Everything you need to take your health into your own hands.</p>
+  <header class="edit-head">
+    <p class="eyebrow">The Edit</p>
+    <h1>Your Wellness Bible.</h1>
+    <p class="sub">Everything you need to take your health into your own hands.</p>
+  </header>
+
+  <a class="feature" href="/edit/coconut-water/">
+    <img src="/images/coconut-water.png" alt="A Coconut a Day Keeps the Liquid IV Away">
+    <div class="feature-card">
+      <span class="meta">Newest · Food &amp; Nutrition · Trends Tested</span>
+      <h2>A Coconut a Day Keeps the Liquid IV Away</h2>
+      <div class="feature-foot"><span>6 min read</span><span class="read-link">Read <span>→</span></span></div>
+    </div>
+  </a>
+
+  <section class="edit-list">
+    <div class="edit-list-inner">
+      <div class="topics">
+        <p class="meta">Browse by topic</p>
+        <div class="topic-pills" id="topicPills">
+          <button class="pill on" data-topic="all">All <span>7</span></button>
+          <button class="pill" data-topic="skincare">Skincare <span>4</span></button>
+          <button class="pill" data-topic="food-and-nutrition">Food &amp; Nutrition <span>0</span></button>
+          <button class="pill" data-topic="hormones">Hormones <span>1</span></button>
+          <button class="pill" data-topic="mind">Mind <span>2</span></button>
+          <button class="pill" data-topic="gut-health">Gut Health <span>1</span></button>
+          <button class="pill" data-topic="trends-tested">Trends Tested <span>2</span></button>
+        </div>
       </div>
-      <div class="posts-grid">
-
-        <a class='post-card' href='/edit/coconut-water'><img src="../images/coconut-water.png" alt="Coconut Water"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Food</span><span class="post-card-tag">Label Literacy</span></div><h3>A Coconut a Day Keeps the Liquid IV Away</h3><span class="post-card-meta">6 min read</span></div></a>
-
-        <a class='post-card' href='/edit/hormones-libido'><img src="../images/hormones-libido.png" alt="Hormones and Libido"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Hormones</span><span class="post-card-tag">Gut Health</span></div><h3>The Link Between Your Hormones and Your Sex Drive</h3><span class="post-card-meta">8 min read</span></div></a>
-
-        <a class='post-card' href='/edit/sunscreen-villain'><img src="../images/sunscreen-villain.png" alt="Sunscreen Villain"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Skincare</span><span class="post-card-tag">Ingredients</span></div><h3>The Sun Isn't the Villain — Your Sunscreen Might Be</h3><span class="post-card-meta">7 min read</span></div></a>
-
-        <a class='post-card' href='/edit/red-light-therapy'><img src="../images/red-light.png" alt="Red Light Therapy"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Skincare</span><span class="post-card-tag">Ingredients</span></div><h3>Red Light Therapy: Worth the Hype or a Waste of Money?</h3><span class="post-card-meta">10 min read</span></div></a>
-
-        <a class='post-card' href='/edit/sunscreens'><img src="../images/sunscreens.png" alt="Sunscreens"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Skincare</span><span class="post-card-tag">Ingredients</span></div><h3>We Tested 12 Popular Sunscreens. Only 3 Passed.</h3><span class="post-card-meta">8 min read</span></div></a>
-
-        <a class='post-card' href='/edit/lip-balm'><img src="../images/lip-balm.png" alt="Lip Balm"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Skincare</span><span class="post-card-tag">Ingredients</span></div><h3>The Lip Balm You're Obsessed With Is Working Against You</h3><span class="post-card-meta">8 min read</span></div></a>
-
-        <a class='post-card' href='/edit/too-pretty'><img src="../images/too-pretty.png" alt="Too Pretty to Work This Hard"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Hormones</span><span class="post-card-tag">Label Literacy</span></div><h3>Too Pretty to Work This Hard: The Case for Doing Less</h3><span class="post-card-meta">7 min read</span></div></a>
-
-        <a class='post-card' href='/edit/inner-dialogue'><img src="../images/inner-dialogue.png" alt="Inner Dialogue"><div class="post-card-body"><div class="post-card-tags"><span class="post-card-tag">Hormones</span><span class="post-card-tag">Label Literacy</span></div><h3>You Can't Outrun Your Inner Dialogue</h3><span class="post-card-meta">8 min read</span></div></a>
-        
- 
+      <div id="postList">
+        <a class="post" href="/edit/hormones-libido/" data-topics="hormones gut-health">
+          <span class="post-img"><img src="/images/hormones-libido.png" alt="The Link Between Your Hormones and Your Sex Drive" loading="lazy"></span>
+          <span class="post-text">
+            <span class="meta">Hormones · Gut Health · 8 min read</span>
+            <h3>The Link Between Your Hormones and Your Sex Drive</h3>
+            <p>If your sex drive has been quietly disappearing and you're blaming stress, your partner, or "just being tired" — you might be looking in the wrong place.</p>
+            <span class="read-link">Read <span>→</span></span>
+          </span>
+        </a>
+        <a class="post" href="/edit/sunscreen-villain/" data-topics="skincare">
+          <span class="post-img"><img src="/images/sunscreen-villain.png" alt="The Sun Isn't the Villain — Your Sunscreen Might Be" loading="lazy"></span>
+          <span class="post-text">
+            <span class="meta">Skincare · 7 min read</span>
+            <h3>The Sun Isn't the Villain — Your Sunscreen Might Be</h3>
+            <p>You've been told your whole life that the sun is trying to kill you. SPF every day, rain or shine, even indoors, or you'll age, burn, and die.</p>
+            <span class="read-link">Read <span>→</span></span>
+          </span>
+        </a>
+        <a class="post" href="/edit/red-light-therapy/" data-topics="skincare trends-tested">
+          <span class="post-img"><img src="/images/red-light-therapy-v2.webp" alt="Red Light Therapy: Worth the Hype or a Waste of Money?" loading="lazy"></span>
+          <span class="post-text">
+            <span class="meta">Skincare · Trends Tested · 10 min read</span>
+            <h3>Red Light Therapy: Worth the Hype or a Waste of Money?</h3>
+            <p>You've seen it everywhere. The girls with the red face masks on TikTok. The $2,000 panels in every cold plunge studio. The wellness influencer sitting in front of a red glow like she's being abducted by aliens.</p>
+            <span class="read-link">Read <span>→</span></span>
+          </span>
+        </a>
+        <a class="post" href="/edit/sunscreens/" data-topics="skincare trends-tested">
+          <span class="post-img"><img src="/images/sunscreens-v2.webp" alt="We Tested 12 Popular Sunscreens. Only 3 Passed." loading="lazy"></span>
+          <span class="post-text">
+            <span class="meta">Skincare · Trends Tested · 8 min read</span>
+            <h3>We Tested 12 Popular Sunscreens. Only 3 Passed.</h3>
+            <p>Most "clean" sunscreens aren't clean. We went ingredient-by-ingredient on 12 of the most-recommended formulas on the internet — the ones dermatologists post about, the ones that fill up your FYP — and nine of them failed.</p>
+            <span class="read-link">Read <span>→</span></span>
+          </span>
+        </a>
+        <a class="post" href="/edit/lip-balm/" data-topics="skincare">
+          <span class="post-img"><img src="/images/lip-balm.png" alt="The Lip Balm You're Obsessed With Is Working Against You" loading="lazy"></span>
+          <span class="post-text">
+            <span class="meta">Skincare · 8 min read</span>
+            <h3>The Lip Balm You're Obsessed With Is Working Against You</h3>
+            <p>You reapply every twenty minutes. You have one in every bag. You panic when you can't find it.</p>
+            <span class="read-link">Read <span>→</span></span>
+          </span>
+        </a>
+        <a class="post" href="/edit/too-pretty/" data-topics="mind">
+          <span class="post-img"><img src="/images/too-pretty.png" alt="Too Pretty to Work This Hard: The Case for Doing Less" loading="lazy"></span>
+          <span class="post-text">
+            <span class="meta">Mind · 7 min read</span>
+            <h3>Too Pretty to Work This Hard: The Case for Doing Less</h3>
+            <p>The women who used to glorify the 5 a.m. club, the 75 Hard, the second job, the green juice chugged between meetings, are quietly stepping back. The hustle aesthetic is losing its grip.</p>
+            <span class="read-link">Read <span>→</span></span>
+          </span>
+        </a>
+        <a class="post" href="/edit/inner-dialogue/" data-topics="mind">
+          <span class="post-img"><img src="/images/inner-dialogue.png" alt="You Can't Outrun Your Inner Dialogue" loading="lazy"></span>
+          <span class="post-text">
+            <span class="meta">Mind · 8 min read</span>
+            <h3>You Can't Outrun Your Inner Dialogue</h3>
+            <p>The most important conversation you have every day isn't with anyone else. It's the one happening in your head.</p>
+            <span class="read-link">Read <span>→</span></span>
+          </span>
+        </a>
+        <p class="empty" id="emptyMsg" hidden>New articles on this topic are coming soon.</p>
       </div>
     </div>
   </section>
 
   <footer>
     <a href="/" class="footer-logo">AÏA</a>
-    <ul class="footer-links"><li><a href="/edit/">The Edit</a></li><li><a href="/approved/">AÏA Approved</a></li><li><a href="/standard/">Our Standard</a></li><li><a href="/about/">About</a></li></ul>
+    <ul class="footer-links"><li><a href="/edit/">The Edit</a></li><li><a href="/toolkit/">The Toolkit</a></li><li><a href="/approved/">Products</a></li><li><a href="/standard/">Our Standard</a></li><li><a href="/about/">About</a></li></ul>
     <span class="footer-copy">© 2026 AÏA Wellness</span>
   </footer>
-  <script>window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60); });</script>
+  <script>
+    window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60); });
+    (function(){
+      const pills = document.querySelectorAll('#topicPills .pill');
+      const posts = document.querySelectorAll('#postList .post');
+      const empty = document.getElementById('emptyMsg');
+      function show(topic, scroll){
+        let n = 0;
+        pills.forEach(p => p.classList.toggle('on', p.dataset.topic === topic));
+        posts.forEach(p => { const on = topic === 'all' || p.dataset.topics.split(' ').includes(topic); p.hidden = !on; if (on) n++; });
+        empty.hidden = n > 0;
+        const url = new URL(location.href);
+        if (topic === 'all') url.searchParams.delete('topic'); else url.searchParams.set('topic', topic);
+        history.replaceState(null, '', url);
+        if (scroll) window.scrollTo({ top: document.querySelector('.edit-list').offsetTop - 80, behavior: 'smooth' });
+      }
+      pills.forEach(p => p.addEventListener('click', () => show(p.dataset.topic, false)));
+      const t = new URLSearchParams(location.search).get('topic');
+      if (t && document.querySelector('#topicPills [data-topic="' + t + '"]')) show(t, true);
+      document.querySelectorAll('.mega-topics a').forEach(a => a.addEventListener('click', e => {
+        const k = new URL(a.href).searchParams.get('topic');
+        if (location.pathname.replace(/\/$/, '') === '/edit' || location.pathname.endsWith('edit.html')) { e.preventDefault(); a.blur(); show(k, true); }
+      }));
+    })();
+  </script>
 </body>
 </html>
