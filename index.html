@@ -397,7 +397,7 @@
 
     /* ============ HOMEPAGE REDESIGN (Oct 2026) ============ */
     .hero{ min-height:auto; padding:6.5rem 2rem 4.5rem; }
-    .hero-mark{ --mark-w: min(84vw, 720px); margin: calc(var(--mark-w) * -0.155) auto calc(var(--mark-w) * -0.11); }
+    .hero-mark{ --mark-w: min(92vw, 900px); max-width:none; margin: calc(var(--mark-w) * -0.19) auto calc(var(--mark-w) * -0.139); }
     .hero-sub{ margin-bottom:0; }
     .breathe-btn{ position:absolute; z-index:4; right:3rem; bottom:1.5rem; width:170px; display:flex; flex-direction:column; align-items:center; gap:.6rem; background:none; border:none; cursor:pointer; color:#584738; text-align:center; font-family:var(--sans); }
     .breathe-btn:hover{ color:#2C241A; }
@@ -418,18 +418,16 @@
     .breathe-words span:last-child{ animation:aiaWord2 10s ease-in-out infinite; }
     .breathe-hint{ font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:#6B5A46; }
 
-    .paths{ background:#E8DFD3; padding:2.25rem 4.5rem 2.5rem; }
-    .paths-grid{ max-width:1300px; margin:0 auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
-    .path{ padding:0 1.5rem; display:flex; flex-direction:column; gap:1.1rem; border-left:1px solid rgba(88,71,56,.18); }
-    .path:first-child{ border-left:none; }
-    .path-title{ font-family:var(--serif); font-weight:400; font-size:clamp(2.4rem,4.2vw,3.75rem); line-height:.95; letter-spacing:-.01em; color:#2C241A; padding-top:.4rem; transition:color .3s; }
-    .path-title:hover{ color:#584738; }
-    .path-img{ display:block; aspect-ratio:4/5; overflow:hidden; }
+    .paths{ background:#E8DFD3; padding:2.25rem 3rem 2.5rem; }
+    .paths-grid{ max-width:1340px; margin:0 auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.75rem; }
+    .path{ display:flex; flex-direction:column; align-items:center; gap:1.1rem; color:#2C241A; }
+    .path-title{ display:inline-flex; align-items:center; gap:.65rem; padding-bottom:.4rem; border-bottom:1px solid #3D3428; font-size:1rem; font-weight:500; letter-spacing:.22em; text-transform:uppercase; color:#2C241A; transition:gap .3s; }
+    .path-title span{ letter-spacing:0; font-size:1.15rem; }
+    .path:hover .path-title{ gap:1rem; }
+    .path-img{ display:block; width:100%; aspect-ratio:4/5; overflow:hidden; }
     .path-img img{ width:100%; height:100%; object-fit:cover; transition:transform 1.2s cubic-bezier(.2,.7,.3,1); }
-    .path-img:hover img{ transform:scale(1.03); }
-    .path-meta{ display:flex; justify-content:space-between; align-items:baseline; font-size:.69rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:#6B5A46; transition:color .3s; }
-    .path-meta span:last-child{ font-size:1rem; letter-spacing:0; color:#584738; }
-    .path-meta:hover{ color:#2C241A; }
+    .path:hover .path-img img{ transform:scale(1.03); }
+    .path-meta{ font-size:.69rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:#6B5A46; }
 
     .home-edit{ background:#F1EADA; }
     .arrive{ padding:3.5rem 1.5rem 0; text-align:center; display:flex; flex-direction:column; align-items:center; }
@@ -469,7 +467,6 @@
       .breathe-btn{ position:static; margin:2rem auto 0; }
       .paths{ padding:2rem 1.5rem; }
       .paths-grid{ grid-template-columns:1fr; gap:2.5rem; }
-      .path{ border-left:none; padding:0; }
       .home-edit-inner{ padding:2rem 1.5rem 3.5rem; }
       .home-edit-grid{ grid-template-columns:1fr; }
       .picks{ padding:3.5rem 1.5rem; }
@@ -528,21 +525,21 @@
 
   <section class="paths">
     <div class="paths-grid">
-      <div class="path">
-        <a href="/edit/" class="path-title">The Edit</a>
-        <a href="/edit/" class="path-img"><img src="images/home-edit.jpg" alt="A woman reading the AÏA Wellness newspaper at a café" loading="lazy"></a>
-        <a href="/edit/" class="path-meta"><span>01 · For the mind</span><span>→</span></a>
-      </div>
-      <div class="path">
-        <a href="/toolkit/" class="path-title">The Toolkit</a>
-        <a href="/toolkit/" class="path-img"><img src="images/home-toolkit.jpg" alt="A woman resting on a clifftop meadow above the sea" loading="lazy"></a>
-        <a href="/toolkit/" class="path-meta"><span>02 · For the heart</span><span>→</span></a>
-      </div>
-      <div class="path">
-        <a href="/approved/" class="path-title">Products</a>
-        <a href="/approved/" class="path-img"><img src="images/home-products.jpg" alt="AÏA Approved products on fridge shelves" loading="lazy"></a>
-        <a href="/approved/" class="path-meta"><span>03 · For the body</span><span>→</span></a>
-      </div>
+      <a href="/edit/" class="path">
+        <span class="path-title">The Edit<span>→</span></span>
+        <span class="path-img"><img src="images/home-edit.jpg" alt="A woman reading the AÏA Wellness newspaper at a café" loading="lazy"></span>
+        <span class="path-meta">01 · For the mind</span>
+      </a>
+      <a href="/toolkit/" class="path">
+        <span class="path-title">The Toolkit<span>→</span></span>
+        <span class="path-img"><img src="images/home-toolkit.jpg" alt="A woman resting on a clifftop meadow above the sea" loading="lazy"></span>
+        <span class="path-meta">02 · For the heart</span>
+      </a>
+      <a href="/approved/" class="path">
+        <span class="path-title">Products<span>→</span></span>
+        <span class="path-img"><img src="images/home-products.jpg" alt="AÏA Approved products on fridge shelves" loading="lazy"></span>
+        <span class="path-meta">03 · For the body</span>
+      </a>
     </div>
   </section>
 
