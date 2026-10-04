@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Toolkit — AÏA</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body{ background:#F1EADA; }
+    .tk{ min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:8rem 1.5rem 5rem; }
+    .tk h1{ font-family:var(--serif); font-weight:300; font-size:clamp(2.6rem,6vw,4.5rem); color:#2C241A; margin-bottom:1rem; }
+    .tk p{ font-size:1.05rem; line-height:1.6; color:#4A4034; max-width:46ch; margin-bottom:2.2rem; }
+    .tk .section-label{ color:#6B5A46; margin-bottom:1rem; }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <a href="/" class="nav-logo">AÏA</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/edit/">The Edit</a></li>
+      <li><a href="/toolkit/">The Toolkit</a></li>
+      <li><a href="/approved/">Products</a></li>
+      <li><a href="/standard/">Our Standard</a></li>
+      <li><a href="/about/">About</a></li>
+    </ul>
+    <div class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </div>
+  </nav>
+  <main class="tk">
+    <p class="section-label">The Toolkit · For the heart</p>
+    <h1>Coming soon.</h1>
+    <p>Books, meditations, practices &amp; rituals, and printables.</p>
+    <a href="/edit/" class="btn-primary">Read the Edit meanwhile</a>
+  </main>
+  <footer>
+    <a href="/" class="footer-logo">AÏA</a>
+    <ul class="footer-links"><li><a href="/edit/">The Edit</a></li><li><a href="/toolkit/">The Toolkit</a></li><li><a href="/approved/">Products</a></li><li><a href="/standard/">Our Standard</a></li><li><a href="/about/">About</a></li></ul>
+    <span class="footer-copy">© 2026 AÏA Wellness</span>
+  </footer>
+</body>
+</html>
