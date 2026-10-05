@@ -476,6 +476,33 @@
     }
     @media (prefers-reduced-motion: reduce){ .breathe-dot, .breathe-big{ animation:none; } }
 
+    /* ============ HEADER 1a (Oct 2026) ============ */
+    #navbar.nav-home{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding:1.9rem 3.5rem; background:transparent; backdrop-filter:none; -webkit-backdrop-filter:none; border-bottom:1px solid transparent; }
+    #navbar.nav-home.scrolled{ padding:.9rem 3.5rem; background:rgba(247,243,236,.94); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom-color:rgba(138,117,96,.25); box-shadow:0 8px 24px rgba(44,36,26,.08); }
+    .nav-home .nav-logo{ justify-self:start; opacity:0; pointer-events:none; transition:opacity .3s ease; }
+    .nav-home.scrolled .nav-logo{ opacity:1; pointer-events:auto; }
+    .nav-home .nav-links{ justify-self:center; gap:2.75rem; margin:0; padding:0; }
+    .nav-home .nav-links a{ font-size:.75rem; font-weight:500; letter-spacing:.16em; color:#2C241A; }
+    .nav-join{ justify-self:end; padding:.6rem 1.4rem; border:1px solid #3D3428; border-radius:999px; font-size:.69rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:#2C241A; transition:background .3s ease, color .3s ease; }
+    .nav-join:hover{ background:#3D3428; color:#F7F3EC; }
+    .nav-join:focus-visible{ outline:2px solid #584738; outline-offset:3px; }
+    #join{ scroll-margin-top:5rem; }
+    .hero{ padding:6.5rem 2rem 0; }
+    .hero-mark{ margin-bottom: calc(var(--mark-w) * -0.16); }
+    .hero-sub{ margin-bottom:3.25rem; }
+    .hero .marquee-section{ position:relative; z-index:3; align-self:stretch; margin:0 -2rem; background:transparent; padding:.95rem 0; border-top:1px solid rgba(61,52,40,.22) !important; border-bottom:1px solid rgba(61,52,40,.22); }
+    .hero .marquee-item{ color:#3D3428; }
+    .hero .marquee-item::after{ color:#8A7560; }
+    .breathe-btn{ bottom:4.75rem; }
+    @media (max-width:900px){
+      #navbar.nav-home, #navbar.nav-home.scrolled{ grid-template-columns:1fr auto auto; gap:1.25rem; padding:1rem 1.5rem; }
+      .nav-home .nav-logo{ opacity:1; pointer-events:auto; }
+      .hero{ padding:6rem 1.2rem 0; }
+      .hero .marquee-section{ margin:0 -1.2rem; }
+      .breathe-btn{ margin:0 auto 2.25rem; }
+      .hero-sub{ margin-bottom:2rem; }
+    }
+
     /* Product carousel: boxed cards */
     .carousel-section{ background:#E8DFD3; }
     .carousel-track{ gap:1.25rem; padding-top:.5rem; padding-bottom:1.5rem; }
@@ -487,7 +514,7 @@
   </style>
 </head>
 <body>
-  <nav id="navbar">
+  <nav id="navbar" class="nav-home">
     <a href="/" class="nav-logo">AÏA</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="/edit/">The Edit</a></li>
@@ -496,6 +523,7 @@
       <li><a href="/standard/">Our Standard</a></li>
       <li><a href="/about/">About</a></li>
     </ul>
+    <a href="#join" class="nav-join">Join</a>
     <div class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </div>
@@ -516,13 +544,14 @@
       <span class="breathe-ring"><span class="breathe-dot"></span></span>
       <span class="breathe-desc">A one-minute pause. Follow the circle in and out.</span>
     </button>
+  <div class="marquee-section">
+      <div class="marquee-track">
+        <span class="marquee-item">Screened products</span><span class="marquee-item">The Edit</span><span class="marquee-item">Books</span><span class="marquee-item">Meditations and practices</span><span class="marquee-item">Nothing unvetted</span><span class="marquee-item">Screened products</span><span class="marquee-item">The Edit</span><span class="marquee-item">Books</span><span class="marquee-item">Meditations and practices</span><span class="marquee-item">Nothing unvetted</span>
+      </div>
+    </div>
   </section>
 
-  <div class="marquee-section">
-    <div class="marquee-track">
-      <span class="marquee-item">Screened products</span><span class="marquee-item">The Edit</span><span class="marquee-item">Books</span><span class="marquee-item">Meditations and practices</span><span class="marquee-item">Nothing unvetted</span><span class="marquee-item">Screened products</span><span class="marquee-item">The Edit</span><span class="marquee-item">Books</span><span class="marquee-item">Meditations and practices</span><span class="marquee-item">Nothing unvetted</span>
-    </div>
-  </div>
+
 
   <section class="paths">
     <div class="paths-grid">
@@ -634,7 +663,7 @@
     </div>
   </section>
 
- <section class="newsletter">
+ <section class="newsletter" id="join">
     <div class="newsletter-inner reveal">
       <p class="section-label">Stay connected.</p>
       <h2>We're glad you're here.</h2>
