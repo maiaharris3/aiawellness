@@ -13,17 +13,20 @@
     .edit-head h1{ font-family:var(--serif); font-weight:300; font-size:clamp(2.4rem,5vw,3.75rem); line-height:1.05; color:#2C241A; margin-bottom:.75rem; }
     .edit-head p.sub{ font-size:1rem; color:#6B5E4F; }
 
-    .feature{ position:relative; display:block; height:min(560px,62vw); overflow:hidden; color:#2C241A; }
-    .feature img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform 1.4s cubic-bezier(.2,.7,.3,1); }
-    .feature:hover img{ transform:scale(1.02); }
-    .feature-card{ position:absolute; left:3rem; bottom:3rem; max-width:520px; background:#F7F3EC; padding:2rem 2.25rem; display:flex; flex-direction:column; gap:.9rem; }
+    .feature-wrap{ background:#F7F3EC; padding:3.5rem 3rem 0; }
+    .feature{ max-width:1180px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); border:1px solid rgba(138,117,96,.35); background:#FDFBF7; color:#2C241A; transition:box-shadow .35s ease; }
+    .feature:hover{ box-shadow:0 14px 34px rgba(61,52,40,.08); }
+    .feature-img{ aspect-ratio:4/3; overflow:hidden; background:#E8DFD3; }
+    .feature-img img{ width:100%; height:100%; object-fit:cover; transition:transform 1.4s cubic-bezier(.2,.7,.3,1); }
+    .feature:hover .feature-img img{ transform:scale(1.02); }
+    .feature-card{ padding:3rem; display:flex; flex-direction:column; justify-content:center; gap:1rem; }
     .meta{ font-size:.69rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:#6B5A46; }
-    .feature-card h2{ font-family:var(--serif); font-weight:400; font-size:2.25rem; line-height:1.12; text-wrap:pretty; }
+    .feature-card h2{ font-family:var(--serif); font-weight:500; font-size:2.6rem; line-height:1.12; text-wrap:pretty; }
     .feature-foot{ display:flex; justify-content:space-between; align-items:center; font-size:.82rem; color:#6B5E4F; }
     .read-link{ display:inline-flex; gap:.6rem; padding-bottom:.35rem; border-bottom:1px solid #3D3428; font-size:.8rem; font-weight:500; letter-spacing:.22em; text-transform:uppercase; color:#2C241A; transition:gap .3s; }
     a:hover .read-link{ gap:1rem; }
 
-    .edit-list{ background:#F7F3EC; padding:3.25rem 3rem 4.5rem; }
+    .edit-list{ background:#F7F3EC; padding:3.5rem 3rem 4.5rem; }
     .edit-list-inner{ max-width:1180px; margin:0 auto; }
     .topics{ display:flex; flex-direction:column; align-items:center; gap:1rem; margin-bottom:1.5rem; }
     .topic-pills{ display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem; }
@@ -58,14 +61,14 @@
 
     @media (max-width:900px){
       .mega{ display:none; }
+      .feature{ grid-template-columns:1fr; }
       .post{ grid-template-columns:1fr; gap:1.25rem; padding:2rem 0; }
       .post h3{ font-size:2rem; }
     }
     @media (max-width:700px){
       .edit-head{ padding:7.5rem 1.5rem 2.5rem; }
-      .feature{ height:auto; }
-      .feature img{ position:static; aspect-ratio:4/3; height:auto; }
-      .feature-card{ position:static; max-width:none; padding:1.5rem; }
+      .feature-wrap{ padding:2rem 1.5rem 0; }
+      .feature-card{ padding:1.5rem; }
       .feature-card h2{ font-size:1.8rem; }
       .edit-list{ padding:2.5rem 1.5rem 3.5rem; }
     }
@@ -83,16 +86,16 @@
             <a href="/edit/?topic=food-and-nutrition">Food &amp; Nutrition</a>
             <a href="/edit/?topic=hormones">Hormones</a>
             <a href="/edit/?topic=mind">Mind</a>
-            <a href="/edit/?topic=gut-health">Gut Health</a>
+            <a href="/edit/?topic=body">Body</a>
             <a href="/edit/?topic=trends-tested">Trends Tested</a>
           </div>
           <div class="mega-latest">
             <p class="mega-label">Latest</p>
             <div class="mega-grid">
+              <a href="/edit/wind-down-routine/" class="mega-post"><span class="mega-img"><img src="/images/wind-down.jpg" alt="" loading="lazy"></span><span>Let’s Build Your Perfect Wind Down Routine</span></a>
+              <a href="/edit/strength-training/" class="mega-post"><span class="mega-img"><img src="/images/strength-training.webp" alt="" loading="lazy"></span><span>Why Every Woman Should Be Strength Training</span></a>
+              <a href="/edit/physical-touch/" class="mega-post"><span class="mega-img"><img src="/images/physical-touch.jpg" alt="" loading="lazy"></span><span>Why Physical Touch Is More Important Than We Think</span></a>
               <a href="/edit/coconut-water/" class="mega-post"><span class="mega-img"><img src="/images/coconut-water.png" alt="" loading="lazy"></span><span>A Coconut a Day Keeps the Liquid IV Away</span></a>
-              <a href="/edit/hormones-libido/" class="mega-post"><span class="mega-img"><img src="/images/hormones-libido.png" alt="" loading="lazy"></span><span>The Link Between Your Hormones and Your Sex Drive</span></a>
-              <a href="/edit/sunscreen-villain/" class="mega-post"><span class="mega-img"><img src="/images/sunscreen-villain.png" alt="" loading="lazy"></span><span>The Sun Isn't the Villain — Your Sunscreen Might Be</span></a>
-              <a href="/edit/red-light-therapy/" class="mega-post"><span class="mega-img"><img src="/images/red-light-therapy-v2.webp" alt="" loading="lazy"></span><span>Red Light Therapy: Worth the Hype or a Waste of Money?</span></a>
             </div>
           </div>
         </div>
@@ -113,34 +116,63 @@
     <p class="sub">Everything you need to take your health into your own hands.</p>
   </header>
 
-  <a class="feature" href="/edit/coconut-water/">
-    <img src="/images/coconut-water.png" alt="A Coconut a Day Keeps the Liquid IV Away">
+  <div class="feature-wrap">
+  <a class="feature" href="/edit/wind-down-routine/">
+    <span class="feature-img"><img src="/images/wind-down.jpg" alt="Let’s Build Your Perfect Wind Down Routine"></span>
     <div class="feature-card">
-      <span class="meta">Newest · Food &amp; Nutrition · Trends Tested</span>
-      <h2>A Coconut a Day Keeps the Liquid IV Away</h2>
-      <div class="feature-foot"><span>6 min read</span><span class="read-link">Read <span>→</span></span></div>
+      <span class="meta">Newest · Mind · Body</span>
+      <h2>Let’s Build Your Perfect Wind Down Routine</h2>
+      <div class="feature-foot"><span>7 min read · Includes a sleep check</span><span class="read-link">Read <span>→</span></span></div>
     </div>
   </a>
+  </div>
 
   <section class="edit-list">
     <div class="edit-list-inner">
       <div class="topics">
         <p class="meta">Browse by topic</p>
         <div class="topic-pills" id="topicPills">
-          <button class="pill on" data-topic="all">All <span>7</span></button>
+          <button class="pill on" data-topic="all">All <span>10</span></button>
           <button class="pill" data-topic="skincare">Skincare <span>4</span></button>
-          <button class="pill" data-topic="food-and-nutrition">Food &amp; Nutrition <span>0</span></button>
+          <button class="pill" data-topic="food-and-nutrition">Food &amp; Nutrition <span>1</span></button>
           <button class="pill" data-topic="hormones">Hormones <span>1</span></button>
-          <button class="pill" data-topic="mind">Mind <span>2</span></button>
-          <button class="pill" data-topic="gut-health">Gut Health <span>1</span></button>
-          <button class="pill" data-topic="trends-tested">Trends Tested <span>2</span></button>
+          <button class="pill" data-topic="mind">Mind <span>3</span></button>
+          <button class="pill" data-topic="body">Body <span>2</span></button>
+          <button class="pill" data-topic="trends-tested">Trends Tested <span>3</span></button>
         </div>
       </div>
       <div id="postList">
-        <a class="post" href="/edit/hormones-libido/" data-topics="hormones gut-health">
+        <a class="post" href="/edit/strength-training/" data-topics="body">
+          <span class="post-img"><img src="/images/strength-training.webp" alt="Why Every Woman Should Be Strength Training" loading="lazy"></span>
+          <span class="post-text">
+            <span class="meta">Body · 5 min read</span>
+            <h3>Why Every Woman Should Be Strength Training</h3>
+            <p>If strength training is still the part of your workout you skip, it may be the part your body needs most.</p>
+            <span class="read-link">Read <span>→</span></span>
+          </span>
+        </a>
+        <a class="post" href="/edit/physical-touch/" data-topics="mind">
+          <span class="post-img"><img src="/images/physical-touch.jpg" alt="Why Physical Touch Is More Important Than We Think" loading="lazy"></span>
+          <span class="post-text">
+            <span class="meta">Mind · 5 min read</span>
+            <h3>Why Physical Touch Is More Important Than We Think</h3>
+            <p>Think about how different you can feel after a real hug from someone you trust. You might still have the same problem, the same stressful day, and the same thoughts running through your head, but your body can feel a little calmer.</p>
+            <span class="read-link">Read <span>→</span></span>
+          </span>
+        </a>
+        <a class="post" href="/edit/coconut-water/" data-topics="food-and-nutrition trends-tested">
+          <span class="post-img"><img src="/images/coconut-water.png" alt="A Coconut a Day Keeps the Liquid IV Away" loading="lazy"></span>
+          <span class="post-text">
+            <span class="meta">Food &amp; Nutrition · Trends Tested · 6 min read</span>
+            <h3>A Coconut a Day Keeps the Liquid IV Away</h3>
+            <p>The cleanest electrolyte drink in the world is still the one that grows on a tree. While everyone was busy emptying $1.50 sugar sticks into their Stanley cups, nature already made the original hydration drink. No marketing team required.</p>
+            <span class="read-link">Read <span>→</span></span>
+          </span>
+        </a>
+        <a class="post" href="/edit/hormones-libido/" data-topics="hormones body">
           <span class="post-img"><img src="/images/hormones-libido.png" alt="The Link Between Your Hormones and Your Sex Drive" loading="lazy"></span>
           <span class="post-text">
-            <span class="meta">Hormones · Gut Health · 8 min read</span>
+            <span class="meta">Hormones · Body · 8 min read</span>
             <h3>The Link Between Your Hormones and Your Sex Drive</h3>
             <p>If your sex drive has been quietly disappearing and you're blaming stress, your partner, or "just being tired" — you might be looking in the wrong place.</p>
             <span class="read-link">Read <span>→</span></span>

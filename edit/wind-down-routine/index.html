@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Let’s Build Your Perfect Wind Down Routine — AÏA</title>
+  <meta name="description" content="You do not need a two hour nighttime routine, twelve products on your nightstand, or a completely screen free life to sleep well.">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .article-wrapper { background: var(--warm-white); padding-top: 80px; }
+    .article { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .article-tags { display: flex; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .article-tag { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tobacco); background: rgba(181,158,125,0.12); padding: 0.25rem 0.6rem; }
+    .article h1 { font-family: var(--serif); font-size: clamp(1.8rem,4vw,2.6rem); font-weight: 300; color: var(--deep); line-height: 1.2; margin-bottom: 1.5rem; }
+    .article-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: center; margin-bottom: 2.5rem; border: 1px solid rgba(181,158,125,0.1); }
+    .article h2 { font-family: var(--serif); font-size: 1.4rem; font-weight: 400; color: var(--deep); margin: 2.5rem 0 0.8rem; }
+    .article h3 { font-family: var(--sans); font-size: 1rem; font-weight: 500; color: var(--deep); margin: 2rem 0 0.5rem; }
+    .article p { font-size: 0.95rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.2rem; }
+    .article ul, .article ol { font-size: 0.95rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.2rem; padding-left: 1.5rem; }
+    .article li { margin-bottom: 0.4rem; }
+    .article strong { color: var(--deep); }
+    .pull-quote { font-family: var(--serif); font-size: 1.35rem; font-weight: 300; color: var(--deep); line-height: 1.4; padding: 2rem 0; margin: 2rem 0; border-top: 1px solid var(--bone); border-bottom: 1px solid var(--bone); text-align: center; font-style: italic; }
+    .article-sources { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--bone); }
+    .article-sources h2 { font-size: 1.1rem; margin-bottom: 1rem; }
+    .article-sources ul { font-size: 0.82rem; line-height: 1.7; color: var(--text-muted); }
+    .article-disclaimer { font-size: 0.82rem; color: var(--text-muted); margin-top: 2rem; padding: 1rem 1.2rem; background: var(--cream); border-left: 2px solid var(--earth); }
+    .article-sources a { color: var(--tobacco); text-decoration: underline; }
+.article-dek { font-family: var(--serif); font-size: 1.3rem !important; font-style: italic; color: var(--deep) !important; line-height: 1.5 !important; }
+    .sleep-check { background: #F1EADA; border: 1px solid rgba(138,117,96,.35); padding: 2rem 2.25rem 1.5rem; margin: 1.5rem 0 2.5rem; scroll-margin-top: 100px; }
+    .sc-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: .8rem; }
+    .sc-eyebrow, .sc-progress, .routine-tag { font-size: .68rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--tobacco); }
+    .time-select { appearance: none; -webkit-appearance: none; font-family: var(--sans); font-size: .95rem; color: var(--deep); background: #FDFBF7 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%233D3428' stroke-width='1.4'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E") no-repeat right .9rem center; border: 1px solid rgba(138,117,96,.45); padding: .55rem 2.2rem .55rem .9rem; cursor: pointer; transition: border-color .2s; }
+    .time-select:hover, .time-select:focus { border-color: var(--deep); outline: none; }
+    .time-select.picked { background-color: #F1EADA; border-color: var(--deep); }
+    .fill-row { align-items: center !important; }
+    .fill-row .time-select { flex: none; }
+    .time-select.inline-sel { padding: .3rem 2rem .3rem .7rem; font-size: .92rem; margin: 0 .2rem; }
+    .sc-bar { height: 2px; background: rgba(138,117,96,.25); margin-bottom: 1.75rem; }
+    .sc-bar span { display: block; height: 100%; width: 0; background: var(--deep); transition: width .4s ease; }
+    .sleep-check h3 { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; line-height: 1.25; color: var(--deep); margin: 0 0 1.25rem; }
+    .sc-opts { display: flex; flex-direction: column; gap: .55rem; }
+    .sc-opt { display: flex; align-items: center; gap: 1rem; width: 100%; text-align: left; padding: .9rem 1.1rem; background: #FDFBF7; border: 1px solid rgba(138,117,96,.3); font-family: var(--sans); font-size: .95rem; line-height: 1.45; color: var(--deep); cursor: pointer; transition: border-color .2s, background .2s; }
+    .sc-opt:hover { border-color: var(--deep); }
+    .sc-opt.on { background: var(--deep); border-color: var(--deep); color: #F7F3EC; }
+    .sc-letter { flex: none; width: 1.9rem; height: 1.9rem; border-radius: 50%; border: 1px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 500; opacity: .8; }
+    .sc-foot { min-height: 1.5rem; margin-top: 1rem; }
+    .sc-link { background: none; border: none; padding: 0; font-family: var(--sans); font-size: .78rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--tobacco); cursor: pointer; }
+    .sc-link:hover { color: var(--deep); }
+    .sc-done p { margin-bottom: 1.25rem; }
+    .sc-actions, .plan-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+    .plan-actions span { font-size: .8rem; color: var(--text-muted); }
+    .sc-btn { display: inline-block; padding: .85rem 1.5rem; background: var(--deep); color: #F7F3EC !important; border: none; font-family: var(--sans); font-size: .78rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; transition: background .25s; }
+    .sc-btn:hover { background: #584738; }
+    .fill-row { display: flex; align-items: baseline; gap: 1rem; padding: .7rem 0; border-bottom: 1px solid rgba(138,117,96,.3); font-size: .95rem; color: var(--text-secondary); }
+    .fill-row span { flex: none; min-width: 15rem; }
+    .fill-row input, .line, .inline { flex: 1; border: none; border-bottom: 1px solid transparent; background: transparent; font-family: var(--serif); font-size: 1.15rem; color: var(--deep); padding: .1rem .2rem; min-width: 0; }
+    .fill-row input:focus, .line:focus, .inline:focus { outline: none; border-bottom-color: var(--deep); }
+    .fill-row:last-of-type { margin-bottom: 1.5rem; }
+    .fill-label { margin-bottom: .2rem !important; }
+    .line { display: block; width: 100%; border-bottom: 1px solid rgba(138,117,96,.4); margin-bottom: .6rem; padding: .5rem .2rem; }
+    .checks { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .5rem; margin: 0 0 1.5rem; }
+    .check { display: flex; align-items: center; gap: .75rem; padding: .7rem .9rem; border: 1px solid rgba(138,117,96,.3); background: #FDFBF7; font-size: .9rem; color: var(--deep); cursor: pointer; transition: border-color .2s; }
+    .check:hover { border-color: var(--deep); }
+    .check input { appearance: none; flex: none; width: 1rem; height: 1rem; border: 1px solid var(--deep); margin: 0; display: grid; place-content: center; }
+    .check input:checked { background: var(--deep); }
+    .check input:checked::after { content: ''; width: .45rem; height: .25rem; border-left: 1.5px solid #F7F3EC; border-bottom: 1.5px solid #F7F3EC; transform: rotate(-45deg) translate(1px,-1px); }
+    .routine { border: 1px solid rgba(138,117,96,.35); background: #FDFBF7; padding: 1.75rem 2rem 1.25rem; margin-bottom: 1rem; scroll-margin-top: 100px; }
+    .routine h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: var(--deep); margin: .35rem 0 1rem; }
+    .routine.mine { border-color: var(--deep); }
+    .routine-goal { font-weight: 500; color: var(--deep) !important; }
+    .routine-relax, .routine-extra { padding: .75rem 1rem; background: #F1EADA; font-size: .9rem !important; color: var(--deep) !important; margin-bottom: .6rem !important; }
+    .show-all { margin: -0.25rem 0 2rem; }
+    .plan { background: #F1EADA; border: 1px solid rgba(138,117,96,.35); padding: 1.5rem 2.25rem 2rem; margin: 2.5rem 0; }
+    .plan h2 { margin-top: .75rem !important; }
+    .pt-line { font-size: 1.05rem !important; line-height: 2.2 !important; color: var(--deep) !important; margin-bottom: .2rem !important; }
+    .inline { display: inline-block; width: 11rem; flex: none; border-bottom: 1px solid rgba(138,117,96,.5); }
+    .inline[type="time"] { width: 7.5rem; }
+    @media (max-width: 600px) { .sleep-check, .plan { padding: 1.5rem 1.2rem; } .checks { grid-template-columns: 1fr; } .fill-row { flex-direction: column; gap: .2rem; } .fill-row span { min-width: 0; } .fill-row input { width: 100%; } .inline { width: 100%; } }
+    @media print { nav, footer, .article-img, .article-tags, .article-back, .article-sources, .article-disclaimer, .sleep-check, .plan-actions, .pull-quote { display: none !important; } .article > *:not(.plan) { display: none !important; } .plan { display: block !important; border: none; background: none; } .article-wrapper { padding: 0 !important; } }
+    .article sup { font-size: .65em; color: var(--tobacco); }
+    .article-back { display: inline-block; margin-top: 2.5rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tobacco); transition: color 0.3s; }
+    .article-back:hover { color: var(--deep); }
+    @media (max-width: 600px) { .article { padding: 2rem 1.2rem 4rem; } }
+  </style>
+</head>
+<body>
+  <nav id="navbar"><a href="/" class="nav-logo">AÏA</a><ul class="nav-links" id="navLinks"><li><a href="/edit/">The Edit</a></li><li><a href="/approved/">AÏA Approved</a></li><li><a href="/standard/">Our Standard</a></li><li><a href="/about/">About</a></li></ul><div class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></div></nav>
+  <div class="article-wrapper">
+  <article class="article">
+    <div class="article-tags"><span class="article-tag">Mind</span><span class="article-tag">Body</span></div>
+    <h1>Let’s Build Your Perfect Wind Down Routine</h1>
+    <img src="/images/wind-down.jpg" alt="A woman lying in bed in a black t-shirt" class="article-img" style="aspect-ratio:4/3;object-position:center top">
+    <p class="article-dek">You do not need a two hour nighttime routine, twelve products on your nightstand, or a completely screen free life to sleep well.</p>
+    <p>What you need is a routine that helps your brain and body shift out of daytime mode.</p>
+    <p>Your body responds to timing, light, caffeine, activity, and repeated habits. A good wind down routine uses those things to make the transition into sleep easier. The CDC recommends keeping a regular sleep schedule, creating a relaxing sleep environment, avoiding caffeine later in the day, and turning off electronics before bed.</p>
+    <p>But your routine should also solve your problem. Someone whose brain will not shut off at night may need something very different from someone whose afternoon coffee is still affecting sleep.</p>
+    <p>So instead of copying someone else’s routine, let’s build yours.</p>
+    <h2>Start with this quick sleep check</h2>
+    <p>Choose the answer that sounds most like you. Your answer will lead to a different wind down plan at the end.</p>
+    <section class="sleep-check" id="sleepCheck" aria-label="Sleep check">
+      <div class="sc-head"><span class="sc-eyebrow">Sleep check</span><span class="sc-progress" id="scProgress">Question 1 of 3</span></div>
+      <div class="sc-bar"><span id="scBar"></span></div>
+      <div class="sc-q" data-q="1">
+        <h3>What usually gets in the way when you are trying to fall asleep?</h3>
+        <div class="sc-opts">
+          <button type="button" class="sc-opt" data-v="A"><span class="sc-letter">A</span><span>My brain starts thinking about everything the second I get into bed.</span></button>
+          <button type="button" class="sc-opt" data-v="B"><span class="sc-letter">B</span><span>I feel tired earlier in the evening, then get a second wind at bedtime.</span></button>
+          <button type="button" class="sc-opt" data-v="C"><span class="sc-letter">C</span><span>I keep scrolling, watching something, or answering messages.</span></button>
+          <button type="button" class="sc-opt" data-v="D"><span class="sc-letter">D</span><span>I rarely feel sleepy when I want to go to bed.</span></button>
+          <button type="button" class="sc-opt" data-v="E"><span class="sc-letter">E</span><span>My body feels restless and I have trouble settling down.</span></button>
+          <button type="button" class="sc-opt" data-v="F"><span class="sc-letter">F</span><span>My sleep and wake times change constantly.</span></button>
+        </div>
+      </div>
+      <div class="sc-q" data-q="2" hidden>
+        <h3>What does your evening usually look like?</h3>
+        <div class="sc-opts">
+          <button type="button" class="sc-opt" data-v="A"><span class="sc-letter">A</span><span>I work or deal with stressful tasks close to bedtime.</span></button>
+          <button type="button" class="sc-opt" data-v="B"><span class="sc-letter">B</span><span>I use my phone or watch TV until I fall asleep.</span></button>
+          <button type="button" class="sc-opt" data-v="C"><span class="sc-letter">C</span><span>I drink coffee, tea, energy drinks, or pre workout later in the day.</span></button>
+          <button type="button" class="sc-opt" data-v="D"><span class="sc-letter">D</span><span>I eat dinner or snacks quite late.</span></button>
+          <button type="button" class="sc-opt" data-v="E"><span class="sc-letter">E</span><span>I exercise late and still feel switched on afterward.</span></button>
+          <button type="button" class="sc-opt" data-v="F"><span class="sc-letter">F</span><span>My evenings are already fairly calm.</span></button>
+        </div>
+      </div>
+      <div class="sc-q" data-q="3" hidden>
+        <h3>What actually sounds relaxing to you?</h3>
+        <div class="sc-opts">
+          <button type="button" class="sc-opt" data-v="A"><span class="sc-letter">A</span><span>A warm shower or bath.</span></button>
+          <button type="button" class="sc-opt" data-v="B"><span class="sc-letter">B</span><span>Reading.</span></button>
+          <button type="button" class="sc-opt" data-v="C"><span class="sc-letter">C</span><span>Gentle stretching.</span></button>
+          <button type="button" class="sc-opt" data-v="D"><span class="sc-letter">D</span><span>Writing down tomorrow’s tasks or journaling.</span></button>
+          <button type="button" class="sc-opt" data-v="E"><span class="sc-letter">E</span><span>Skincare.</span></button>
+          <button type="button" class="sc-opt" data-v="F"><span class="sc-letter">F</span><span>Meditation or breathing.</span></button>
+          <button type="button" class="sc-opt" data-v="G"><span class="sc-letter">G</span><span>Quiet music or a calm podcast.</span></button>
+          <button type="button" class="sc-opt" data-v="H"><span class="sc-letter">H</span><span>Talking with my partner or sitting quietly.</span></button>
+        </div>
+      </div>
+      <div class="sc-done" id="scDone" hidden>
+        <h3>Your routine is ready.</h3>
+        <p id="scSummary"></p>
+        <div class="sc-actions"><a href="#yourRoutine" class="sc-btn">See my routine ↓</a><button type="button" class="sc-link" id="scRestart">Start over</button></div>
+      </div>
+      <div class="sc-foot"><button type="button" class="sc-link" id="scBack" hidden>← Back</button></div>
+    </section>
+    <h2>Now build the part that applies to everyone</h2>
+    <h3>1. Pick a realistic bedtime</h3>
+    <p>Start with the time you actually want to be asleep, then work backward. Most adults need at least seven hours of sleep, and keeping your sleep and wake times fairly consistent can help support your body clock.</p>
+      <label class="fill-row"><span>My target bedtime</span><select class="time-select" data-key="bedtime" aria-label="Choose a time"><option value="">Choose a time</option><option>8:00 PM</option><option>8:15 PM</option><option>8:30 PM</option><option>8:45 PM</option><option>9:00 PM</option><option>9:15 PM</option><option>9:30 PM</option><option>9:45 PM</option><option>10:00 PM</option><option>10:15 PM</option><option>10:30 PM</option><option>10:45 PM</option><option>11:00 PM</option><option>11:15 PM</option><option>11:30 PM</option><option>11:45 PM</option><option>12:00 AM</option><option>12:15 AM</option><option>12:30 AM</option><option>12:45 AM</option><option>1:00 AM</option><option>1:15 AM</option><option>1:30 AM</option><option>1:45 AM</option><option>2:00 AM</option></select></label>
+      <label class="fill-row"><span>My usual wake time</span><select class="time-select" data-key="wake" aria-label="Choose a time"><option value="">Choose a time</option><option>5:00 AM</option><option>5:15 AM</option><option>5:30 AM</option><option>5:45 AM</option><option>6:00 AM</option><option>6:15 AM</option><option>6:30 AM</option><option>6:45 AM</option><option>7:00 AM</option><option>7:15 AM</option><option>7:30 AM</option><option>7:45 AM</option><option>8:00 AM</option><option>8:15 AM</option><option>8:30 AM</option><option>8:45 AM</option><option>9:00 AM</option><option>9:15 AM</option><option>9:30 AM</option><option>9:45 AM</option><option>10:00 AM</option></select></label>
+      <label class="fill-row"><span>My wind down starts</span><select class="time-select" data-key="winddown" aria-label="Choose a time"><option value="">Choose a time</option><option>7:00 PM</option><option>7:15 PM</option><option>7:30 PM</option><option>7:45 PM</option><option>8:00 PM</option><option>8:15 PM</option><option>8:30 PM</option><option>8:45 PM</option><option>9:00 PM</option><option>9:15 PM</option><option>9:30 PM</option><option>9:45 PM</option><option>10:00 PM</option><option>10:15 PM</option><option>10:30 PM</option><option>10:45 PM</option><option>11:00 PM</option><option>11:15 PM</option><option>11:30 PM</option><option>11:45 PM</option><option>12:00 AM</option><option>12:15 AM</option><option>12:30 AM</option><option>12:45 AM</option><option>1:00 AM</option></select></label>
+    <h3>2. Move caffeine earlier if sleep is a problem</h3>
+    <p>A 2023 systematic review and meta analysis found that caffeine reduced total sleep time by about 45 minutes on average. Based on the studies included, the researchers estimated that a coffee containing around 107 mg of caffeine would need to be consumed about nine hours before bed to avoid reducing total sleep time. People respond differently, but if you struggle to fall asleep, afternoon caffeine is an easy thing to test.</p>
+      <label class="fill-row"><span>My last caffeine will be around</span><select class="time-select" data-key="caffeine" aria-label="Choose a time"><option value="">Choose a time</option><option>7:00 AM</option><option>7:15 AM</option><option>7:30 AM</option><option>7:45 AM</option><option>8:00 AM</option><option>8:15 AM</option><option>8:30 AM</option><option>8:45 AM</option><option>9:00 AM</option><option>9:15 AM</option><option>9:30 AM</option><option>9:45 AM</option><option>10:00 AM</option><option>10:15 AM</option><option>10:30 AM</option><option>10:45 AM</option><option>11:00 AM</option><option>11:15 AM</option><option>11:30 AM</option><option>11:45 AM</option><option>12:00 PM</option><option>12:15 PM</option><option>12:30 PM</option><option>12:45 PM</option><option>1:00 PM</option><option>1:15 PM</option><option>1:30 PM</option><option>1:45 PM</option><option>2:00 PM</option><option>2:15 PM</option><option>2:30 PM</option><option>2:45 PM</option><option>3:00 PM</option><option>3:15 PM</option><option>3:30 PM</option><option>3:45 PM</option><option>4:00 PM</option><option>4:15 PM</option><option>4:30 PM</option><option>4:45 PM</option><option>5:00 PM</option><option>5:15 PM</option><option>5:30 PM</option><option>5:45 PM</option><option>6:00 PM</option></select></label>
+    <h3>3. Lower the stimulation</h3>
+    <p>Bright evening light can delay the timing of your body clock, and phones can keep your brain engaged long after you meant to stop. You do not have to ban screens all evening. Pick one boundary you can actually keep.</p>
+    <div class="checks" data-group="18">
+      <label class="check"><input type="checkbox" value="Put my phone on charge away from the bed"><span>Put my phone on charge away from the bed</span></label>
+      <label class="check"><input type="checkbox" value="Turn on Do Not Disturb"><span>Turn on Do Not Disturb</span></label>
+      <label class="check"><input type="checkbox" value="Stop social media 30 minutes before bed"><span>Stop social media 30 minutes before bed</span></label>
+      <label class="check"><input type="checkbox" value="Stop work messages 30 minutes before bed"><span>Stop work messages 30 minutes before bed</span></label>
+      <label class="check"><input type="checkbox" value="Switch from my phone to a quieter activity"><span>Switch from my phone to a quieter activity</span></label>
+    </div>
+    <h3>4. If your brain will not shut off, get tomorrow out of your head</h3>
+    <p>A small laboratory study found that healthy young adults who spent five minutes writing a detailed to do list before bed fell asleep faster than those who wrote about completed tasks. It was a small study, so this is not a guaranteed sleep trick, but it is simple and useful if your thoughts are mostly about tomorrow.</p>
+    <p class="fill-label">Tomorrow I need to:</p>
+      <input class="line" type="text" data-key="tomorrow28" aria-label="Tomorrow task">
+      <input class="line" type="text" data-key="tomorrow29" aria-label="Tomorrow task">
+      <input class="line" type="text" data-key="tomorrow30" aria-label="Tomorrow task">
+    <h3>5. Choose one or two things that genuinely relax you</h3>
+    <p>Your routine should make you less alert, not give you another list to complete. Choose what you would actually enjoy repeating.</p>
+    <div class="checks" data-group="33">
+      <label class="check"><input type="checkbox" value="Read"><span>Read</span></label>
+      <label class="check"><input type="checkbox" value="Take a warm shower or bath"><span>Take a warm shower or bath</span></label>
+      <label class="check"><input type="checkbox" value="Do skincare"><span>Do skincare</span></label>
+      <label class="check"><input type="checkbox" value="Stretch gently"><span>Stretch gently</span></label>
+      <label class="check"><input type="checkbox" value="Journal or write tomorrow’s list"><span>Journal or write tomorrow’s list</span></label>
+      <label class="check"><input type="checkbox" value="Listen to quiet music"><span>Listen to quiet music</span></label>
+      <label class="check"><input type="checkbox" value="Listen to a calm podcast"><span>Listen to a calm podcast</span></label>
+      <label class="check"><input type="checkbox" value="Do breathing or meditation"><span>Do breathing or meditation</span></label>
+      <label class="check"><input type="checkbox" value="Talk with your partner"><span>Talk with your partner</span></label>
+    </div>
+    <p>A warm shower is one option with useful evidence behind it. A systematic review and meta analysis found that passive body heating with a warm shower or bath before bed was associated with falling asleep faster and better self reported sleep quality. The studies suggest the benefit may relate to the drop in core body temperature that happens after warming.</p>
+    <h2 id="yourRoutine">Your personalized routine</h2>
+    <p>Use your answer to Question 1 as your main routine. Then add the relaxing activity you chose in Question 3.</p>
+    <div class="routine" data-route="A">
+      <p class="routine-tag">If you chose A</p>
+      <h3>Your brain will not shut off</h3>
+      <ul>
+        <li>About 60 minutes before bed: stop work, planning, and anything likely to pull you back into problem solving.</li>
+        <li>About 30 minutes before bed: lower the lights and put your phone away.</li>
+        <li>About 15 minutes before bed: write down tomorrow’s tasks so you are not trying to hold them in your head.</li>
+        <li>Final activity: read, stretch, listen to something calm, or do another low stimulation activity you actually enjoy.</li>
+      </ul>
+      <p class="routine-goal">Your goal is to give your brain a clear ending to the day instead of carrying unfinished thoughts into bed.</p>
+      <p class="routine-relax" hidden></p>
+      <p class="routine-extra" hidden></p>
+    </div>
+    <div class="routine" data-route="B">
+      <p class="routine-tag">If you chose B</p>
+      <h3>You get a second wind at night</h3>
+      <ul>
+        <li>Move your last caffeine earlier for one week and see whether bedtime feels different.</li>
+        <li>Keep evening lighting softer.</li>
+        <li>Avoid highly stimulating work, scrolling, or intense conversations in the final part of the night when possible.</li>
+        <li>Choose one quiet activity for the final 20 to 30 minutes.</li>
+      </ul>
+      <p class="routine-goal">Your goal is to stop feeding that late burst of alertness and make your evening feel progressively quieter.</p>
+      <p class="routine-relax" hidden></p>
+      <p class="routine-extra" hidden></p>
+    </div>
+    <div class="routine" data-route="C">
+      <p class="routine-tag">If you chose C</p>
+      <h3>Your phone keeps you awake</h3>
+      <ul>
+        <li>Choose a realistic phone cutoff, such as 30 minutes before bed.</li>
+        <li>Charge your phone somewhere you cannot reach without getting up.</li>
+        <li>Move one thing you already enjoy, such as skincare, reading, or a shower, into that phone free window.</li>
+        <li>Go to bed when you feel sleepy instead of getting into bed to continue scrolling.</li>
+      </ul>
+      <p class="routine-goal">Your goal is not a perfect digital detox. It is stopping your phone from quietly adding another hour to your night.</p>
+      <p class="routine-relax" hidden></p>
+      <p class="routine-extra" hidden></p>
+    </div>
+    <div class="routine" data-route="D">
+      <p class="routine-tag">If you chose D</p>
+      <h3>You are not sleepy at bedtime</h3>
+      <ul>
+        <li>Keep your wake time fairly consistent.</li>
+        <li>Get daylight during the day, especially earlier in the day.</li>
+        <li>Move caffeine earlier.</li>
+        <li>Use softer light in the evening.</li>
+        <li>Do not force yourself into bed far earlier than you feel sleepy.</li>
+      </ul>
+      <p class="routine-goal">Your goal is to strengthen the timing cues that help your body know when to feel awake and when to feel sleepy.</p>
+      <p class="routine-relax" hidden></p>
+      <p class="routine-extra" hidden></p>
+    </div>
+    <div class="routine" data-route="E">
+      <p class="routine-tag">If you chose E</p>
+      <h3>Your body feels restless</h3>
+      <ul>
+        <li>Finish intense activity early enough that you have time to settle afterward.</li>
+        <li>Take a warm shower or bath if you enjoy it.</li>
+        <li>Add a few minutes of gentle stretching if that feels relaxing.</li>
+        <li>Lower the lights and choose something physically quiet for the final part of the night.</li>
+      </ul>
+      <p class="routine-goal">Your goal is to create a physical transition between being active and being in bed.</p>
+      <p class="routine-relax" hidden></p>
+      <p class="routine-extra" hidden></p>
+    </div>
+    <div class="routine" data-route="F">
+      <p class="routine-tag">If you chose F</p>
+      <h3>Your schedule changes constantly</h3>
+      <ul>
+        <li>Choose a realistic wake time and keep it as steady as you reasonably can.</li>
+        <li>Use a bedtime window instead of one exact minute, such as 10:45 PM to 11:15 PM.</li>
+        <li>Start the same simple wind down routine before that window each night.</li>
+        <li>Keep the routine short enough that you can repeat it on normal weekdays.</li>
+      </ul>
+      <p class="routine-goal">Your goal is consistency first. Once the pattern feels normal, you can fine tune the details.</p>
+      <p class="routine-relax" hidden></p>
+      <p class="routine-extra" hidden></p>
+    </div>
+    <section class="plan" id="finalPlan">
+    <h2>Build your final plan</h2>
+      <label class="fill-row"><span>My target bedtime</span><select class="time-select" data-key="bedtime" aria-label="Choose a time"><option value="">Choose a time</option><option>8:00 PM</option><option>8:15 PM</option><option>8:30 PM</option><option>8:45 PM</option><option>9:00 PM</option><option>9:15 PM</option><option>9:30 PM</option><option>9:45 PM</option><option>10:00 PM</option><option>10:15 PM</option><option>10:30 PM</option><option>10:45 PM</option><option>11:00 PM</option><option>11:15 PM</option><option>11:30 PM</option><option>11:45 PM</option><option>12:00 AM</option><option>12:15 AM</option><option>12:30 AM</option><option>12:45 AM</option><option>1:00 AM</option><option>1:15 AM</option><option>1:30 AM</option><option>1:45 AM</option><option>2:00 AM</option></select></label>
+      <label class="fill-row"><span>My wind down starts</span><select class="time-select" data-key="winddown" aria-label="Choose a time"><option value="">Choose a time</option><option>7:00 PM</option><option>7:15 PM</option><option>7:30 PM</option><option>7:45 PM</option><option>8:00 PM</option><option>8:15 PM</option><option>8:30 PM</option><option>8:45 PM</option><option>9:00 PM</option><option>9:15 PM</option><option>9:30 PM</option><option>9:45 PM</option><option>10:00 PM</option><option>10:15 PM</option><option>10:30 PM</option><option>10:45 PM</option><option>11:00 PM</option><option>11:15 PM</option><option>11:30 PM</option><option>11:45 PM</option><option>12:00 AM</option><option>12:15 AM</option><option>12:30 AM</option><option>12:45 AM</option><option>1:00 AM</option></select></label>
+      <label class="fill-row"><span>My last caffeine</span><select class="time-select" data-key="caffeine" aria-label="Choose a time"><option value="">Choose a time</option><option>7:00 AM</option><option>7:15 AM</option><option>7:30 AM</option><option>7:45 AM</option><option>8:00 AM</option><option>8:15 AM</option><option>8:30 AM</option><option>8:45 AM</option><option>9:00 AM</option><option>9:15 AM</option><option>9:30 AM</option><option>9:45 AM</option><option>10:00 AM</option><option>10:15 AM</option><option>10:30 AM</option><option>10:45 AM</option><option>11:00 AM</option><option>11:15 AM</option><option>11:30 AM</option><option>11:45 AM</option><option>12:00 PM</option><option>12:15 PM</option><option>12:30 PM</option><option>12:45 PM</option><option>1:00 PM</option><option>1:15 PM</option><option>1:30 PM</option><option>1:45 PM</option><option>2:00 PM</option><option>2:15 PM</option><option>2:30 PM</option><option>2:45 PM</option><option>3:00 PM</option><option>3:15 PM</option><option>3:30 PM</option><option>3:45 PM</option><option>4:00 PM</option><option>4:15 PM</option><option>4:30 PM</option><option>4:45 PM</option><option>5:00 PM</option><option>5:15 PM</option><option>5:30 PM</option><option>5:45 PM</option><option>6:00 PM</option></select></label>
+      <label class="fill-row"><span>The thing I am stopping at night</span><input type="text" data-key="stopping"></label>
+      <label class="fill-row"><span>The relaxing activity I chose</span><input type="text" data-key="relaxing"></label>
+      <label class="fill-row"><span>My phone goes</span><input type="text" data-key="phone"></label>
+      <label class="fill-row"><span>My final activity before sleep</span><input type="text" data-key="final"></label>
+    <h3>Put it together</h3>
+      <p class="pt-line">At <select class="time-select inline-sel" data-key="winddown" aria-label="Choose a time"><option value="">Choose a time</option><option>7:00 PM</option><option>7:15 PM</option><option>7:30 PM</option><option>7:45 PM</option><option>8:00 PM</option><option>8:15 PM</option><option>8:30 PM</option><option>8:45 PM</option><option>9:00 PM</option><option>9:15 PM</option><option>9:30 PM</option><option>9:45 PM</option><option>10:00 PM</option><option>10:15 PM</option><option>10:30 PM</option><option>10:45 PM</option><option>11:00 PM</option><option>11:15 PM</option><option>11:30 PM</option><option>11:45 PM</option><option>12:00 AM</option><option>12:15 AM</option><option>12:30 AM</option><option>12:45 AM</option><option>1:00 AM</option></select> I stop <input class="inline" type="text" data-key="stopping">.</p>
+      <p class="pt-line">Then I <input class="inline" type="text" data-key="relaxing">.</p>
+      <p class="pt-line">Around <select class="time-select inline-sel" data-key="lights" aria-label="Choose a time"><option value="">Choose a time</option><option>7:00 PM</option><option>7:15 PM</option><option>7:30 PM</option><option>7:45 PM</option><option>8:00 PM</option><option>8:15 PM</option><option>8:30 PM</option><option>8:45 PM</option><option>9:00 PM</option><option>9:15 PM</option><option>9:30 PM</option><option>9:45 PM</option><option>10:00 PM</option><option>10:15 PM</option><option>10:30 PM</option><option>10:45 PM</option><option>11:00 PM</option><option>11:15 PM</option><option>11:30 PM</option><option>11:45 PM</option><option>12:00 AM</option><option>12:15 AM</option><option>12:30 AM</option><option>12:45 AM</option><option>1:00 AM</option></select> I lower the lights and <input class="inline" type="text" data-key="lightsand">.</p>
+      <p class="pt-line">My phone <input class="inline" type="text" data-key="phone">.</p>
+      <p class="pt-line">My final activity is <input class="inline" type="text" data-key="final">.</p>
+      <p class="pt-line">I aim to be in bed around <select class="time-select inline-sel" data-key="bedtime" aria-label="Choose a time"><option value="">Choose a time</option><option>8:00 PM</option><option>8:15 PM</option><option>8:30 PM</option><option>8:45 PM</option><option>9:00 PM</option><option>9:15 PM</option><option>9:30 PM</option><option>9:45 PM</option><option>10:00 PM</option><option>10:15 PM</option><option>10:30 PM</option><option>10:45 PM</option><option>11:00 PM</option><option>11:15 PM</option><option>11:30 PM</option><option>11:45 PM</option><option>12:00 AM</option><option>12:15 AM</option><option>12:30 AM</option><option>12:45 AM</option><option>1:00 AM</option><option>1:15 AM</option><option>1:30 AM</option><option>1:45 AM</option><option>2:00 AM</option></select>.</p>
+    <div class="plan-actions"><button type="button" class="sc-btn" onclick="window.print()">Save or print my plan</button><span>Your answers are saved on this device.</span></div>
+    </section>
+    <h2>Give it one week</h2>
+    <p>Do not change five things every night and then decide nothing works.</p>
+    <p>Try the same basic routine for a week. Notice whether you get sleepy earlier, spend less time awake in bed, reach for your phone less, or feel calmer when you finally lie down.</p>
+    <div class="pull-quote">Keep what helps. Change what does not.</div>
+    <p>Your perfect wind down routine is not the longest or prettiest one. It is the one you can repeat consistently enough that bedtime stops feeling like an abrupt switch.</p>
+    <p class="article-disclaimer"><em>This article is for informational purposes only and is not medical advice. If you regularly struggle to fall asleep, stay asleep, wake much earlier than intended, experience loud snoring or pauses in breathing during sleep, or feel excessively sleepy during the day despite allowing enough time for sleep, speak with a healthcare professional.</em></p>
+    <div class="article-sources">
+      <h2>Sources</h2>
+      <ol>
+        <li>Centers for Disease Control and Prevention. About Sleep. Guidance on sleep duration, consistent schedules, caffeine, electronics, and sleep environment.</li>
+        <li>Gardiner C, Weakley J, Burke LM, et al. The effect of caffeine on subsequent sleep: A systematic review and meta analysis. Sleep Medicine Reviews. 2023;69:101764.</li>
+        <li>Scullin MK, Krueger ML, Ballard HK, Pruett N, Bliwise DL. The effects of bedtime writing on difficulty falling asleep: A polysomnographic study comparing to do lists and completed activity lists. Journal of Experimental Psychology: General. 2018;147(1):139 to 146.</li>
+        <li>Haghayegh S, Khoshnevis S, Smolensky MH, Diller KR, Castriotta RJ. Before bedtime passive body heating by warm shower or bath to improve sleep: A systematic review and meta analysis. Sleep Medicine Reviews. 2019.</li>
+        <li>Systematic review of evening light exposure and circadian related outcomes. Sleep Medicine Reviews. 2022.</li>
+      </ol>
+    </div>
+    <a href="/edit/" class="article-back">← Back to The Edit</a>
+  </article>
+  </div>
+  <footer><a href="/" class="footer-logo">AÏA</a><ul class="footer-links"><li><a href="/edit/">The Edit</a></li><li><a href="/approved/">AÏA Approved</a></li><li><a href="/standard/">Our Standard</a></li><li><a href="/about/">About</a></li></ul><span class="footer-copy">&copy; 2026 AÏA Wellness</span></footer>
+  <script>window.addEventListener("scroll",function(){document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>60)});</script>
+  <script>
+  (function(){
+    var KEY='aia-winddown', S={};
+    try{ S=JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){}
+    S.a=S.a||{}; S.f=S.f||{}; S.c=S.c||{};
+    function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+    var EXTRA={"A":"Also: set a firm cutoff for work before your wind down starts.","B":"Also: pick one screen boundary from the list above and keep it.","C":"Also: test an earlier caffeine cutoff for a week.","D":"Also: try not to make a late, heavy meal the center of your evening.","E":"Also: give yourself a longer transition after exercise and keep the final 30 minutes quiet."}, RELAX={"A":"A warm shower or bath","B":"Reading","C":"Gentle stretching","D":"Writing down tomorrow’s tasks or journaling","E":"Skincare","F":"Meditation or breathing","G":"Quiet music or a calm podcast","H":"Talking with my partner or sitting quietly"}, Q3BOX={"A":"Take a warm shower or bath","B":"Read","C":"Stretch gently","D":"Journal or write tomorrow’s list","E":"Do skincare","F":"Do breathing or meditation","G":"Listen to quiet music","H":"Talk with your partner"};
+    var box=document.getElementById('sleepCheck'), qsEl=box.querySelectorAll('.sc-q'), done=document.getElementById('scDone'), back=document.getElementById('scBack'), prog=document.getElementById('scProgress'), bar=document.getElementById('scBar');
+    var step=1;
+    function show(n){ step=n; qsEl.forEach(function(q){ q.hidden = +q.dataset.q!==n; }); done.hidden = n<=3; back.hidden = n===1 || n>3;
+      prog.textContent = n>3 ? 'Complete' : 'Question '+n+' of 3'; bar.style.width = ((Math.min(n,4)-1)/3*100)+'%';
+      qsEl.forEach(function(q){ q.querySelectorAll('.sc-opt').forEach(function(o){ o.classList.toggle('on', S.a[q.dataset.q]===o.dataset.v); }); });
+      if(n>3) apply(); }
+    qsEl.forEach(function(q){ q.querySelectorAll('.sc-opt').forEach(function(o){ o.addEventListener('click', function(){
+      S.a[q.dataset.q]=o.dataset.v; save(); o.classList.add('on'); setTimeout(function(){ show(+q.dataset.q+1); }, 220); }); }); });
+    back.addEventListener('click', function(){ show(Math.max(1, step-1)); });
+    document.getElementById('scRestart').addEventListener('click', function(){ S.a={}; save(); reset(); show(1); window.scrollTo({top: box.getBoundingClientRect().top + window.scrollY - 100, behavior:'smooth'}); });
+    var routines=document.querySelectorAll('.routine'), heading=document.getElementById('yourRoutine');
+    var toggle=document.createElement('p'); toggle.className='show-all'; toggle.hidden=true;
+    toggle.innerHTML='<button type="button" class="sc-link">Show all six routines</button>';
+    routines[routines.length-1].after(toggle);
+    toggle.querySelector('button').addEventListener('click', function(){ routines.forEach(function(r){ r.hidden=false; }); toggle.hidden=true; });
+    function reset(){ routines.forEach(function(r){ r.hidden=false; r.classList.remove('mine'); r.querySelector('.routine-relax').hidden=true; r.querySelector('.routine-extra').hidden=true; }); toggle.hidden=true; }
+    function apply(){ var a=S.a; if(!a[1]) return; reset();
+      routines.forEach(function(r){ var mine=r.dataset.route===a[1]; r.hidden=!mine; r.classList.toggle('mine', mine);
+        if(mine){ var rx=r.querySelector('.routine-relax'), ex=r.querySelector('.routine-extra');
+          if(a[3]){ rx.textContent='Your relaxing activity: '+RELAX[a[3]]+'.'; rx.hidden=false; }
+          if(a[2] && EXTRA[a[2]]){ ex.textContent=EXTRA[a[2]]; ex.hidden=false; } } });
+      toggle.hidden=false;
+      document.getElementById('scSummary').textContent='Your main routine: '+routines[ 'ABCDEF'.indexOf(a[1]) ].querySelector('h3').textContent+'.'+(a[3]?' Your relaxing activity: '+RELAX[a[3]]+'.':'');
+      if(a[3]){ document.querySelectorAll('.check input').forEach(function(c){ if(c.value===Q3BOX[a[3]] && !c.checked){ c.checked=true; S.c[c.value]=true; } });
+        fill('relaxing', S.f.relaxing || RELAX[a[3]].toLowerCase()); }
+      save(); }
+    document.querySelectorAll('[data-key]').forEach(function(inp){ var k=inp.dataset.key; if(S.f[k]) inp.value=S.f[k];
+      inp.classList.toggle('picked', !!inp.value);
+      inp.addEventListener(inp.tagName==='SELECT'?'change':'input', function(){ S.f[k]=inp.value; save(); inp.classList.toggle('picked', !!inp.value); document.querySelectorAll('[data-key="'+k+'"]').forEach(function(o){ if(o!==inp){ o.value=inp.value; o.classList.toggle('picked', !!inp.value); } }); }); });
+    function fill(k,v){ S.f[k]=v; document.querySelectorAll('[data-key="'+k+'"]').forEach(function(o){ o.value=v; }); }
+    document.querySelectorAll('.check input').forEach(function(c){ if(S.c[c.value]) c.checked=true; c.addEventListener('change', function(){ S.c[c.value]=c.checked; save(); }); });
+    var start = S.a[3] ? 4 : S.a[2] ? 3 : S.a[1] ? 2 : 1; show(start);
+  })();
+  </script>
+</body>
+</html>
