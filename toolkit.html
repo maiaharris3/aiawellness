@@ -4,14 +4,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Toolkit — AÏA</title>
+  <meta name="description" content="The Toolkit: books, meditations, practices and printables chosen to support you wherever you are on your path.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/style.css">
   <style>
-    body{ background:#F1EADA; }
-    .tk{ min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:8rem 1.5rem 5rem; }
-    .tk h1{ font-family:var(--serif); font-weight:300; font-size:clamp(2.6rem,6vw,4.5rem); color:#2C241A; margin-bottom:1rem; }
-    .tk p{ font-size:1.05rem; line-height:1.6; color:#4A4034; max-width:46ch; margin-bottom:2.2rem; }
-    .tk .section-label{ color:#6B5A46; margin-bottom:1rem; }
+    body{ background:var(--warm-white); }
+    .tk-hero{ background:#F1EADA; padding:10rem 3rem 0; text-align:center; }
+    .tk-hero .tk-title{ font-family:var(--serif); font-size:clamp(3rem,7vw,4.75rem); font-weight:300; letter-spacing:.01em; color:#3D3428; line-height:1.05; margin:0 0 1.25rem; }
+    .tk-hero p{ font-size:1rem; color:#5C5142; max-width:560px; margin:0 auto; line-height:1.7; font-weight:300; }
+    .tk-tabs{ max-width:1100px; margin:2.75rem auto 0; display:flex; justify-content:center; gap:3.5rem; flex-wrap:wrap; }
+    .tk-tab{ display:flex; align-items:center; gap:.5rem; padding:0 0 .9rem; font-size:.8rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:#8A7560; border-bottom:2px solid transparent; }
+    .tk-tab.active{ color:#3D3428; border-bottom-color:#3D3428; }
+    .tk-soon{ font-size:.6rem; letter-spacing:.14em; padding:2px 7px; border:1px solid rgba(138,117,96,.5); color:#8A7560; }
+    .tk-head{ background:var(--warm-white); padding:3rem 3rem 2rem; text-align:center; }
+    .tk-head h2{ font-family:var(--serif); font-size:2.5rem; font-weight:400; color:var(--deep); margin:0 0 .5rem; }
+    .tk-head p{ font-size:.95rem; color:var(--text-secondary); margin:0; }
+
+    .filter-bar{ position:sticky; top:60px; z-index:100; background:#E4DBCB; padding:.8rem 2rem; display:flex; justify-content:center; gap:.6rem; flex-wrap:wrap; border-top:1px solid rgba(88,71,56,.16); border-bottom:1px solid rgba(88,71,56,.16); box-shadow:0 4px 14px rgba(61,52,40,.05); }
+    .filter-btn{ font-family:var(--sans); font-size:.7rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:#3D3428; background:transparent; border:1px solid rgba(88,71,56,.30); padding:.5rem 1.2rem; cursor:pointer; transition:all .3s; text-decoration:none; }
+    .filter-btn:hover, .filter-btn.active{ color:#F7F3EC; border-color:#3D3428; background:#3D3428; }
+
+    .pg-section{ padding:3.5rem 3rem 4rem; }
+    .pg-section:nth-child(odd){ background:var(--warm-white); }
+    .pg-section:nth-child(even){ background:#F1EADA; }
+    .pg-section-inner{ max-width:1100px; margin:0 auto; }
+    .pg-cat h2{ font-family:var(--serif); font-size:1.8rem; font-weight:400; color:var(--deep); margin-bottom:.4rem; }
+    .pg-cat-desc{ font-size:.9rem; color:var(--text-secondary); margin-bottom:1.25rem; }
+    .pg-cat-line{ height:1px; background:var(--bone); margin-bottom:1.75rem; }
+    .pg-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+    .pg-section:nth-child(odd) .pg-card{ background:var(--cream); }
+    .pg-section:nth-child(odd) .pg-card-img{ background:#F1EADA; }
+    .pg-section:nth-child(even) .pg-card{ background:var(--warm-white); }
+    .pg-section:nth-child(even) .pg-card-img{ background:var(--cream); }
+    .pg-card{ border:1px solid rgba(181,158,125,.1); overflow:hidden; transition:all .35s; cursor:pointer; }
+    .pg-card:hover{ transform:translateY(-4px); box-shadow:0 10px 30px rgba(61,52,40,.06); }
+    .pg-card:focus-visible{ outline:2px solid #584738; outline-offset:2px; }
+    .pg-card-img{ width:100%; height:260px; display:flex; align-items:center; justify-content:center; padding:1.5rem; }
+    .pg-card-img img{ max-width:100%; max-height:100%; object-fit:contain; box-shadow:0 8px 18px rgba(44,36,26,.22); }
+    .pg-card-img img.no-shadow{ box-shadow:none; }
+    .pg-card-body{ padding:1.2rem 1.4rem 1.4rem; }
+    .pg-card-brand{ font-size:.68rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--tobacco); margin-bottom:.3rem; }
+    .pg-card h3{ font-family:var(--serif); font-size:1.1rem; font-weight:400; color:var(--deep); line-height:1.3; margin:0; }
+    .pg-disclaimer{ font-size:.82rem; font-style:italic; color:var(--text-muted); text-align:center; padding:3rem; margin:0; }
+
+    .modal-overlay{ position:fixed; inset:0; background:rgba(44,38,32,.6); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); z-index:9999; display:flex; align-items:center; justify-content:center; padding:1.5rem; opacity:0; visibility:hidden; transition:opacity .35s, visibility .35s; }
+    .modal-overlay.is-open{ opacity:1; visibility:visible; }
+    .modal{ background:var(--warm-white); max-width:680px; width:100%; max-height:90vh; overflow-y:auto; position:relative; transform:translateY(20px); transition:transform .4s; }
+    .modal-overlay.is-open .modal{ transform:translateY(0); }
+    .modal-close{ position:sticky; top:0; float:right; background:transparent; border:none; font-size:28px; color:var(--tobacco); cursor:pointer; padding:12px 16px; z-index:2; }
+    .modal-close:hover{ color:var(--deep); }
+    .modal-img{ width:100%; height:320px; background:var(--cream); display:flex; align-items:center; justify-content:center; padding:2rem; }
+    .modal-img img{ max-width:100%; max-height:100%; object-fit:contain; box-shadow:0 8px 18px rgba(44,36,26,.22); }
+    .modal-img img.no-shadow{ box-shadow:none; }
+    .modal-body{ padding:2rem 2.5rem 1.5rem; }
+    .modal-brand{ font-size:.7rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--tobacco); margin-bottom:.3rem; }
+    .modal-body h2{ font-family:var(--serif); font-size:1.6rem; font-weight:400; color:var(--deep); margin-bottom:.3rem; line-height:1.25; }
+    .modal-tag{ display:inline-block; font-size:.75rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--tobacco); background:rgba(181,158,125,.12); padding:.35rem .8rem; margin-top:.9rem; }
+    .modal-section-title{ font-size:.72rem; font-weight:500; letter-spacing:.15em; text-transform:uppercase; color:var(--tobacco); margin-bottom:.5rem; margin-top:1.5rem; }
+    .modal-text{ font-size:.9rem; line-height:1.7; color:var(--text-secondary); margin-bottom:1.5rem; }
+    .modal-buy{ display:block; width:100%; padding:1rem; background:var(--mahogany); color:var(--cream); font-family:var(--sans); font-size:.78rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; text-align:center; text-decoration:none; transition:background .3s; margin-bottom:1rem; }
+    .modal-buy:hover{ background:var(--tobacco); color:var(--cream); }
+    .modal-nav{ display:flex; justify-content:flex-end; padding:1.2rem 2.5rem 2rem; border-top:1px solid var(--bone); }
+    .modal-next{ font-size:.78rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--tobacco); cursor:pointer; background:none; border:none; font-family:var(--sans); }
+    .modal-next:hover{ color:var(--deep); }
+
+    @media (max-width:900px){ .tk-hero{ padding:8rem 1.5rem 0; } .tk-tabs{ gap:1.4rem 2rem; } .pg-grid{ grid-template-columns:1fr 1fr; } .pg-section{ padding:3rem 1.5rem; } }
+    @media (max-width:600px){ .filter-bar{ padding:.6rem 1rem; gap:.4rem; } .filter-btn{ padding:.4rem .8rem; font-size:.62rem; } .modal-body{ padding:1.5rem; } .modal-nav{ padding:1rem 1.5rem 1.5rem; } .modal-img{ height:240px; } }
+    @media (max-width:480px){ .pg-grid{ grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
@@ -28,16 +87,339 @@
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </div>
   </nav>
-  <main class="tk">
-    <p class="section-label">The Toolkit · For the heart</p>
-    <h1>Coming soon.</h1>
-    <p>Books, meditations, practices &amp; rituals, and printables.</p>
-    <a href="/edit/" class="btn-primary">Read the Edit meanwhile</a>
-  </main>
+
+  <section class="tk-hero">
+    <h1 class="tk-title">The Toolkit</h1>
+    <p>Tools to support you wherever you are on your path.</p>
+    <div class="tk-tabs">
+      <a href="#books" class="tk-tab active">Books</a>
+      <span class="tk-tab">Meditations <span class="tk-soon">Soon</span></span>
+      <span class="tk-tab">Practices &amp; rituals <span class="tk-soon">Soon</span></span>
+      <span class="tk-tab">Printables <span class="tk-soon">Soon</span></span>
+    </div>
+  </section>
+
+  <div class="tk-head" id="books">
+    <h2>Books</h2>
+    <p>On manifesting, the mind, spirit and healing.</p>
+  </div>
+
+  <div class="filter-bar" id="filterBar">
+    <a class="filter-btn" href="#manifesting" onclick="scrollToSection(event,'manifesting')">Manifesting</a>
+    <a class="filter-btn" href="#mind" onclick="scrollToSection(event,'mind')">Mind</a>
+    <a class="filter-btn" href="#spirit" onclick="scrollToSection(event,'spirit')">Spirit</a>
+    <a class="filter-btn" href="#healing" onclick="scrollToSection(event,'healing')">Healing</a>
+  </div>
+
+  <div class="pg-sections">
+  <section class="pg-section"><div class="pg-section-inner">
+    <div class="pg-cat" id="manifesting"><p class="section-label">01</p><h2>Manifesting</h2><p class="pg-cat-desc">Creating the life you want</p><div class="pg-cat-line"></div><div class="pg-grid">
+      <div class="pg-card" onclick="openModal('b03')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b03')"><div class="pg-card-img"><img src="/images/books/book-03.jpg" alt="The Secret cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Rhonda Byrne</p><h3>The Secret</h3></div></div>
+      <div class="pg-card" onclick="openModal('b04')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b04')"><div class="pg-card-img"><img src="/images/books/book-04.jpg" alt="The Magic cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Rhonda Byrne</p><h3>The Magic</h3></div></div>
+      <div class="pg-card" onclick="openModal('b05')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b05')"><div class="pg-card-img"><img src="/images/books/book-05.jpg" alt="The Greatest Secret cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Rhonda Byrne</p><h3>The Greatest Secret</h3></div></div>
+      <div class="pg-card" onclick="openModal('b06')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b06')"><div class="pg-card-img"><img src="/images/books/book-06.jpg" alt="The Secret to Love, Health, and Money cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Rhonda Byrne</p><h3>The Secret to Love, Health, and Money</h3></div></div>
+      <div class="pg-card" onclick="openModal('b07')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b07')"><div class="pg-card-img"><img src="/images/books/book-07.jpg" alt="The Power cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Rhonda Byrne</p><h3>The Power</h3></div></div>
+      <div class="pg-card" onclick="openModal('b08')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b08')"><div class="pg-card-img"><img src="/images/books/book-08.png" alt="The Secret: Cartes de Manifestation cover" loading="lazy" class="no-shadow"></div><div class="pg-card-body"><p class="pg-card-brand">Rhonda Byrne</p><h3>The Secret: Cartes de Manifestation</h3></div></div>
+      <div class="pg-card" onclick="openModal('b09')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b09')"><div class="pg-card-img"><img src="/images/books/book-09.jpg" alt="The Neville Goddard Deluxe Collection cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Neville Goddard</p><h3>The Neville Goddard Deluxe Collection</h3></div></div>
+      <div class="pg-card" onclick="openModal('b16')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b16')"><div class="pg-card-img"><img src="/images/books/book-16.jpg" alt="Wishes Fulfilled cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Dr. Wayne W. Dyer</p><h3>Wishes Fulfilled</h3></div></div>
+      <div class="pg-card" onclick="openModal('b17')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b17')"><div class="pg-card-img"><img src="/images/books/book-17.jpg" alt="Real Magic cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Dr. Wayne W. Dyer</p><h3>Real Magic</h3></div></div>
+      <div class="pg-card" onclick="openModal('b20')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b20')"><div class="pg-card-img"><img src="/images/books/book-20.jpg" alt="Ask and It Is Given cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Esther and Jerry Hicks</p><h3>Ask and It Is Given</h3></div></div>
+      <div class="pg-card" onclick="openModal('b21')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b21')"><div class="pg-card-img"><img src="/images/books/book-21.jpg" alt="The Law of Attraction cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Esther and Jerry Hicks</p><h3>The Law of Attraction</h3></div></div>
+      <div class="pg-card" onclick="openModal('b22')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b22')"><div class="pg-card-img"><img src="/images/books/book-22.jpg" alt="E-Cubed cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Pam Grout</p><h3>E-Cubed</h3></div></div>
+    </div></div>
+  </div></section>
+
+  <section class="pg-section"><div class="pg-section-inner">
+    <div class="pg-cat" id="mind"><p class="section-label">02</p><h2>Mind</h2><p class="pg-cat-desc">Rewiring thoughts and habits</p><div class="pg-cat-line"></div><div class="pg-grid">
+      <div class="pg-card" onclick="openModal('b01')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b01')"><div class="pg-card-img"><img src="/images/books/book-01.jpg" alt="Breaking the Habit of Being Yourself cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Dr. Joe Dispenza</p><h3>Breaking the Habit of Being Yourself</h3></div></div>
+      <div class="pg-card" onclick="openModal('b02')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b02')"><div class="pg-card-img"><img src="/images/books/book-02.jpg" alt="Becoming Supernatural cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Dr. Joe Dispenza</p><h3>Becoming Supernatural</h3></div></div>
+      <div class="pg-card" onclick="openModal('b18')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b18')"><div class="pg-card-img"><img src="/images/books/book-18.jpg" alt="Your Erroneous Zones cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Dr. Wayne W. Dyer</p><h3>Your Erroneous Zones</h3></div></div>
+      <div class="pg-card" onclick="openModal('b19')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b19')"><div class="pg-card-img"><img src="/images/books/book-19.jpg" alt="The Power of Your Subconscious Mind cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Joseph Murphy</p><h3>The Power of Your Subconscious Mind</h3></div></div>
+      <div class="pg-card" onclick="openModal('b26')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b26')"><div class="pg-card-img"><img src="/images/books/book-26.jpg" alt="Wherever You Go, There You Are cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Jon Kabat-Zinn</p><h3>Wherever You Go, There You Are</h3></div></div>
+    </div></div>
+  </div></section>
+
+  <section class="pg-section"><div class="pg-section-inner">
+    <div class="pg-cat" id="spirit"><p class="section-label">03</p><h2>Spirit</h2><p class="pg-cat-desc">Presence, purpose and the universe</p><div class="pg-cat-line"></div><div class="pg-grid">
+      <div class="pg-card" onclick="openModal('b10')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b10')"><div class="pg-card-img"><img src="/images/books/book-10.jpg" alt="Signs cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Laura Lynne Jackson</p><h3>Signs</h3></div></div>
+      <div class="pg-card" onclick="openModal('b11')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b11')"><div class="pg-card-img"><img src="/images/books/book-11.jpg" alt="The Untethered Soul cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Michael A. Singer</p><h3>The Untethered Soul</h3></div></div>
+      <div class="pg-card" onclick="openModal('b12')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b12')"><div class="pg-card-img"><img src="/images/books/book-12.jpg" alt="The Four Agreements cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Don Miguel Ruiz</p><h3>The Four Agreements</h3></div></div>
+      <div class="pg-card" onclick="openModal('b14')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b14')"><div class="pg-card-img"><img src="/images/books/book-14.jpg" alt="The Seven Spiritual Laws of Success cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Deepak Chopra</p><h3>The Seven Spiritual Laws of Success</h3></div></div>
+      <div class="pg-card" onclick="openModal('b15')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b15')"><div class="pg-card-img"><img src="/images/books/book-15.jpg" alt="The Power of Now cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Eckhart Tolle</p><h3>The Power of Now</h3></div></div>
+      <div class="pg-card" onclick="openModal('b24')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b24')"><div class="pg-card-img"><img src="/images/books/book-24.jpg" alt="The Universe Has Your Back cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Gabrielle Bernstein</p><h3>The Universe Has Your Back</h3></div></div>
+      <div class="pg-card" onclick="openModal('b25')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b25')"><div class="pg-card-img"><img src="/images/books/book-25.jpg" alt="The Law of Success cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Paramahansa Yogananda</p><h3>The Law of Success</h3></div></div>
+    </div></div>
+  </div></section>
+
+  <section class="pg-section"><div class="pg-section-inner">
+    <div class="pg-cat" id="healing"><p class="section-label">04</p><h2>Healing</h2><p class="pg-cat-desc">Coming home to yourself</p><div class="pg-cat-line"></div><div class="pg-grid">
+      <div class="pg-card" onclick="openModal('b13')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b13')"><div class="pg-card-img"><img src="/images/books/book-13.jpg" alt="Women Who Run With the Wolves cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Clarissa Pinkola Estés</p><h3>Women Who Run With the Wolves</h3></div></div>
+      <div class="pg-card" onclick="openModal('b23')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')openModal('b23')"><div class="pg-card-img"><img src="/images/books/book-23.jpg" alt="You Can Heal Your Life cover" loading="lazy"></div><div class="pg-card-body"><p class="pg-card-brand">Louise Hay</p><h3>You Can Heal Your Life</h3></div></div>
+    </div></div>
+  </div></section>
+  </div>
+
+  <p class="pg-disclaimer">Some links on this page are affiliate links, meaning AÏA may earn a small commission at no extra cost to you.</p>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Book details">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+      <div class="modal-img" id="modalImg"></div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-nav"><button class="modal-next" onclick="nextBook()">Next book →</button></div>
+    </div>
+  </div>
+
   <footer>
     <a href="/" class="footer-logo">AÏA</a>
     <ul class="footer-links"><li><a href="/edit/">The Edit</a></li><li><a href="/toolkit/">The Toolkit</a></li><li><a href="/approved/">Products</a></li><li><a href="/standard/">Our Standard</a></li><li><a href="/about/">About</a></li></ul>
     <span class="footer-copy">© 2026 AÏA Wellness</span>
   </footer>
+
+  <script>
+  window.addEventListener('scroll',function(){document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60)});
+  var books = {
+ "b03": {
+  "title": "The Secret",
+  "author": "Rhonda Byrne",
+  "topic": "Manifesting",
+  "url": "https://link.amazon/B05QCEV21",
+  "img": "/images/books/book-03.jpg",
+  "desc": "The book that brought the law of attraction to millions: what you focus on, you draw into your life."
+ },
+ "b04": {
+  "title": "The Magic",
+  "author": "Rhonda Byrne",
+  "topic": "Manifesting",
+  "url": "https://link.amazon/B087Ivlea",
+  "img": "/images/books/book-04.jpg",
+  "desc": "A 28-day practice of gratitude, with a daily exercise for each area of life."
+ },
+ "b05": {
+  "title": "The Greatest Secret",
+  "author": "Rhonda Byrne",
+  "topic": "Manifesting",
+  "url": "https://link.amazon/B04IpHCV7",
+  "img": "/images/books/book-05.jpg",
+  "desc": "Byrne turns inward, exploring awareness, letting go of negativity and finding lasting happiness."
+ },
+ "b06": {
+  "title": "The Secret to Love, Health, and Money",
+  "author": "Rhonda Byrne",
+  "topic": "Manifesting",
+  "url": "https://link.amazon/B0hbwSH2q",
+  "img": "/images/books/book-06.jpg",
+  "desc": "A masterclass that applies the principles of The Secret to relationships, wellbeing and abundance."
+ },
+ "b07": {
+  "title": "The Power",
+  "author": "Rhonda Byrne",
+  "topic": "Manifesting",
+  "url": "https://link.amazon/B05voAmJw",
+  "img": "/images/books/book-07.jpg",
+  "desc": "Byrne’s follow-up to The Secret, centred on love as the force behind everything you want."
+ },
+ "b08": {
+  "title": "The Secret: Cartes de Manifestation",
+  "author": "Rhonda Byrne",
+  "topic": "Manifesting",
+  "url": "https://link.amazon/B04EZeCos",
+  "img": "/images/books/book-08.png",
+  "desc": "A deck of manifestation cards (in French) to draw from each day as a prompt and reminder."
+ },
+ "b09": {
+  "title": "The Neville Goddard Deluxe Collection",
+  "author": "Neville Goddard",
+  "topic": "Manifesting",
+  "url": "https://link.amazon/B0cv3c1xy",
+  "img": "/images/books/book-09.jpg",
+  "desc": "Neville’s classic lectures and books in one volume, on imagination and assuming the feeling of the wish fulfilled."
+ },
+ "b16": {
+  "title": "Wishes Fulfilled",
+  "author": "Dr. Wayne W. Dyer",
+  "topic": "Manifesting",
+  "url": "https://link.amazon/B0f9zSRtx",
+  "img": "/images/books/book-16.jpg",
+  "desc": "Dyer on manifesting through your highest self, drawing on Neville Goddard’s teachings."
+ },
+ "b17": {
+  "title": "Real Magic",
+  "author": "Dr. Wayne W. Dyer",
+  "topic": "Manifesting",
+  "url": "https://link.amazon/B06cUvNcO",
+  "img": "/images/books/book-17.jpg",
+  "desc": "Dyer on creating miracles in everyday life by developing your spiritual awareness."
+ },
+ "b20": {
+  "title": "Ask and It Is Given",
+  "author": "Esther and Jerry Hicks",
+  "topic": "Manifesting",
+  "url": "https://link.amazon/B0fQy0IIT",
+  "img": "/images/books/book-20.jpg",
+  "desc": "The Teachings of Abraham, with 22 practical processes for aligning with what you want."
+ },
+ "b21": {
+  "title": "The Law of Attraction",
+  "author": "Esther and Jerry Hicks",
+  "topic": "Manifesting",
+  "url": "https://link.amazon/B0fYjq2sw",
+  "img": "/images/books/book-21.jpg",
+  "desc": "The basics of the Teachings of Abraham: the law of attraction, deliberate creation and allowing."
+ },
+ "b22": {
+  "title": "E-Cubed",
+  "author": "Pam Grout",
+  "topic": "Manifesting",
+  "url": "https://link.amazon/B04LiTcT4",
+  "img": "/images/books/book-22.jpg",
+  "desc": "The follow-up to E-Squared: nine more energy experiments, each meant to show that your thoughts shape your reality."
+ },
+ "b01": {
+  "title": "Breaking the Habit of Being Yourself",
+  "author": "Dr. Joe Dispenza",
+  "topic": "Mind",
+  "url": "https://link.amazon/B0jbTrYBt",
+  "img": "/images/books/book-01.jpg",
+  "desc": "Dispenza combines neuroscience and meditation to show how thoughts become habits, and how to break the patterns that keep you stuck."
+ },
+ "b02": {
+  "title": "Becoming Supernatural",
+  "author": "Dr. Joe Dispenza",
+  "topic": "Mind",
+  "url": "https://link.amazon/B0aulu8MM",
+  "img": "/images/books/book-02.jpg",
+  "desc": "A follow-up on meditation, the heart and the brain, with practices for moving beyond old limits and into new states of being."
+ },
+ "b18": {
+  "title": "Your Erroneous Zones",
+  "author": "Dr. Wayne W. Dyer",
+  "topic": "Mind",
+  "url": "https://link.amazon/B05VlmbRU",
+  "img": "/images/books/book-18.jpg",
+  "desc": "A classic on recognising and letting go of self-defeating thinking, guilt and worry."
+ },
+ "b19": {
+  "title": "The Power of Your Subconscious Mind",
+  "author": "Joseph Murphy",
+  "topic": "Mind",
+  "url": "https://link.amazon/B0jc2ZQsK",
+  "img": "/images/books/book-19.jpg",
+  "desc": "Murphy’s classic on how the subconscious shapes your health, relationships and success, and how to work with it."
+ },
+ "b26": {
+  "title": "Wherever You Go, There You Are",
+  "author": "Jon Kabat-Zinn",
+  "topic": "Mind",
+  "url": "https://link.amazon/B0hLYSRXE",
+  "img": "/images/books/book-26.jpg",
+  "desc": "A gentle introduction to mindfulness meditation in everyday life."
+ },
+ "b10": {
+  "title": "Signs",
+  "author": "Laura Lynne Jackson",
+  "topic": "Spirit",
+  "url": "https://link.amazon/B04fCtZCH",
+  "img": "/images/books/book-10.jpg",
+  "desc": "A psychic medium on how loved ones and the universe communicate with us, and how to notice and ask for signs."
+ },
+ "b11": {
+  "title": "The Untethered Soul",
+  "author": "Michael A. Singer",
+  "topic": "Spirit",
+  "url": "https://link.amazon/B0ej5zFx6",
+  "img": "/images/books/book-11.jpg",
+  "desc": "Singer explores the voice in your head and how to step back from it, to live with more openness and freedom."
+ },
+ "b12": {
+  "title": "The Four Agreements",
+  "author": "Don Miguel Ruiz",
+  "topic": "Spirit",
+  "url": "https://link.amazon/B07Xkx7lV",
+  "img": "/images/books/book-12.jpg",
+  "desc": "Four simple, powerful agreements with yourself, rooted in ancient Toltec wisdom, for a life with less suffering."
+ },
+ "b14": {
+  "title": "The Seven Spiritual Laws of Success",
+  "author": "Deepak Chopra",
+  "topic": "Spirit",
+  "url": "https://link.amazon/B04JazBJx",
+  "img": "/images/books/book-14.jpg",
+  "desc": "Chopra distils success into seven spiritual laws you can practise one day of the week at a time."
+ },
+ "b15": {
+  "title": "The Power of Now",
+  "author": "Eckhart Tolle",
+  "topic": "Spirit",
+  "url": "https://link.amazon/B04tOy7hz",
+  "img": "/images/books/book-15.jpg",
+  "desc": "Tolle’s guide to living in the present moment and freeing yourself from the thinking mind."
+ },
+ "b24": {
+  "title": "The Universe Has Your Back",
+  "author": "Gabrielle Bernstein",
+  "topic": "Spirit",
+  "url": "https://link.amazon/B0070S7m0",
+  "img": "/images/books/book-24.jpg",
+  "desc": "Bernstein on turning fear into faith and trusting that you are guided."
+ },
+ "b25": {
+  "title": "The Law of Success",
+  "author": "Paramahansa Yogananda",
+  "topic": "Spirit",
+  "url": "https://link.amazon/B0966Ofcf",
+  "img": "/images/books/book-25.jpg",
+  "desc": "A short text by Yogananda on using the power of spirit to create health, prosperity and happiness."
+ },
+ "b13": {
+  "title": "Women Who Run With the Wolves",
+  "author": "Clarissa Pinkola Estés",
+  "topic": "Healing",
+  "url": "https://link.amazon/B0aPwWPvp",
+  "img": "/images/books/book-13.jpg",
+  "desc": "Through myths and stories, Estés reconnects women with their wild, intuitive nature."
+ },
+ "b23": {
+  "title": "You Can Heal Your Life",
+  "author": "Louise Hay",
+  "topic": "Healing",
+  "url": "https://link.amazon/B0b3yw8jl",
+  "img": "/images/books/book-23.jpg",
+  "desc": "Louise Hay on the link between thoughts, beliefs and the body, with affirmations for healing."
+ }
+};
+  var bookKeys = ["b03","b04","b05","b06","b07","b08","b09","b16","b17","b20","b21","b22","b01","b02","b18","b19","b26","b10","b11","b12","b14","b15","b24","b25","b13","b23"];
+  var currentBook = null;
+  function scrollToSection(e, id){
+    e.preventDefault();
+    var el = document.getElementById(id);
+    var y = el.getBoundingClientRect().top + window.pageYOffset - 140;
+    window.scrollTo({top:y, behavior:'smooth'});
+  }
+  window.addEventListener('scroll', function(){
+    var current = '';
+    ['manifesting','mind','spirit','healing'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 200) current = id;
+    });
+    document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.toggle('active', b.getAttribute('href') === '#' + current); });
+  });
+  function openModal(id){
+    var b = books[id]; if (!b) return;
+    currentBook = id;
+    document.getElementById('modalImg').innerHTML = '<img src="'+b.img+'" alt="'+b.title.replace(/"/g,'&quot;')+' cover"'+(id==='b08'?' class="no-shadow"':'')+'>';
+    var h = '<p class="modal-brand">'+b.author+'</p><h2>'+b.title+'</h2><span class="modal-tag">'+b.topic+'</span>';
+    h += '<p class="modal-section-title">About the book</p><p class="modal-text">'+b.desc+'</p>';
+    h += '<a class="modal-buy" href="'+b.url+'" target="_blank" rel="sponsored noopener">Buy now</a>';
+    document.getElementById('modalBody').innerHTML = h;
+    document.getElementById('modalOverlay').classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    document.querySelector('.modal').scrollTop = 0;
+  }
+  function closeModal(){ document.getElementById('modalOverlay').classList.remove('is-open'); document.body.style.overflow = ''; currentBook = null; }
+  function nextBook(){ if (!currentBook) return; var i = bookKeys.indexOf(currentBook); openModal(bookKeys[(i+1) % bookKeys.length]); }
+  document.getElementById('modalOverlay').addEventListener('click', function(e){ if (e.target === this) closeModal(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+  </script>
 </body>
 </html>
