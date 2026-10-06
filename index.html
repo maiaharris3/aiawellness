@@ -494,6 +494,8 @@
     .hero .marquee-item{ color:#3D3428; }
     .hero .marquee-item::after{ color:#8A7560; }
     .breathe-btn{ bottom:4.75rem; }
+    .hero-sub{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+    .hero-content{ padding-bottom:3.5rem; }
     @media (max-width:900px){
       #navbar.nav-home, #navbar.nav-home.scrolled{ grid-template-columns:1fr auto auto; gap:1.25rem; padding:1rem 1.5rem; }
       .nav-home .nav-logo{ opacity:1; pointer-events:auto; }
@@ -501,6 +503,53 @@
       .hero .marquee-section{ margin:0 -1.2rem; }
       .breathe-btn{ margin:0 auto 2.25rem; }
       .hero-sub{ margin-bottom:2rem; }
+    }
+
+    /* ============ HEADER 7a: meadow photo (Oct 2026) ============ */
+    .hero.hero-photo-wrap{ height:680px; min-height:0; padding:0 2rem; background:#3D3428; justify-content:center; }
+    .hero-photo{ inset:-10% 0; background:url('images/hero-meadow.webp') 62% 35% / cover no-repeat; opacity:.94; }
+    .hero-shade{ position:absolute; inset:0; z-index:2; pointer-events:none;
+      background:
+        linear-gradient(180deg,rgba(30,26,18,.38) 0%,rgba(30,26,18,0) 220px),
+        radial-gradient(ellipse 44% 40% at 50% 52%,rgba(30,26,18,.34) 0%,rgba(30,26,18,0) 100%),
+        linear-gradient(0deg,rgba(30,26,18,.38) 0%,rgba(30,26,18,0) 260px); }
+    .hero-photo-wrap .hero-content{ padding-top:40px; }
+    .hero-word{ margin:0; font-family:var(--serif); font-weight:300; font-size:clamp(5.5rem,16vw,14.4rem); line-height:.9; letter-spacing:.06em; color:#F7F3EC; text-shadow:0 2px 30px rgba(30,26,18,.3); display:flex; flex-direction:column; align-items:center; }
+    .hero-word span{ margin-top:1.5rem; font-size:clamp(.85rem,1.75vw,1.56rem); font-weight:400; letter-spacing:.42em; text-transform:uppercase; text-shadow:0 1px 14px rgba(30,26,18,.35); }
+    .hero-photo-wrap .breathe-btn{ bottom:2.5rem; color:#F7F3EC; }
+    .hero-photo-wrap .breathe-btn:hover{ color:#FFFFFF; }
+    .hero-photo-wrap .breathe-ring{ border-color:rgba(247,243,236,.6); }
+    .hero-photo-wrap .breathe-desc{ color:#F7F3EC; }
+    .hero-photo-wrap .breathe-btn:focus-visible{ outline-color:#F7F3EC; }
+    #navbar.nav-home:not(.scrolled) .nav-links a{ color:#F7F3EC; }
+    #navbar.nav-home:not(.scrolled) .nav-links a::after{ background:#F7F3EC; }
+    #navbar.nav-home:not(.scrolled) .nav-join{ color:#F7F3EC; border-color:rgba(247,243,236,.8); }
+    #navbar.nav-home:not(.scrolled) .nav-join:hover{ background:#F7F3EC; color:#2C241A; }
+    #navbar.nav-home:not(.scrolled) .nav-logo, #navbar.nav-home:not(.scrolled) .nav-mobile-toggle{ color:#F7F3EC; }
+    .recent{ background:#D9CFBF url('images/aia-paper-tile.webp') repeat; background-size:340px 340px; }
+    .recent-label{ margin:0; padding:.9rem 0; text-align:center; border-bottom:1px solid rgba(61,52,40,.25); font-size:.69rem; font-weight:500; letter-spacing:.24em; text-transform:uppercase; color:#3D3428; }
+    .recent-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-bottom:1px solid rgba(61,52,40,.25); }
+    .recent-post{ display:grid; grid-template-columns:92px minmax(0,1fr); gap:1.1rem; align-items:center; padding:1.4rem 1.6rem; color:#2C241A; transition:background .3s ease; }
+    .recent-post + .recent-post{ border-left:1px solid rgba(61,52,40,.25); }
+    .recent-post:hover{ background:rgba(247,243,236,.4); color:#2C241A; }
+    .recent-post:focus-visible{ outline:2px solid #584738; outline-offset:-2px; }
+    .recent-img{ display:block; width:92px; height:92px; overflow:hidden; }
+    .recent-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .recent-title{ font-family:var(--serif); font-size:1.3rem; line-height:1.18; text-wrap:pretty; }
+    .recent .marquee-thin{ background:transparent; padding:.95rem 0; border-top:none !important; border-bottom:1px solid rgba(61,52,40,.25); }
+    .recent .marquee-thin .marquee-item{ color:#3D3428; }
+    .recent .marquee-thin .marquee-item::after{ color:#8A7560; }
+    @media (max-width:1100px){
+      .recent-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .recent-post:nth-child(3){ border-left:none; }
+      .recent-post:nth-child(n+3){ border-top:1px solid rgba(61,52,40,.25); }
+    }
+    @media (max-width:900px){
+      .hero.hero-photo-wrap{ height:auto; min-height:78vh; padding:6rem 1.2rem 2rem; }
+      .hero-photo-wrap .hero-content{ padding-top:0; margin:auto 0; }
+      .hero-photo-wrap .breathe-btn{ position:relative; z-index:4; margin:2rem auto 0; }
+      .recent-grid{ grid-template-columns:1fr; }
+      .recent-post + .recent-post{ border-left:none; border-top:1px solid rgba(61,52,40,.25); }
     }
 
     /* Product carousel: boxed cards */
@@ -529,14 +578,11 @@
     </div>
   </nav>
 
-  <section class="hero">
-    <div class="hero-plaster"></div>
-    <svg class="hero-leaf leaf-a" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g transform="translate(20,-40) rotate(10) scale(4.2)" opacity="0.34"><g><path d="M0,0 C40,-18 96,-26 150,-14 C120,10 60,18 0,0 Z"/><path d="M0,0 C36,10 84,34 112,70 C74,64 28,38 0,0 Z"/><path d="M0,0 C-14,34 -14,84 8,126 C30,92 26,40 0,0 Z"/><path d="M0,0 C44,-4 100,10 138,44 C96,50 40,32 0,0 Z"/><path d="M0,0 C-30,-24 -74,-40 -124,-38 C-92,-10 -44,10 0,0 Z"/></g></g><g transform="translate(560,-150) rotate(52) scale(2.6)" opacity="0.20"><g><path d="M0,0 C40,-18 96,-26 150,-14 C120,10 60,18 0,0 Z"/><path d="M0,0 C36,10 84,34 112,70 C74,64 28,38 0,0 Z"/><path d="M0,0 C-14,34 -14,84 8,126 C30,92 26,40 0,0 Z"/><path d="M0,0 C44,-4 100,10 138,44 C96,50 40,32 0,0 Z"/><path d="M0,0 C-30,-24 -74,-40 -124,-38 C-92,-10 -44,10 0,0 Z"/></g></g></svg>
-    <svg class="hero-leaf leaf-b" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g transform="translate(1410,940) rotate(200) scale(3.9)" opacity="0.29"><g><path d="M0,0 C40,-18 96,-26 150,-14 C120,10 60,18 0,0 Z"/><path d="M0,0 C36,10 84,34 112,70 C74,64 28,38 0,0 Z"/><path d="M0,0 C-14,34 -14,84 8,126 C30,92 26,40 0,0 Z"/><path d="M0,0 C44,-4 100,10 138,44 C96,50 40,32 0,0 Z"/><path d="M0,0 C-30,-24 -74,-40 -124,-38 C-92,-10 -44,10 0,0 Z"/></g></g><g transform="translate(880,1010) rotate(240) scale(2.4)" opacity="0.18"><g><path d="M0,0 C40,-18 96,-26 150,-14 C120,10 60,18 0,0 Z"/><path d="M0,0 C36,10 84,34 112,70 C74,64 28,38 0,0 Z"/><path d="M0,0 C-14,34 -14,84 8,126 C30,92 26,40 0,0 Z"/><path d="M0,0 C44,-4 100,10 138,44 C96,50 40,32 0,0 Z"/><path d="M0,0 C-30,-24 -74,-40 -124,-38 C-92,-10 -44,10 0,0 Z"/></g></g></svg>
+  <section class="hero hero-photo-wrap">
+    <div class="hero-plaster hero-photo" role="img" aria-label="A woman hanging from a tree branch in a sunlit meadow"></div>
+    <div class="hero-shade"></div>
     <div class="hero-content">
-      <h1 style="margin:0;">
-        <img src="images/aia-mark-embossed.webp" alt="AÏA, your wellness ecosystem" class="hero-mark" width="1642" height="958" fetchpriority="high">
-      </h1>
+      <h1 class="hero-word">AÏA<span>Your wellness ecosystem</span></h1>
       <p class="hero-sub">Your safe place to be curious. A library for wellness, health, and spirituality, wherever you are on your path.</p>
     </div>
     <button class="breathe-btn" type="button" onclick="openBreathe()" aria-label="Breathe: a one-minute pause">
@@ -544,14 +590,22 @@
       <span class="breathe-ring"><span class="breathe-dot"></span></span>
       <span class="breathe-desc">A one-minute pause. Follow the circle in and out.</span>
     </button>
-  <div class="marquee-section">
+  </section>
+
+  <section class="recent" aria-label="Recent from The Edit">
+    <p class="recent-label">Recent from The Edit</p>
+    <div class="recent-grid">
+      <a href="/edit/wind-down-routine/" class="recent-post"><span class="recent-img"><img src="images/wind-down.jpg" alt="" loading="lazy"></span><span class="recent-title">Let’s Build Your Perfect Wind Down Routine</span></a>
+      <a href="/edit/physical-touch/" class="recent-post"><span class="recent-img"><img src="images/physical-touch.jpg" alt="" loading="lazy"></span><span class="recent-title">Why Physical Touch Is More Important Than We Think</span></a>
+      <a href="/edit/strength-training/" class="recent-post"><span class="recent-img"><img src="images/strength-training.webp" alt="" loading="lazy"></span><span class="recent-title">Why Every Woman Should Be Strength Training</span></a>
+      <a href="/edit/coconut-water/" class="recent-post"><span class="recent-img"><img src="images/coconut-water.png" alt="" loading="lazy"></span><span class="recent-title">A Coconut a Day Keeps the Liquid IV Away</span></a>
+    </div>
+    <div class="marquee-section marquee-thin">
       <div class="marquee-track">
         <span class="marquee-item">Screened products</span><span class="marquee-item">The Edit</span><span class="marquee-item">Books</span><span class="marquee-item">Meditations and practices</span><span class="marquee-item">Nothing unvetted</span><span class="marquee-item">Screened products</span><span class="marquee-item">The Edit</span><span class="marquee-item">Books</span><span class="marquee-item">Meditations and practices</span><span class="marquee-item">Nothing unvetted</span>
       </div>
     </div>
   </section>
-
-
 
   <section class="paths">
     <div class="paths-grid">
