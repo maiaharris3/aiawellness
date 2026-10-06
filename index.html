@@ -506,26 +506,26 @@
     }
 
     /* ============ HEADER 7a: meadow photo (Oct 2026) ============ */
-    .hero.hero-photo-wrap{ height:680px; min-height:0; padding:0 2rem; background:#3D3428; justify-content:center; }
+    .hero.hero-photo-wrap{ height:640px; min-height:0; margin-top:78px; padding:0 2rem; background:#3D3428; justify-content:center; }
     .hero-photo{ inset:-10% 0; background:url('images/hero-meadow.webp') 62% 35% / cover no-repeat; opacity:.94; }
     .hero-shade{ position:absolute; inset:0; z-index:2; pointer-events:none;
       background:
-        linear-gradient(180deg,rgba(30,26,18,.38) 0%,rgba(30,26,18,0) 220px),
+        radial-gradient(ellipse 36% 46% at 10% 82%,rgba(30,26,18,.45) 0%,rgba(30,26,18,0) 100%),
         radial-gradient(ellipse 44% 40% at 50% 52%,rgba(30,26,18,.34) 0%,rgba(30,26,18,0) 100%),
         linear-gradient(0deg,rgba(30,26,18,.38) 0%,rgba(30,26,18,0) 260px); }
-    .hero-photo-wrap .hero-content{ padding-top:40px; }
-    .hero-word{ margin:0; font-family:var(--serif); font-weight:300; font-size:clamp(5.5rem,16vw,14.4rem); line-height:.9; letter-spacing:.06em; color:#F7F3EC; text-shadow:0 2px 30px rgba(30,26,18,.3); display:flex; flex-direction:column; align-items:center; }
-    .hero-word span{ margin-top:1.5rem; font-size:clamp(.85rem,1.75vw,1.56rem); font-weight:400; letter-spacing:.42em; text-transform:uppercase; text-shadow:0 1px 14px rgba(30,26,18,.35); }
-    .hero-photo-wrap .breathe-btn{ bottom:2.5rem; color:#F7F3EC; }
+    .hero-photo-wrap .hero-content{ padding-top:0; }
+    .hero-word{ margin:0; font-family:var(--serif); font-weight:300; font-size:clamp(5.5rem,15vw,13.5rem); line-height:.9; letter-spacing:.06em; color:#F7F3EC; text-shadow:0 2px 30px rgba(30,26,18,.3); display:flex; flex-direction:column; align-items:center; }
+    .hero-word span{ margin-top:1.5rem; font-size:clamp(.85rem,1.7vw,1.5rem); font-weight:400; letter-spacing:.42em; text-transform:uppercase; text-shadow:0 1px 14px rgba(30,26,18,.35); }
+    .hero-photo-wrap .breathe-btn{ bottom:2.5rem; right:auto; left:3rem; width:200px; color:#F7F3EC; text-shadow:0 1px 10px rgba(30,26,18,.55); }
+    .hero-photo-wrap .breathe-label{ font-size:.75rem; font-weight:600; }
+    .hero-photo-wrap .breathe-desc{ font-size:.875rem; font-weight:500; }
     .hero-photo-wrap .breathe-btn:hover{ color:#FFFFFF; }
-    .hero-photo-wrap .breathe-ring{ border-color:rgba(247,243,236,.6); }
+    .hero-photo-wrap .breathe-ring{ border-color:rgba(247,243,236,.85); }
     .hero-photo-wrap .breathe-desc{ color:#F7F3EC; }
     .hero-photo-wrap .breathe-btn:focus-visible{ outline-color:#F7F3EC; }
-    #navbar.nav-home:not(.scrolled) .nav-links a{ color:#F7F3EC; }
-    #navbar.nav-home:not(.scrolled) .nav-links a::after{ background:#F7F3EC; }
-    #navbar.nav-home:not(.scrolled) .nav-join{ color:#F7F3EC; border-color:rgba(247,243,236,.8); }
-    #navbar.nav-home:not(.scrolled) .nav-join:hover{ background:#F7F3EC; color:#2C241A; }
-    #navbar.nav-home:not(.scrolled) .nav-logo, #navbar.nav-home:not(.scrolled) .nav-mobile-toggle{ color:#F7F3EC; }
+    #navbar.nav-home, #navbar.nav-home.scrolled{ padding:1.4rem 3.5rem; background:#E8DFD3; backdrop-filter:none; -webkit-backdrop-filter:none; border-bottom:1px solid rgba(138,117,96,.3); box-shadow:none; }
+    #navbar.nav-home .nav-links{ gap:3rem; }
+    #navbar.nav-home .nav-links a{ font-size:.82rem; color:#2C241A; }
     .recent{ background:#D9CFBF url('images/aia-paper-tile.webp') repeat; background-size:340px 340px; }
     .recent-label{ margin:0; padding:.9rem 0; text-align:center; border-bottom:1px solid rgba(61,52,40,.25); font-size:.69rem; font-weight:500; letter-spacing:.24em; text-transform:uppercase; color:#3D3428; }
     .recent-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-bottom:1px solid rgba(61,52,40,.25); }
@@ -545,7 +545,9 @@
       .recent-post:nth-child(n+3){ border-top:1px solid rgba(61,52,40,.25); }
     }
     @media (max-width:900px){
-      .hero.hero-photo-wrap{ height:auto; min-height:78vh; padding:6rem 1.2rem 2rem; }
+      .hero.hero-photo-wrap{ height:auto; min-height:72vh; margin-top:64px; padding:3rem 1.2rem 2rem; }
+      #navbar.nav-home, #navbar.nav-home.scrolled{ padding:1rem 1.5rem; }
+      .hero-photo-wrap .breathe-btn{ left:auto; }
       .hero-photo-wrap .hero-content{ padding-top:0; margin:auto 0; }
       .hero-photo-wrap .breathe-btn{ position:relative; z-index:4; margin:2rem auto 0; }
       .recent-grid{ grid-template-columns:1fr; }
@@ -606,6 +608,8 @@
       </div>
     </div>
   </section>
+
+
 
   <section class="paths">
     <div class="paths-grid">
