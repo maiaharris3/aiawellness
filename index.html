@@ -433,6 +433,11 @@
 
     /* Smaller square path images */
     .paths-grid{max-width:900px;gap:2rem}.path-img{aspect-ratio:1/1}
+    /* Each path in its own box */
+    .paths-grid{max-width:1280px;gap:3rem}
+    .path{background:#F7F3EC;border:1px solid rgba(88,71,56,.16);padding:1.75rem 1.5rem 1.5rem;gap:1.25rem;transition:border-color .35s ease, box-shadow .35s ease, transform .35s ease}
+    .path:hover{border-color:rgba(88,71,56,.32);box-shadow:0 12px 32px rgba(61,52,40,.08);transform:translateY(-3px)}
+    .path:focus-visible{outline:2px solid #584738;outline-offset:3px}
 
     .home-edit{ background:#F1EADA; }
     .arrive{ padding:3.5rem 1.5rem 0; text-align:center; display:flex; flex-direction:column; align-items:center; }
@@ -446,19 +451,11 @@
     .arrive-quote{ margin-top:1.6rem; min-height:64px; max-width:820px; display:flex; flex-direction:column; align-items:center; gap:.4rem; }
     .arrive-text{ font-family:var(--serif); font-style:italic; font-size:clamp(1.3rem,2.2vw,1.65rem); line-height:1.3; color:#6F5C4A; text-wrap:balance; }
     .arrive-by{ font-size:.69rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:#6B5A46; }
-    .arrive-read{ margin-top:1.6rem; width:100%; max-width:560px; display:grid; grid-template-columns:76px minmax(0,1fr) auto; gap:1.1rem; align-items:center; padding:.75rem 1.25rem .75rem .75rem; background:rgba(253,251,247,.6); border:1px solid rgba(88,71,56,.2); text-align:left; color:#2C241A; transition:background .3s ease, border-color .3s ease; }
-    .arrive-read:hover{ background:#FDFBF7; border-color:rgba(88,71,56,.4); color:#2C241A; }
-    .arrive-read:focus-visible{ outline:2px solid #584738; outline-offset:2px; }
-    .arrive-read-img{ display:block; width:76px; height:76px; overflow:hidden; }
-    .arrive-read-img img{ width:100%; height:100%; object-fit:cover; display:block; transition:opacity .3s ease; }
-    .arrive-read-body{ display:flex; flex-direction:column; gap:.3rem; }
-    .arrive-read-label{ font-size:.66rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:#6B5A46; }
-    .arrive-read-title{ font-family:var(--serif); font-size:1.2rem; line-height:1.2; text-wrap:pretty; }
-    .arrive-read-arrow{ font-size:1.1rem; color:#584738; }
     .home-edit-inner{ max-width:1250px; margin:0 auto; padding:2.5rem 3rem 5rem; }
     .home-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:1.5rem; margin-bottom:2rem; }
     .home-head h2{ font-family:var(--serif); font-size:clamp(1.8rem,3vw,2.5rem); font-weight:300; color:var(--deep); }
     .home-head .section-label{ margin-bottom:.5rem; }
+    #roomGrid{ transition:opacity .35s ease; }
     .home-edit-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:2.5rem; }
     .home-article{ display:flex; flex-direction:column; gap:1rem; }
     .home-article img{ width:100%; aspect-ratio:4/3; object-fit:cover; }
@@ -652,18 +649,13 @@
         <p class="arrive-text" id="arriveText"></p>
         <p class="arrive-by" id="arriveBy"></p>
       </div>
-      <a class="arrive-read" id="arriveRead" href="/edit/">
-        <span class="arrive-read-img"><img id="arriveReadImg" src="images/inner-dialogue.png" alt="" loading="lazy"></span>
-        <span class="arrive-read-body"><span class="arrive-read-label">A read for today</span><span class="arrive-read-title" id="arriveReadTitle"></span></span>
-        <span class="arrive-read-arrow" aria-hidden="true">→</span>
-      </a>
     </div>
     <div class="home-edit-inner">
       <div class="home-head">
-        <h2>Your reading room.</h2>
+        <div><p class="section-label" id="roomFor">Chosen for you today</p><h2>Your reading room.</h2></div>
         <a href="/edit/" class="view-all">All articles →</a>
       </div>
-      <div class="home-edit-grid">
+      <div class="home-edit-grid" id="roomGrid">
         <a class="home-article" href="/edit/too-pretty"><img src="images/too-pretty.png" alt="Too Pretty to Work This Hard" loading="lazy"><span class="home-article-tag">Hormones · 7 min read</span><span class="home-article-title">Too Pretty to Work This Hard: The Case for Doing Less</span></a>
         <a class="home-article" href="/edit/coconut-water"><img src="images/coconut-water.png" alt="Coconut Water" loading="lazy"><span class="home-article-tag">Food · 6 min read</span><span class="home-article-title">A Coconut a Day Keeps the Liquid IV Away</span></a>
         <a class="home-article" href="/edit/lip-balm"><img src="images/lip-balm.png" alt="Lip Balm" loading="lazy"><span class="home-article-tag">Skincare · 8 min read</span><span class="home-article-title">The Lip Balm You're Obsessed With Is Working Against You</span></a>
@@ -983,18 +975,19 @@
       ['Lost', 'Traveler, there is no road; the road is made by walking.', 'Antonio Machado'],
       ['Calm', 'In the midst of movement and chaos, keep stillness inside of you.', 'Often attributed to Deepak Chopra']
     ];
-    var READ = {
-      Tired:    ['too-pretty', 'too-pretty.png', 'Too Pretty to Work This Hard: The Case for Doing Less'],
-      Heavy:    ['physical-touch', 'physical-touch.jpg', 'Why Physical Touch Is More Important Than We Think'],
-      Curious:  ['sunscreen-villain', 'sunscreen-villain.png', 'The Sun Isn\u2019t the Villain \u2014 Your Sunscreen Might Be'],
-      Inspired: ['red-light-therapy', 'red-light-therapy-v2.webp', 'Red Light Therapy: Worth the Hype or a Waste of Money?'],
-      Sad:      ['inner-dialogue', 'inner-dialogue.png', 'You Can\u2019t Outrun Your Inner Dialogue'],
-      Anxious:  ['wind-down-routine', 'wind-down.jpg', 'Let\u2019s Build Your Perfect Wind Down Routine'],
-      Grateful: ['coconut-water', 'coconut-water.png', 'A Coconut a Day Keeps the Liquid IV Away'],
-      Lost:     ['strength-training', 'strength-training.webp', 'Why Every Woman Should Be Strength Training'],
-      Calm:     ['wind-down-routine', 'wind-down.jpg', 'Let\u2019s Build Your Perfect Wind Down Routine']
-    };
-    var readA = document.getElementById('arriveRead'), readImg = document.getElementById('arriveReadImg'), readTitle = document.getElementById('arriveReadTitle');
+    var POSTS = {"subconscious-sleep":["subconscious-sleep.webp","Mind · 7 min read","The Doorway to Your Subconscious Before Sleep"],"water-therapy":["water-therapy.webp","Mind · 7 min read","Why Being Near the Ocean Can Change How You Feel"],"walking":["walking.webp","Body · 6 min read","Why Walking Might Be the Most Underrated Wellness Habit"],"inner-identity":["inner-identity.webp","Mind · 8 min read","Your Inner Identity Becomes the Lens Through Which You Move Through the World"],"wind-down-routine":["wind-down.jpg","Mind · 7 min read","Let’s Build Your Perfect Wind Down Routine"],"strength-training":["strength-training.webp","Body · 5 min read","Why Every Woman Should Be Strength Training"],"physical-touch":["physical-touch.jpg","Mind · 5 min read","Why Physical Touch Is More Important Than We Think"],"coconut-water":["coconut-water.png","Food & Nutrition · 6 min read","A Coconut a Day Keeps the Liquid IV Away"],"hormones-libido":["hormones-libido.png","Hormones · 8 min read","The Link Between Your Hormones and Your Sex Drive"],"sunscreen-villain":["sunscreen-villain.png","Skincare · 7 min read","The Sun Isn’t the Villain — Your Sunscreen Might Be"],"red-light-therapy":["red-light-therapy-v2.webp","Skincare · 10 min read","Red Light Therapy: Worth the Hype or a Waste of Money?"],"lip-balm":["lip-balm.png","Skincare · 8 min read","The Lip Balm You’re Obsessed With Is Working Against You"],"too-pretty":["too-pretty.png","Mind · 7 min read","Too Pretty to Work This Hard: The Case for Doing Less"],"inner-dialogue":["inner-dialogue.png","Mind · 8 min read","You Can’t Outrun Your Inner Dialogue"]};
+    var ROOM = {"Tired":["wind-down-routine","too-pretty","subconscious-sleep"],"Heavy":["physical-touch","walking","water-therapy"],"Curious":["sunscreen-villain","red-light-therapy","lip-balm"],"Inspired":["inner-identity","strength-training","subconscious-sleep"],"Sad":["inner-dialogue","physical-touch","water-therapy"],"Anxious":["wind-down-routine","walking","inner-dialogue"],"Grateful":["coconut-water","water-therapy","physical-touch"],"Lost":["inner-identity","walking","strength-training"],"Calm":["water-therapy","subconscious-sleep","wind-down-routine"]};
+    var roomGrid = document.getElementById('roomGrid'), roomFor = document.getElementById('roomFor');
+    function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+    function renderRoom(feel){
+      var list = ROOM[feel]; if (!list) return;
+      roomGrid.style.opacity = 0;
+      setTimeout(function(){
+        roomGrid.innerHTML = list.map(function(k){ var p = POSTS[k]; return '<a class="home-article" href="/edit/'+k+'/"><img src="images/'+p[0]+'" alt="'+esc(p[2])+'" loading="lazy"><span class="home-article-tag">'+esc(p[1])+'</span><span class="home-article-title">'+esc(p[2])+'</span></a>'; }).join('');
+        roomFor.textContent = 'Chosen for feeling ' + feel.toLowerCase();
+        roomGrid.style.opacity = 1;
+      }, 200);
+    }
     var wrap = document.getElementById('arriveFeelings');
     var text = document.getElementById('arriveText'), by = document.getElementById('arriveBy');
     document.getElementById('arriveDate').textContent = new Date().toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
@@ -1002,8 +995,7 @@
       [].forEach.call(wrap.children, function(b, j){ b.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
       text.textContent = '\u201C' + Q[i][1] + '\u201D';
       by.textContent = Q[i][2];
-      var p = READ[Q[i][0]];
-      if (p) { readA.href = '/edit/' + p[0] + '/'; readImg.src = 'images/' + p[1]; readTitle.textContent = p[2]; }
+      renderRoom(Q[i][0]);
     }
     Q.forEach(function(q, i){
       var b = document.createElement('button');
