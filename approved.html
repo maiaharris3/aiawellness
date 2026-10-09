@@ -109,7 +109,6 @@
     <a class="filter-btn" href="#haircare" onclick="scrollToSection(event,'haircare')">Haircare</a>
     <a class="filter-btn" href="#home" onclick="scrollToSection(event,'home')">Home</a>
     <a class="filter-btn" href="#gut" onclick="scrollToSection(event,'gut')">Gut & Digestion</a>
-    <div class="region-switch" aria-label="Shopping from"><span>Shopping from</span><button data-r="us" onclick="setRegion('us')">US</button><button data-r="ca" onclick="setRegion('ca')">Canada</button></div>
   </div>
 
   <div style="background:#F7F3EC;padding:1.2rem 2rem;text-align:center;font-size:0.85rem;line-height:1.6;color:#5C5142;border-bottom:1px solid rgba(88,71,56,0.10);">Every product includes an estimated Yuka score. Yuka is an app that rates products from 0 to 100 based on their ingredients. We know a lot of you use it before buying, so we included our estimate for every product on this page.</div>
@@ -355,9 +354,8 @@
   };
   var currentProduct = null;
   var CA_TZ = /^America\/(Toronto|Vancouver|Montreal|Halifax|Winnipeg|Edmonton|Regina|St_Johns|Moncton|Glace_Bay|Goose_Bay|Whitehorse|Yellowknife|Iqaluit|Dawson_Creek|Fort_Nelson|Swift_Current|Rankin_Inlet|Cambridge_Bay|Inuvik|Resolute|Atikokan|Creston|Blanc-Sablon)$/;
-  var region = null; try { region = localStorage.getItem('aia-region'); } catch(e) {}
-  if (region !== 'us' && region !== 'ca') { var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e) {} region = (CA_TZ.test(tz) || /-CA$/i.test(navigator.language || '')) ? 'ca' : 'us'; }
-  function inCanada(p) { return region === 'ca' && !!p.ca; }
+  var region = 'us';
+  function inCanada(p) { return !p.url && !!p.ca; }
   function priceFor(p) {
     if (inCanada(p) && p.cad) return '$' + p.cad + ' CAD';
     var usd = p.usd ? '$' + p.usd : (p.price || '');
@@ -367,7 +365,7 @@
   function renderPrices() {
     document.querySelectorAll('.pg-card').forEach(function(c) {
       var m = (c.getAttribute('onclick') || '').match(/openModal\('([^']+)'\)/); var p = m && products[m[1]]; if (!p) return;
-      c.style.display = (region === 'us' ? !p.url : (!p.ca && !p.url)) ? 'none' : '';
+      c.style.display = (!p.url && !p.ca) ? 'none' : '';
       var el = c.querySelector('.pg-card-price'); var t = priceFor(p);
       if (!el && t) { el = document.createElement('p'); el.className = 'pg-card-price'; c.querySelector('.pg-card-body').appendChild(el); }
       if (el) el.textContent = t;
@@ -376,12 +374,10 @@
   }
   function setRegion(r) { region = r; try { localStorage.setItem('aia-region', r); } catch(e) {} renderPrices(); if (currentProduct) openModal(currentProduct); }
   function buyHtml(p) {
-    if (inCanada(p) || (!p.url && p.ca)) return '<a class="modal-buy" href="'+p.ca+'" target="_blank" rel="sponsored noopener">Buy on Amazon.ca</a><p class="modal-region-note">Prices in CAD · <button onclick="setRegion(\'us\')">Shopping from the US?</button></p>';
-    var h = '<a class="modal-buy" href="'+p.url+'" target="_blank" rel="sponsored noopener">Buy on Amazon.com</a>';
-    if (region === 'ca') h += '<p class="modal-region-note">' + (p.ca === null ? 'Not on Amazon.ca, so this links to Amazon.com. ' : '') + 'Price in USD · <button onclick="setRegion(\'us\')">Shopping from the US?</button></p>';
-    else h += '<p class="modal-region-note">Prices in USD · <button onclick="setRegion(\'ca\')">Shopping from Canada?</button></p>';
-    return h;
+    if (inCanada(p)) return '<a class="modal-buy" href="'+p.ca+'" target="_blank" rel="sponsored noopener">Buy on Amazon.ca</a>';
+    return '<a class="modal-buy" href="'+p.url+'" target="_blank" rel="sponsored noopener">Buy on Amazon.com</a>';
   }
+
   function openModal(id) {
     var p = products[id]; if (!p) return;
     currentProduct = id;
@@ -399,7 +395,7 @@
     document.querySelector('.modal').scrollTop = 0;
   }
   function closeModal() { document.getElementById('modalOverlay').classList.remove('is-open'); document.body.style.overflow = ''; currentProduct = null; }
-  function nextProduct() { if (!currentProduct) return; var i = productKeys.indexOf(currentProduct); var n = i, q; do { n = (n+1) % productKeys.length; q = products[productKeys[n]]; } while (q && region === 'us' && !q.url && n !== i); openModal(productKeys[n]); document.querySelector('.modal').scrollTop = 0; }
+  function nextProduct() { if (!currentProduct) return; var i = productKeys.indexOf(currentProduct); var n = i, q; do { n = (n+1) % productKeys.length; q = products[productKeys[n]]; } while (q && !q.url && !q.ca && n !== i); openModal(productKeys[n]); document.querySelector('.modal').scrollTop = 0; }
   document.getElementById('modalOverlay').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); if (e.key === 'ArrowRight' && currentProduct) nextProduct(); });
   renderPrices();
